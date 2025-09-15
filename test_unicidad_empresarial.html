@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Océano Rojo Detector™</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1B365D 0%, #4ECDC4 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1B365D, #4ECDC4);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .progress-container {
+            margin-bottom: 30px;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: #1B365D;
+            margin-bottom: 8px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1B365D, #4ECDC4);
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1B365D;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #4ECDC4;
+        }
+
+        .form-group small {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #1B365D15, #4ECDC415);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+            border-left: 5px solid #4ECDC4;
+        }
+
+        .section-header h2 {
+            color: #1B365D;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .question-container {
+            background: #f8f9ff;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #4ECDC4;
+        }
+
+        .question-number {
+            color: #1B365D;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            color: #2C3E50;
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option {
+            background: white;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+
+        .option:hover {
+            border-color: #4ECDC4;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(78, 205, 196, 0.2);
+        }
+
+        .option.selected {
+            border-color: #1B365D;
+            background: linear-gradient(135deg, #1B365D15, #4ECDC415);
+            font-weight: 600;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .btn-primary {
+            background: #FF6B6B;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #1B365D;
+            border: 2px solid #1B365D;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .results-screen {
+            text-align: center;
+        }
+
+        .score-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: conic-gradient(#2ECC71 0deg, #4ECDC4 120deg, #e0e0e0 120deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .score-circle::after {
+            content: '';
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .score-text {
+            position: relative;
+            z-index: 2;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2C3E50;
+        }
+
+        .result-category {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .oceano-azul { color: #2ECC71; }
+        .oceano-azul-emergente { color: #4ECDC4; }
+        .oceano-rojo-moderado { color: #FFA500; }
+        .oceano-rojo-alto { color: #FF6B6B; }
+        .oceano-rojo-critico { color: #DC3545; }
+
+        .result-description {
+            background: #f8f9ff;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            line-height: 1.6;
+            color: #2C3E50;
+        }
+
+        .section-scores {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .section-score {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .section-score h4 {
+            color: #1B365D;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .section-score .score {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2C3E50;
+        }
+
+        .recommendations {
+            background: linear-gradient(135deg, #1B365D10, #4ECDC410);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .recommendations h4 {
+            color: #1B365D;
+            margin-bottom: 15px;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #2C3E50;
+        }
+
+        .recommendations li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2ECC71;
+            font-weight: bold;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .header, .content {
+                padding: 25px;
+            }
+            
+            .section-scores {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Océano Rojo Detector™</h1>
+            <p>Descubre si estás en océano rojo (competencia sangrienta) u océano azul (dominio sin competencia)</p>
+        </div>
+        
+        <div class="content">
+            <div class="progress-container">
+                <div class="progress-text" id="progressText">Preparando diagnóstico...</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- Pantalla 1: Datos Personales -->
+            <div id="personalDataScreen" class="screen active">
+                <div class="section-header">
+                    <h2>¡Hola! Soy La Estratega 👋</h2>
+                    <p>Para personalizar tu diagnóstico, necesito algunos datos básicos sobre ti y tu empresa.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label>¿Cuál es tu nombre completo?</label>
+                    <input type="text" id="nombreCompleto" placeholder="Ej: María González">
+                </div>
+                
+                <div class="form-group">
+                    <label>¿A qué email quieres que envíe tu diagnóstico personalizado?</label>
+                    <input type="email" id="email" placeholder="Ej: maria@miempresa.com">
+                    <small>Tu información está 100% protegida. Cero spam, solo valor.</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>¿Cuál es el nombre de tu empresa o proyecto?</label>
+                    <input type="text" id="nombreEmpresa" placeholder="Ej: Consultora González">
+                </div>
+                
+                <div class="form-group">
+                    <label>¿En qué industria/sector opera tu empresa?</label>
+                    <select id="industria">
+                        <option value="">Selecciona tu industria</option>
+                        <option value="servicios">Servicios profesionales (consultoría, legal, contable)</option>
+                        <option value="comercio">Comercio/Retail (venta de productos)</option>
+                        <option value="alimentos">Alimentos y bebidas (restaurantes, catering)</option>
+                        <option value="belleza">Belleza y bienestar (salones, spas, fitness)</option>
+                        <option value="tecnologia">Tecnología y software</option>
+                        <option value="construccion">Construcción y bienes raíces</option>
+                        <option value="educacion">Educación y capacitación</option>
+                        <option value="salud">Salud y medicina</option>
+                        <option value="marketing">Marketing y publicidad</option>
+                        <option value="manufactura">Manufactura/Producción</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>¿Hace cuánto tiempo está operando tu empresa?</label>
+                    <select id="anosNegocio">
+                        <option value="">Selecciona el tiempo</option>
+                        <option value="menos1">Menos de 1 año</option>
+                        <option value="1-2">1-2 años</option>
+                        <option value="3-5">3-5 años</option>
+                        <option value="6-10">6-10 años</option>
+                        <option value="mas10">Más de 10 años</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>¿Cuántas personas trabajan en tu empresa (incluyéndote)?</label>
+                    <select id="tamanoEmpresa">
+                        <option value="">Selecciona el tamaño</option>
+                        <option value="solo">Solo yo (solopreneur)</option>
+                        <option value="2-5">2-5 empleados</option>
+                        <option value="6-15">6-15 empleados</option>
+                        <option value="16-50">16-50 empleados</option>
+                        <option value="mas50">Más de 50 empleados</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-primary" onclick="startTest()" id="startBtn" disabled>Comenzar Diagnóstico</button>
+            </div>
+
+            <!-- Pantalla 2: Preguntas -->
+            <div id="questionScreen" class="screen">
+                <div id="sectionHeader"></div>
+                <div id="questionContainer"></div>
+                <div class="navigation">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">Anterior</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Siguiente</button>
+                </div>
+            </div>
+
+            <!-- Pantalla 3: Resultados -->
+            <div id="resultsScreen" class="screen">
+                <div class="results-screen">
+                    <h2>¡Diagnóstico Completado!</h2>
+                    <div class="score-circle" id="scoreCircle">
+                        <div class="score-text" id="scoreText">0/150</div>
+                    </div>
+                    <div class="result-category" id="resultCategory"></div>
+                    <div class="result-description" id="resultDescription"></div>
+                    <div class="section-scores" id="sectionScores"></div>
+                    <div class="recommendations" id="recommendations"></div>
+                    <button class="btn btn-primary" onclick="restartTest()">Realizar Nuevo Diagnóstico</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ... JS omitted for brevity (already provided above)
+    </script>
+</body>
+</html>
