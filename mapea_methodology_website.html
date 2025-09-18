@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAPEA™ - Metodología Propietaria de Transformación Estratégica</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-navy: #0A1628;
+            --secondary-navy: #1A2332;
+            --accent-red: #E53E3E;
+            --accent-cyan: #00D9FF;
+            --accent-purple: #5F27CD;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --gradient-primary: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 50%, var(--accent-purple) 100%);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gradient-primary);
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--gradient-primary);
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 85%, var(--accent-cyan) 0%, transparent 40%),
+                radial-gradient(circle at 85% 15%, var(--accent-red) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, var(--accent-purple) 0%, transparent 60%);
+            opacity: 0.08;
+            animation: backgroundFlow 25s ease-in-out infinite;
+        }
+
+        @keyframes backgroundFlow {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.08; }
+            50% { transform: scale(1.2) rotate(180deg); opacity: 0.12; }
+        }
+
+        /* Modern Navigation */
+        .nav-container {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .nav-dot {
+            width: 45px;
+            height: 45px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-dot::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .nav-dot:hover::before {
+            left: 100%;
+        }
+
+        .nav-dot.active {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            transform: scale(1.15);
+            box-shadow: 0 0 25px rgba(229, 62, 62, 0.6);
+        }
+
+        .dot-inner {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active .dot-inner {
+            background: white;
+            box-shadow: 0 0 10px white;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-logo {
+            display: inline-block;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .logo-text {
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 900;
+            letter-spacing: 0.5rem;
+            background: linear-gradient(135deg, white 0%, var(--accent-cyan) 50%, var(--accent-red) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: logoGlow 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px rgba(0, 217, 255, 0.3));
+        }
+
+        @keyframes logoGlow {
+            0%, 100% { filter: drop-shadow(0 0 30px rgba(0, 217, 255, 0.3)); }
+            50% { filter: drop-shadow(0 0 50px rgba(229, 62, 62, 0.4)); }
+        }
+
+        .trademark {
+            font-size: 2rem;
+            vertical-align: super;
+            color: var(--accent-red);
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, white 0%, var(--accent-cyan) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Floating geometric shapes */
+        .geometric-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            background: linear-gradient(45deg, var(--accent-red), var(--accent-cyan));
+            border-radius: 12px;
+            opacity: 0.1;
+            animation: floatShape 15s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+            transform: rotate(45deg);
+        }
+
+        .shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 30%;
+            right: 15%;
+            animation-delay: 5s;
+            border-radius: 50%;
+        }
+
+        .shape:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 25%;
+            left: 20%;
+            animation-delay: 10s;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+
+        @keyframes floatShape {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+            50% { transform: translateY(-40px) rotate(180deg); opacity: 0.3; }
+        }
+
+        /* What is MAPEA Section */
+        .about-section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-container {
+            max-width: 1400px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .content-left {
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            color: var(--accent-red);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-cyan));
+            border-radius: 2px;
+        }
+
+        .about-description {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        .about-highlight {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-highlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .about-highlight:hover::before {
+            left: 100%;
+        }
+
+        .illustration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .mapea-visual {
+            width: 400px;
+            height: 400px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: rotate 20s linear infinite;
+        }
+
+        .mapea-visual::before {
+            content: '';
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border: 2px solid transparent;
+            border-top: 2px solid var(--accent-cyan);
+            border-right: 2px solid var(--accent-red);
+            border-radius: 50%;
+            animation: rotate 15s linear infinite reverse;
+        }
+
+        .visual-center {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--accent-red);
+            text-align: center;
+        }
+
+        /* Phases Section */
+        .phases-section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phases-container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .phases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .phase-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(from 0deg, var(--accent-red), var(--accent-cyan), var(--accent-red));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .phase-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 217, 255, 0.3);
+        }
+
+        .phase-letter {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .phase-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .phase-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Why Different Section */
+        .why-section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .why-container {
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .why-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(229, 62, 62, 0.2);
+        }
+
+        .why-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .why-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .why-list {
+            list-style: none;
+            space-y: 1rem;
+        }
+
+        .why-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .check-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .problem-section {
+            background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(0, 217, 255, 0.1));
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .problem-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+        }
+
+        .stat-highlight {
+            display: inline-block;
+            background: var(--glass-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 900px;
+        }
+
+        .cta-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, white 0%, var(--accent-cyan) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-description {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+        }
+
+        .cta-button {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(135deg, var(--accent-red), #ff6b7a);
+            color: white;
+            box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--accent-cyan);
+            color: white;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        .cta-button.primary:hover {
+            box-shadow: 0 15px 40px rgba(229, 62, 62, 0.4);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--accent-cyan);
+            color: var(--primary-navy);
+        }
+
+        .contact-info {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        .copyright-notice {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Animations */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                top: 20px;
+                right: 20px;
+            }
+
+            .about-container,
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .phases-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .mapea-visual {
+                width: 300px;
+                height: 300px;
+            }
+
+            .mapea-visual::before {
+                width: 320px;
+                height: 320px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <div class="nav-dot active" onclick="scrollToSection(0)">
+            <div class="dot-inner"></div>
+        </div>
+        <div class="nav-dot" onclick="scrollToSection(1)">
+            <div class="dot-inner"></div>
+        </div>
+        <div class="nav-dot" onclick="scrollToSection(2)">
+            <div class="dot-inner"></div>
+        </div>
+        <div class="nav-dot" onclick="scrollToSection(3)">
+            <div class="dot-inner"></div>
+        </div>
+        <div class="nav-dot" onclick="scrollToSection(4)">
+            <div class="dot-inner"></div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="section-0">
+        <div class="geometric-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="hero-logo">
+                <div class="logo-text">
+                    MAPEA<span class="trademark">™</span>
+                </div>
+                <div class="hero-tagline">Transformamos la incertidumbre en dirección clara</div>
+            </div>
+            
+            <h1 class="hero-title animate-on-scroll">
+                Método Propietario de<br>
+                Transformación Estratégica<br>
+                para PYMEs Audaces
+            </h1>
+        </div>
+    </section>
+
+    <!-- What is MAPEA Section -->
+    <section class="about-section" id="section-1">
+        <div class="about-container">
+            <div class="content-left animate-on-scroll">
+                <h2 class="section-title">¿Qué es MAPEA™?</h2>
+                
+                <p class="about-description">
+                    El Método MAPEA™ es una metodología propietaria de 5 fases diseñada específicamente 
+                    para transformar PYMEs audaces en líderes de sus mercados através de claridad estratégica sistemática.
+                </p>
+                
+                <div class="about-highlight">
+                    <p>
+                        <strong>Desarrollado por LA ESTRATEGA™</strong> después de años trabajando con múltiples empresas 
+                        centroamericanas, MAPEA™ convierte la audacia empresarial en ventaja competitiva sostenible.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="illustration animate-on-scroll">
+                <div class="mapea-visual">
+                    <div class="visual-center">
+                        MAPEA™<br>
+                        <small style="font-size: 0.5em; font-weight: 500;">5 FASES</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phases Section -->
+    <section class="phases-section" id="section-2">
+        <div class="phases-container">
+            <h2 class="section-title animate-on-scroll" style="text-align: center;">
+                Las Cinco Fases de MAPEA™
+            </h2>
+            
+            <div class="phases-grid">
+                <div class="phase-card animate-on-scroll">
+                    <div class="phase-letter">M</div>
+                    <div class="phase-name">Medir</div>
+                    <div class="phase-description">
+                        Análisis 360° de tu situación actual vs competencia
+                    </div>
+                </div>
+                
+                <div class="phase-card animate-on-scroll">
+                    <div class="phase-letter">A</div>
+                    <div class="phase-name">Alinear</div>
+                    <div class="phase-description">
+                        Visión y recursos hacia diferenciación específica
+                    </div>
+                </div>
+                
+                <div class="phase-card animate-on-scroll">
+                    <div class="phase-letter">P</div>
+                    <div class="phase-name">Priorizar</div>
+                    <div class="phase-description">
+                        Oportunidades de mayor impacto estratégico
+                    </div>
+                </div>
+                
+                <div class="phase-card animate-on-scroll">
+                    <div class="phase-letter">E</div>
+                    <div class="phase-name">Estructurar</div>
+                    <div class="phase-description">
+                        Plan de acción concreto y medible
+                    </div>
+                </div>
+                
+                <div class="phase-card animate-on-scroll">
+                    <div class="phase-letter">A</div>
+                    <div class="phase-name">Activar</div>
+                    <div class="phase-description">
+                        Implementación con ajustes continuos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Different Section -->
+    <section class="why-section" id="section-3">
+        <div class="why-container">
+            <h2 class="section-title animate-on-scroll" style="text-align: center;">
+                ¿Por qué MAPEA™ es diferente?
+            </h2>
+            
+            <div class="why-grid">
+                <div class="why-card animate-on-scroll">
+                    <div class="why-number">1</div>
+                    <h3 class="why-title">Enfoque en Transformación Estratégica</h3>
+                    
+                    <p style="margin-bottom: 1.5rem;">MAPEA™ está específicamente diseñado para:</p>
+                    
+                    <ul class="why-list">
+                        <li class="why-item">
+                            <span class="check-icon">✓</span>
+                            <span>PYMEs audaces que quieren diferenciarse genuinamente</span>
+                        </li>
+                        <li class="why-item">
+                            <span class="check-icon">✓</span>
+                            <span>Mercados centroamericanos y latinoamericanos con características culturales únicas</span>
+                        </li>
+                        <li class="why-item">
+                            <span class="check-icon">✓</span>
+                            <span>Empresarios que prefieren construcción sólida sobre tácticas rápidas</span>
+                        </li>
+                        <li class="why-item">
+                            <span class="check-icon">✓</span>
+                            <span>Organizaciones que valoran transparencia metodológica</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="why-card animate-on-scroll">
+                    <div class="why-number">2</div>
+                    <h3 class="why-title">Enfoque en Implementación Práctica</h3>
+                    
+                    <div class="problem-section">
+                        <h4 class="problem-title">EL PROBLEMA QUE RESUELVE:</h4>
+                        <p style="margin-bottom: 1rem;"><strong>Crisis de Commoditización:</strong></p>
+                        
+                        <p style="margin-bottom: 1rem;">
+                            <span class="stat-highlight">📊 94% de PYMEs</span> dice ser "única".
+                        </p>
+                        
+                        <p style="margin-bottom: 1rem;">
+                            <span class="stat-highlight">❌ Pero el 77%</span> no puede explicar su diferenciación sin usar cliché.
+                        </p>
+                        
+                        <p style="margin-bottom: 1rem;">
+                            <strong>💥 Resultado:</strong> Crisis de commoditización que genera competencia destructiva por precio.
+                        </p>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h4 style="color: var(--accent-cyan); font-weight: 700; margin-bottom: 1rem;">
+                            LA SOLUCIÓN MAPEA™ es metodología sistemática que convierte:
+                        </h4>
+                        <ul class="why-list">
+                            <li class="why-item">
+                                <span class="check-icon">→</span>
+                                <span>Confusión estratégica → Claridad diferenciada</span>
+                            </li>
+                            <li class="why-item">
+                                <span class="check-icon">→</span>
+                                <span>Competencia por precio → Diferenciación escalable</span>
+                            </li>
+                            <li class="why-item">
+                                <span class="check-icon">→</span>
+                                <span>Messaging genérico → Propuesta de valor única</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="section-4">
+        <div class="cta-container">
+            <h2 class="cta-title animate-on-scroll">
+                ¿Lista tu PYME para la Transformación Estratégica?
+            </h2>
+            
+            <p class="cta-description animate-on-scroll">
+                MAPEA™ está adaptado para la realidad latinoamericana y centroamericana: 
+                empresas familiares con estructuras flexibles, mercados pequeños que requieren 
+                diferenciación extrema, culturas relationship-first que valoran confianza sobre eficiencia.
+            </p>
+            
+            <div class="cta-buttons animate-on-scroll">
+                <button class="cta-button primary" onclick="openWhatsApp()">
+                    🎯 Conoce el Método MAPEA™ Completo
+                </button>
+                <button class="cta-button secondary" onclick="openDiagnostic()">
+                    📊 ¿Tu PYME puede eliminar competencia?
+                </button>
+            </div>
+            
+            <div class="contact-info animate-on-scroll">
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span style="color: var(--accent-cyan);">📱</span>
+                        <span>+503 76578075</span>
+                    </div>
+                    <div class="contact-item">
+                        <span style="color: var(--accent-cyan);">✉️</span>
+                        <span>laestratega.latam@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span style="color: var(--accent-cyan);">🌐</span>
+                        <span>@laestrategainfo</span>
+                    </div>
+                </div>
+                
+                <div class="copyright-notice">
+                    <p><strong>FRAMEWORK DESARROLLADO POR LA ESTRATEGA® | TODOS LOS DERECHOS RESERVADOS</strong></p>
+                    
+                    <p style="margin-top: 1rem;">
+                        Este framework, su metodología, procesos, herramientas y componentes constituyen propiedad intelectual 
+                        exclusiva de LA ESTRATEGA. Queda prohibida su reproducción total o parcial, adaptación, modificación, 
+                        distribución o utilización sin la autorización expresa por escrito de LA ESTRATEGA.
+                    </p>
+                    
+                    <p style="margin-top: 1rem;">
+                        <strong>© 2025 LA ESTRATEGA™. Todos los derechos reservados. MAPEA™ es marca registrada de LA ESTRATEGA™</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Enhanced Navigation System
+        let currentSection = 0;
+        const sections = document.querySelectorAll('section');
+        const navDots = document.querySelectorAll('.nav-dot');
+        let isScrolling = false;
+
+        function scrollToSection(index) {
+            if (isScrolling) return;
+            
+            isScrolling = true;
+            currentSection = index;
+            
+            sections[index].scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            updateNavigation();
+            
+            setTimeout(() => {
+                isScrolling = false;
+            }, 1000);
+        }
+
+        function updateNavigation() {
+            navDots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSection);
+            });
+        }
+
+        // Scroll Detection
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '-50px 0px -50px 0px'
+        };
+
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !isScrolling) {
+                    const sectionIndex = Array.from(sections).indexOf(entry.target);
+                    if (sectionIndex !== currentSection) {
+                        currentSection = sectionIndex;
+                        updateNavigation();
+                    }
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
+
+        // Animation Observer
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            animationObserver.observe(el);
+        });
+
+        // Mouse Wheel Navigation
+        let wheelTimeout;
+        window.addEventListener('wheel', (e) => {
+            if (isScrolling) return;
+            
+            clearTimeout(wheelTimeout);
+            wheelTimeout = setTimeout(() => {
+                if (e.deltaY > 0 && currentSection < sections.length - 1) {
+                    scrollToSection(currentSection + 1);
+                } else if (e.deltaY < 0 && currentSection > 0) {
+                    scrollToSection(currentSection - 1);
+                }
+            }, 50);
+        }, { passive: true });
+
+        // Keyboard Navigation
+        window.addEventListener('keydown', (e) => {
+            if (isScrolling) return;
+            
+            switch(e.key) {
+                case 'ArrowDown':
+                case 'Space':
+                    e.preventDefault();
+                    if (currentSection < sections.length - 1) {
+                        scrollToSection(currentSection + 1);
+                    }
+                    break;
+                case 'ArrowUp':
+                    e.preventDefault();
+                    if (currentSection > 0) {
+                        scrollToSection(currentSection - 1);
+                    }
+                    break;
+                case 'Home':
+                    e.preventDefault();
+                    scrollToSection(0);
+                    break;
+                case 'End':
+                    e.preventDefault();
+                    scrollToSection(sections.length - 1);
+                    break;
+            }
+        });
+
+        // CTA Functions
+        function openWhatsApp() {
+            const message = encodeURIComponent("🚀 Hola! Me interesa conocer más sobre el Método MAPEA™ para transformar mi PYME en líder único del mercado.");
+            
+            const button = event.target;
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = '';
+                window.open(`https://wa.me/50376578075?text=${message}`, '_blank');
+            }, 150);
+        }
+
+        function openDiagnostic() {
+            const message = encodeURIComponent("📊 Hola! Quiero saber si mi PYME puede eliminar competencia directa con metodología MAPEA™. ¿Pueden evaluarme?");
+            
+            const button = event.target;
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = '';
+                window.open(`https://wa.me/50376578075?text=${message}`, '_blank');
+            }, 150);
+        }
+
+        // Touch/Swipe Support
+        let touchStartY = 0;
+        let touchEndY = 0;
+
+        window.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        }, { passive: true });
+
+        window.addEventListener('touchend', (e) => {
+            if (isScrolling) return;
+            
+            touchEndY = e.changedTouches[0].screenY;
+            const deltaY = touchStartY - touchEndY;
+            
+            if (Math.abs(deltaY) > 50) {
+                if (deltaY > 0 && currentSection < sections.length - 1) {
+                    scrollToSection(currentSection + 1);
+                } else if (deltaY < 0 && currentSection > 0) {
+                    scrollToSection(currentSection - 1);
+                }
+            }
+        }, { passive: true });
+
+        // Initialize
+        updateNavigation();
+        
+        // Trigger initial animations
+        setTimeout(() => {
+            document.querySelectorAll('.animate-on-scroll').forEach((el, index) => {
+                if (el.getBoundingClientRect().top < window.innerHeight) {
+                    setTimeout(() => {
+                        el.classList.add('animated');
+                    }, index * 100);
+                }
+            });
+        }, 500);
+    </script>
+</body>
+</html>
