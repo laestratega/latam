@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LA ESTRATEGA - Consultorías Océano Azul</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-navy: #0F1419;
+            --secondary-navy: #1A2332;
+            --accent-red: #E53E3E;
+            --accent-cyan: #00D9FF;
+            --accent-purple: #5F27CD;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --success-green: #22C55E;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 50%, var(--accent-purple) 100%);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, var(--accent-cyan) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--accent-red) 0%, transparent 50%);
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: -1;
+            animation: backgroundFlow 20s ease-in-out infinite;
+        }
+
+        @keyframes backgroundFlow {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(180deg); }
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            padding: 80px 60px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, white 0%, var(--accent-cyan) 50%, var(--accent-red) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 25px;
+            color: var(--accent-cyan);
+            font-weight: 800;
+        }
+
+        h3 {
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            margin-bottom: 20px;
+            color: var(--accent-red);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
+        }
+
+        .pricing-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 2px solid var(--glass-border);
+            border-radius: 25px;
+            padding: 35px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+        }
+
+        .price {
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 20px 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .feature-list li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        .warning-list li:before {
+            content: "⚠️";
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--accent-red), #ff6b7a);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(229, 62, 62, 0.3);
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            font-family: 'Inter', sans-serif;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .timeline {
+            margin: 30px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+        }
+
+        .timeline-number {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-right: 25px;
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .comparison-table td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .case-study {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-left: 4px solid var(--accent-cyan);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .case-study:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 217, 255, 0.2);
+        }
+
+        .metric {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--success-green));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+            margin: 15px 0;
+        }
+
+        .contact-info {
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            font-size: 1.2rem;
+            margin: 12px 0;
+            font-weight: 500;
+        }
+
+        .brand {
+            position: absolute;
+            bottom: 30px;
+            left: 60px;
+            font-size: 18px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 60px;
+            font-size: 14px;
+            opacity: 0.7;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            color: white;
+            border: 1px solid var(--glass-border);
+            font-size: 1.8rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .nav-arrow:hover {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .prev-arrow {
+            left: 30px;
+        }
+
+        .next-arrow {
+            right: 30px;
+        }
+
+        .nav-dots {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .nav-dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot:hover {
+            background: rgba(0, 217, 255, 0.3);
+            transform: scale(1.2);
+        }
+
+        .nav-dot.active {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            transform: scale(1.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 20px;
+            }
+            
+            .two-column, .three-column {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .nav-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 1.4rem;
+            }
+
+            .prev-arrow { left: 20px; }
+            .next-arrow { right: 20px; }
+            .brand { left: 20px; bottom: 20px; font-size: 16px; }
+            .slide-number { right: 20px; bottom: 20px; }
+            .nav-dots { bottom: 50px; }
+            
+            .timeline-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                margin-right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        
+        <!-- Slide 1: Problema -->
+        <div class="slide active">
+            <div class="slide-content">
+                <h1>¿Tu PYME está atrapada en un OCÉANO ROJO?</h1>
+                <p class="subtitle">No creamos estrategias para competir mejor.<br>
+                Creamos océanos donde la competencia es irrelevante.</p>
+                
+                <div class="two-column">
+                    <div>
+                        <h3>Síntomas Críticos:</h3>
+                        <ul class="feature-list warning-list">
+                            <li>Compites principalmente por precio</li>
+                            <li>Clientes te dicen "voy a cotizar en otros lados"</li>
+                            <li>Sientes que "todos hacen lo mismo"</li>
+                            <li>Tus márgenes se reducen constantemente</li>
+                            <li>Inviertes más en marketing, ves menos resultados</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>La Realidad Brutal</h3>
+                        <div class="metric">78%</div>
+                        <p>de las PYMEs luchan en océanos rojos saturados, peleando por las migajas del mismo mercado.</p>
+                        
+                        <h3 style="margin-top: 30px;">La Oportunidad</h3>
+                        <p>Mientras otros pelean, tú puedes crear tu propio océano azul donde seas la única opción.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="brand">LA ESTRATEGA™</div>
+            <div class="slide-number">1/7</div>
+        </div>
+
+        <!-- Slide 2: Diagnóstico Express -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🎯 DIAGNÓSTICO OCÉANO AZUL EXPRESS</h2>
+                <p class="subtitle">Identifica tu espacio único en 3-4 semanas</p>
+                
+                <div class="two-column">
+                    <div>
+                        <div class="pricing-card">
+                            <h3>¿Es para ti?</h3>
+                            <ul class="feature-list">
+                                <li>Sientes que "todos hacen lo mismo"</li>
+                                <li>Compites principalmente por precio</li>
+                                <li>Necesitas diferenciación REAL</li>
+                                <li>Quieres "probar" el concepto</li>
+                            </ul>
+                            <div class="price">3-4 semanas</div>
+                            <button class="cta-button">Garantía 100%</button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-number">1</div>
+                                <div class="timeline-content">
+                                    <h3>MAPEO OCÉANO ROJO</h3>
+                                    <p>Análisis competitivo, puntos de saturación, tu posición actual</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-number">2</div>
+                                <div class="timeline-content">
+                                    <h3>ANÁLISIS NO-CLIENTES</h3>
+                                    <p>15+ entrevistas, fricciones, mercado no capturado</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-number">3</div>
+                                <div class="timeline-content">
+                                    <h3>ESPACIOS AZULES</h3>
+                                    <p>3 oportunidades específicas + Roadmap 90 días</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="case-study">
+                            <strong>ROI Esperado:</strong> <span class="metric">300-500%</span> en primeros 12 meses
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand">LA ESTRATEGA™</div>
+            <div class="slide-number">2/7</div>
+        </div>
+
+        <!-- Slide 3: MAPEA Completa -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🚀 METODOLOGÍA MAPEA COMPLETA</h2>
+                <p class="subtitle">Transformación radical hacia océano azul</p>
+                
+                <div class="two-column">
+                    <div>
+                        <div class="pricing-card">
+                            <h3>Transformación Radical</h3>
+                            <div class="price">4 meses + 6 acompañamiento</div>
+                            <ul class="feature-list">
+                                <li>Metodología MAPEA completa</li>
+                                <li>10+ templates personalizados</li>
+                                <li>6 meses mentoring mensual</li>
+                                <li>Garantía de implementación</li>
+                            </ul>
+                            <button class="cta-button">ROI 400-700%</button>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3>Metodología MAPEA:</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-number">M</div>
+                                <div class="timeline-content">
+                                    <strong>MAPEAR</strong> Océano Rojo Actual
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-number">A</div>
+                                <div class="timeline-content">
+                                    <strong>ANALIZAR</strong> No-Clientes y Fricciones
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-number">P</div>
+                                <div class="timeline-content">
+                                    <strong>PROYECTAR</strong> Espacios Sin Competencia
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-number">E</div>
+                                <div class="timeline-content">
+                                    <strong>ELIMINAR/CREAR</strong> Elementos Estratégicos
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-number">A</div>
+                                <div class="timeline-content">
+                                    <strong>ACTIVAR</strong> Océano Azul Personalizado
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand">LA ESTRATEGA™</div>
+            <div class="slide-number">3/7</div>
+        </div>
+
+        <!-- Slide 4: Comparativo -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🤔 ¿EXPRESS O MAPEA COMPLETA?</h2>
+                <p class="subtitle">Elige tu nivel de transformación</p>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>DIAGNÓSTICO EXPRESS</th>
+                            <th>METODOLOGÍA MAPEA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>⏰ Duración</strong></td>
+                            <td>3-4 semanas</td>
+                            <td>4 meses + 6 acompañamiento</td>
+                        </tr>
+                        <tr>
+                            <td><strong>💰 Inversión</strong></td>
+                            <td>Sujeto a reunión previa</td>
+                            <td>Sujeto a reunión previa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🎯 Objetivo</strong></td>
+                            <td>Identificar oportunidades</td>
+                            <td>Transformación completa</td>
+                        </tr>
+                        <tr>
+                            <td><strong>📊 Espacios Azules</strong></td>
+                            <td>3 identificados</td>
+                            <td>4-5 + implementación</td>
+                        </tr>
+                        <tr>
+                            <td><strong>🛠️ Herramientas</strong></td>
+                            <td>Roadmap básico</td>
+                            <td>10+ templates personalizados</td>
+                        </tr>
+                        <tr>
+                            <td><strong>📈 ROI Esperado</strong></td>
+                            <td class="highlight">300-500% (12 meses)</td>
+                            <td class="highlight">400-700% (18 meses)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="two-column" style="margin-top: 30px;">
+                    <div class="card">
+                        <h3>Elige EXPRESS si:</h3>
+                        <ul class="feature-list">
+                            <li>Quieres "probar" el concepto</li>
+                            <li>Presupuesto limitado para empezar</li>
+                            <li>Prefieres implementar internamente</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Elige MAPEA si:</h3>
+                        <ul class="feature-list">
+                            <li>Transformación radical comprometida</li>
+                            <li>Quieres acompañamiento completo</li>
+                            <li>Buscas resultados sostenibles</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="brand">LA ESTRATEGA™</div>
+            <div class="slide-number">4/7</div>
+        </div>
+
+        <!-- Slide 5: Casos de Éxito -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🏆 CASOS DE ÉXITO DOCUMENTADOS</h2>
+                <p class="subtitle">Transformaciones reales, resultados medibles</p>
+                
+                <div class="three-column">
+                    <div class="case-study">
+                        <h3>Distribuidora de Alimentos</h3>
+                        <p><strong>Antes:</strong> Competencia feroz por precio con 15+ competidores</p>
+                        <p><strong>Océano Azul:</strong> Primera distribuidora especializada en restaurantes veganos</p>
+                        <div class="metric">+65%</div>
+                        <p>márgenes, mercado exclusivo por 18 meses</p>
+                    </div>
+                    
+                    <div class="case-study">
+                        <h3>Consultoría Contable</h3>
+                        <p><strong>Antes:</strong> "Una más del montón" en mercado saturado</p>
+                        <p><strong>Océano Azul:</strong> Especialización en startups tech con CFO virtual</p>
+                        <div class="metric">+40%</div>
+                        <p>precios, +200% nuevos clientes en 12 meses</p>
+                    </div>
+                    
+                    <div class="case-study">
+                        <h3>Tienda de Ropa</h3>
+                        <p><strong>Antes:</strong> Competencia directa con fast fashion</p>
+                        <p><strong>Océano Azul:</strong> Experiencia "slow fashion" con personalización en vivo</p>
+                        <div class="metric">+30%</div>
+                        <p>ticket promedio, eliminó descuentos</p>
+                    </div>
+                </div>
+                
+                <div class="card" style="margin-top: 30px; text-align: center;">
+                    <h3>Resultados Típicos MAPEA:</h3>
+                    <div class="two-column">
+                        <div>
+                            <div class="metric">+30-50%</div>
+                            <p>Incremento en márgenes por diferenciación</p>
+                        </div>
+                        <div>
+                            <div class="metric">12-24</div>
+                            <p>Meses de ventaja antes de imitación</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="brand">LA ESTRATEGA™</div>
+            <div class="slide-number">5/7</div>
+        </div>
+
+        <!-- Slide 6: Por qué LA ESTRATEGA -->
+        <div class="slide">
+            <div class="slide-content">
+                <h2>🏆 ¿POR QUÉ ELEGIR LA ESTRATEGA?</h2>
+                <p class="subtitle">Más que consultoría, transformación garantizada</p>
+                
+                <div class="three-column">
+                    <div class="card">
+                        <h3>🔥 Metodología Exclusiva</h3>
+                        <ul class="feature-list">
+                            <li>MAPEA no está disponible con otros consultores</li>
+                            <li>Basada en océano azul pero adaptada a PYMEs</li>
+                            <li>Probada con 50+ empresas en Latinoamérica</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>📊 Experiencia Comprobada</h3>
+                        <ul class="feature-list">
+                            <li>Certificada en Blue Ocean Strategy</li>
+                            <li>15+ años exclusivamente con PYMEs</li>
+                            <li>Track record documentado</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>🎯 Enfoque Práctico</h3>
+                        <ul class="feature-list">
+                            <li>Implementación real con acompañamiento</li>
+                            <li>Templates que permanecen contigo</li>
+                            <li>Metodología escalable según presupuesto</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="two-column" style="margin-top: 30px;">
+                    <div class="pricing-card">
+                        <h3>Garantía EXPRESS</h3>
+                        <p>Si no identificamos 3 oportunidades viables:</p>
+                        <div class="metric">100%</div>
+                        <p>Reembolso completo</p>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <h3>Garantía MAPEA</h3>
+                        <p>Garantizamos implementación de al menos:</p>
+                        <div class="metric">1</div>
+                        <p>Océano azul funcional</p>
+                    </div>
+                </div>
+                
+                <div class="case-study" style="margin-top: 25px; text-align: center;">
+                    <p><strong>En 15 años, solo 1 caso no encontró oportunidades</strong> (industria ultra-regulada)</p>
+                </div>
+            </div>
+            <div class="brand">LA ESTRATEGA™</div>
+            <div class="slide-number">6/7</div>
+        </div>
+
+        <!-- Slide 7: Call to Action -->
+        <div class="slide">
+            <div class="slide-content">
+                <h1>🚀 ¿LISTO PARA TU OCÉANO AZUL?</h1>
+                <p class="subtitle">Tu océano azul te está esperando. La pregunta es: ¿cuándo vas a crearlo?</p>
+                
+                <div class="two-column">
+                    <div>
+                        <div class="contact-info">
+                            <h3>📞 DIAGNÓSTICO GRATUITO</h3>
+                            <div class="contact-item">
+                                <strong>WhatsApp:</strong> +503 76578075
+                            </div>
+                            <div class="contact-item">
+                                <strong>Email:</strong> laestratega.latam@gmail.com
+                            </div>
+                            <div class="contact-item">
+                                <strong>Web:</strong> laestratega.info
+                            </div>
+                            <a href="#" class="whatsapp-btn" onclick="openWhatsApp()">
+                                📱 Agenda tu llamada de 30 minutos
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="card">
+                            <h3>En tu llamada gratuita:</h3>
+                            <ul class="feature-list">
+                                <li>Evaluamos tu situación específica</li>
+                                <li>Recomendamos mejor opción (Express vs MAPEA)</li>
+                                <li>Verificamos fit y disponibilidad</li>
+                                <li>Sin compromiso ni presión de venta</li>
+                            </ul>
+                            
+                            <div class="case-study" style="margin-top: 25px;">
+                                <p><strong>No esperes más.</strong><br>
+                                Mientras lees esto, tu competencia sigue creciendo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <h2 class="highlight">Es momento de cambiar las reglas del juego.</h2>
+                </div>
+            </div>
+            <div class="brand">LA ESTRATEGA™</div>
+            <div class="slide-number">7/7</div>
+        </div>
+        
+        <!-- Navigation -->
+        <button class="nav-arrow prev-arrow" onclick="prevSlide()">‹</button>
+        <button class="nav-arrow next-arrow" onclick="nextSlide()">›</button>
+        
+        <div class="nav-dots">
+            <div class="nav-dot active" onclick="goToSlide(0)"></div>
+            <div class="nav-dot" onclick="goToSlide(1)"></div>
+            <div class="nav-dot" onclick="goToSlide(2)"></div>
+            <div class="nav-dot" onclick="goToSlide(3)"></div>
+            <div class="nav-dot" onclick="goToSlide(4)"></div>
+            <div class="nav-dot" onclick="goToSlide(5)"></div>
+            <div class="nav-dot" onclick="goToSlide(6)"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.nav-dot');
+        const totalSlides = slides.length;
+
+        function showSlide(n) {
+            // Hide current slide
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            // Calculate new slide index
+            currentSlide = (n + totalSlides) % totalSlides;
+            
+            // Show new slide
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function goToSlide(n) {
+            showSlide(n);
+        }
+
+        // WhatsApp Function
+        function openWhatsApp() {
+            const message = encodeURIComponent(
+                "🚀 Hola! Acabo de ver la presentación de Océano Azul y me interesa agendar mi llamada gratuita de 30 minutos para evaluar mi situación específica y ver si puedo crear mi propio océano azul."
+            );
+            
+            window.open(`https://wa.me/50376578075?text=${message}`, '_blank');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // Touch support for mobile
+        let startX = 0;
+        let endX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            endX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }
+
+        // Initialize
+        console.log('Presentation loaded with', totalSlides, 'slides');
+    </script>
+</body>
+</html>
