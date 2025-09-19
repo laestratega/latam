@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Océano Rojo Detector™</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-navy: #0F1419;
+            --secondary-navy: #1A2332;
+            --accent-red: #E53E3E;
+            --accent-cyan: #00D9FF;
+            --accent-purple: #5F27CD;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.15);
+            --success-green: #22C55E;
+            --warning-orange: #F59E0B;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-navy) 0%, var(--secondary-navy) 50%, var(--accent-purple) 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, var(--accent-cyan) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, var(--accent-red) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, var(--accent-purple) 0%, transparent 50%);
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: rotate 20s linear infinite;
+        }
+
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 15px;
+            font-weight: 900;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .content {
+            padding: 50px 40px;
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .progress-container {
+            margin-bottom: 40px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .progress-text {
+            font-size: 16px;
+            color: white;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-red), var(--accent-cyan));
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 6px;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--glass-border);
+            border-radius: 15px;
+            font-size: 1rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            color: white;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 4px rgba(0, 217, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .form-group select option {
+            background: var(--secondary-navy);
+            color: white;
+        }
+
+        .form-group small {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 8px;
+            display: block;
+        }
+
+        .section-header {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 35px;
+            border-radius: 25px;
+            margin-bottom: 40px;
+            text-align: center;
+            border-left: 5px solid var(--accent-cyan);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .section-header:hover::before {
+            left: 100%;
+        }
+
+        .section-header h2 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 2;
+            line-height: 1.6;
+        }
+
+        .question-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 40px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--accent-red);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .question-number {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .question-text {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .option {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 2px solid var(--glass-border);
+            padding: 20px 25px;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .option:hover::before {
+            left: 100%;
+        }
+
+        .option:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.2);
+        }
+
+        .option.selected {
+            border-color: var(--accent-red);
+            background: linear-gradient(135deg, rgba(229, 62, 62, 0.15), rgba(0, 217, 255, 0.15));
+            font-weight: 600;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 5px;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-red), #ff6b7a);
+            color: white;
+            box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            color: white;
+            border: 2px solid var(--glass-border);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 15px 40px rgba(229, 62, 62, 0.4);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-cyan);
+            background: rgba(0, 217, 255, 0.1);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        .results-screen {
+            text-align: center;
+        }
+
+        .results-screen h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: 800;
+        }
+
+        .score-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: conic-gradient(var(--success-green) 0deg, var(--accent-cyan) 120deg, rgba(255, 255, 255, 0.2) 120deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px auto;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .score-circle::after {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+        }
+
+        .score-text {
+            position: relative;
+            z-index: 2;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+        }
+
+        .result-category {
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 30px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .oceano-azul { 
+            background: linear-gradient(135deg, var(--success-green), var(--accent-cyan));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .oceano-azul-emergente { 
+            background: linear-gradient(135deg, var(--accent-cyan), var(--success-green));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .oceano-rojo-moderado { 
+            background: linear-gradient(135deg, var(--warning-orange), var(--accent-cyan));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .oceano-rojo-alto { 
+            background: linear-gradient(135deg, var(--accent-red), var(--warning-orange));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .oceano-rojo-critico { 
+            color: var(--accent-red);
+            text-shadow: 0 0 20px rgba(229, 62, 62, 0.5);
+        }
+
+        .result-description {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 35px;
+            border-radius: 25px;
+            margin: 30px 0;
+            line-height: 1.7;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .section-scores {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 35px 0;
+        }
+
+        .section-score {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-score::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .section-score:hover::before {
+            left: 100%;
+        }
+
+        .section-score:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 217, 255, 0.2);
+        }
+
+        .section-score h4 {
+            color: var(--accent-cyan);
+            margin-bottom: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-score .score {
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .recommendations {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 35px;
+            border-radius: 25px;
+            margin: 30px 0;
+            text-align: left;
+            border-left: 5px solid var(--accent-red);
+        }
+
+        .recommendations h4 {
+            color: var(--accent-red);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .recommendations p {
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .recommendations ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recommendations li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
+
+        .recommendations li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+            }
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-cyan));
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-cta h4 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .contact-cta p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                margin: 5px;
+            }
+            
+            .header, .content {
+                padding: 30px 25px;
+            }
+            
+            .section-scores {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 5px 0;
+            }
+
+            .score-circle {
+                width: 150px;
+                height: 150px;
+            }
+
+            .score-circle::after {
+                width: 110px;
+                height: 110px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Océano Rojo Detector™</h1>
+            <p>Descubre si estás en océano rojo (competencia sangrienta) u océano azul (dominio sin competencia)</p>
+        </div>
+        
+        <div class="content">
+            <div class="progress-container">
+                <div class="progress-text" id="progressText">Preparando diagnóstico...</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- Pantalla 1: Datos Personales -->
+            <div id="personalDataScreen" class="screen active">
+                <div class="section-header">
+                    <h2>¡Hola! Soy La Estratega 👋</h2>
+                    <p>Para personalizar tu diagnóstico, necesito algunos datos básicos sobre ti y tu empresa.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label>¿Cuál es tu nombre completo?</label>
+                    <input type="text" id="nombreCompleto" placeholder="Ej: María González">
+                </div>
+                
+                <div class="form-group">
+                    <label>¿A qué email quieres que envíe tu diagnóstico personalizado?</label>
+                    <input type="email" id="email" placeholder="Ej: maria@miempresa.com">
+                    <small>Tu información está 100% protegida. Cero spam, solo valor.</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>¿Cuál es el nombre de tu empresa o proyecto?</label>
+                    <input type="text" id="nombreEmpresa" placeholder="Ej: Consultora González">
+                </div>
+                
+                <div class="form-group">
+                    <label>¿En qué industria/sector opera tu empresa?</label>
+                    <select id="industria">
+                        <option value="">Selecciona tu industria</option>
+                        <option value="servicios">Servicios profesionales (consultoría, legal, contable)</option>
+                        <option value="comercio">Comercio/Retail (venta de productos)</option>
+                        <option value="alimentos">Alimentos y bebidas (restaurantes, catering)</option>
+                        <option value="belleza">Belleza y bienestar (salones, spas, fitness)</option>
+                        <option value="tecnologia">Tecnología y software</option>
+                        <option value="construccion">Construcción y bienes raíces</option>
+                        <option value="educacion">Educación y capacitación</option>
+                        <option value="salud">Salud y medicina</option>
+                        <option value="marketing">Marketing y publicidad</option>
+                        <option value="manufactura">Manufactura/Producción</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>¿Hace cuánto tiempo está operando tu empresa?</label>
+                    <select id="anosNegocio">
+                        <option value="">Selecciona el tiempo</option>
+                        <option value="menos1">Menos de 1 año</option>
+                        <option value="1-2">1-2 años</option>
+                        <option value="3-5">3-5 años</option>
+                        <option value="6-10">6-10 años</option>
+                        <option value="mas10">Más de 10 años</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>¿Cuántas personas trabajan en tu empresa (incluyéndote)?</label>
+                    <select id="tamanoEmpresa">
+                        <option value="">Selecciona el tamaño</option>
+                        <option value="solo">Solo yo (solopreneur)</option>
+                        <option value="2-5">2-5 empleados</option>
+                        <option value="6-15">6-15 empleados</option>
+                        <option value="16-50">16-50 empleados</option>
+                        <option value="mas50">Más de 50 empleados</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-primary" onclick="startTest()" id="startBtn" disabled>Comenzar Diagnóstico</button>
+            </div>
+
+            <!-- Pantalla 2: Preguntas -->
+            <div id="questionScreen" class="screen">
+                <div id="sectionHeader"></div>
+                <div id="questionContainer"></div>
+                <div class="navigation">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">Anterior</button>
+                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Siguiente</button>
+                </div>
+            </div>
+
+            <!-- Pantalla 3: Resultados -->
+            <div id="resultsScreen" class="screen">
+                <div class="results-screen">
+                    <h2>¡Diagnóstico Completado!</h2>
+                    <div class="score-circle" id="scoreCircle">
+                        <div class="score-text" id="scoreText">0/150</div>
+                    </div>
+                    <div class="result-category" id="resultCategory"></div>
+                    <div class="result-description" id="resultDescription"></div>
+                    <div class="section-scores" id="sectionScores"></div>
+                    <div class="recommendations" id="recommendations"></div>
+                    
+                    <div class="contact-cta">
+                        <h4>¿Quieres transformar tu situación?</h4>
+                        <p>Agenda una consulta gratuita para crear tu estrategia de Océano Azul</p>
+                        <a href="#" class="whatsapp-btn" onclick="openWhatsApp()">
+                            📱 Consulta Gratuita por WhatsApp
+                        </a>
+                    </div>
+                    
+                    <button class="btn btn-secondary" onclick="restartTest()" style="margin-top: 20px;">Realizar Nuevo Diagnóstico</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Datos del test
+        const testData = {
+            personalData: {},
+            answers: {},
+            currentQuestion: 0
+        };
+
+        // Definir todas las preguntas
+        const allQuestions = [
+            // SECCIÓN A: PRESIÓN COMPETITIVA
+            { id: 'a1', section: 'A', sectionTitle: 'SECCIÓN A: PRESIÓN COMPETITIVA', sectionDesc: 'Las siguientes 10 preguntas revelarán qué tan intensa es la batalla competitiva en tu mercado.', text: 'En los últimos 12 meses, ¿con qué frecuencia has tenido que bajar precios para competir?', options: ['Nunca - Mis precios son firmes', '1-2 veces por situaciones específicas', '3-5 veces por presión del mercado', 'Mensualmente para mantener clientes', 'Constantemente - Es una batalla diaria'] },
+            { id: 'a2', section: 'A', text: 'Cuando un cliente compara tu propuesta con la competencia, ¿en qué se enfoca principalmente?', options: ['En la experiencia única que solo yo ofrezco', 'En la calidad superior de mi servicio/producto', 'En la conveniencia o ubicación privilegiada', 'En las características técnicas específicas', 'En mi precio vs. el precio de la competencia'] },
+            { id: 'a3', section: 'A', text: 'Sin pensarlo mucho, ¿cuántos competidores directos puedes nombrar de memoria?', options: ['1-2 competidores máximo', '3-4 competidores conocidos', '5-6 competidores en mi radar', '7-10 competidores activos', 'Más de 10 - Es un mercado saturado'] },
+            { id: 'a4', section: 'A', text: 'En tu marketing y comunicación, ¿qué porcentaje se enfoca en diferenciarte de la competencia?', options: ['0-10% - Hablo solo de mi propuesta única', '11-25% - Ocasionalmente menciono diferencias', '26-40% - Comparación moderada con otros', '41-60% - Frecuentemente me comparo', 'Más del 60% - Constantemente contra la competencia'] },
+            { id: 'a5', section: 'A', text: 'Cuando pierdes una venta, ¿cuál es la razón más común que te dan los clientes?', options: ['"Decidí no comprar nada por ahora"', '"Encontré una solución completamente diferente"', '"No era exactamente lo que buscaba"', '"Encontré mejor calidad en otro lado"', '"Encontré más barato en otro lado"'] },
+            { id: 'a6', section: 'A', text: '¿Con qué frecuencia monitoreas o investigas los precios de tu competencia?', options: ['Nunca - No es relevante para mi estrategia', 'Una vez al año para referencia general', 'Cada 6 meses para mantenerme informado', 'Mensualmente para ajustar si es necesario', 'Semanalmente o más - Los sigo de cerca'] },
+            { id: 'a7', section: 'A', text: 'Pensando en tu industria en general, ¿qué tan similares son las propuestas de valor principales?', options: ['Todas son completamente diferentes y únicas', 'Hay algunas diferencias notables entre empresas', 'Tienen diferencias menores pero reconocibles', 'Son bastante similares con pequeñas variaciones', 'Son prácticamente idénticas - Commoditizadas'] },
+            { id: 'a8', section: 'A', text: '¿Cuánto tiempo le toma típicamente a un cliente decidir entre tú y tu competencia?', options: ['Decide inmediatamente a mi favor - No compara', '1-3 días de consideración', 'Aproximadamente 1 semana evaluando opciones', '2-4 semanas comparando alternativas', 'Más de 1 mes en proceso de decisión'] },
+            { id: 'a9', section: 'A', text: 'Cuando llega un cliente nuevo, ¿qué tan probable es que ya haya visitado a tu competencia?', options: ['Muy improbable - Vengo por referido específico', 'Poco probable - Ocasionalmente han comparado', 'A veces - Algunos han visto otras opciones', 'Probable - La mayoría ya comparó precios', 'Casi siempre - Todos han hecho research previo'] },
+            { id: 'a10', section: 'A', text: 'En tu mercado, ¿qué tan frecuentes son las guerras de precios y promociones agresivas?', options: ['Nunca suceden - Precios estables', 'Raramente - Solo en ocasiones específicas', 'Ocasionalmente - Algunas épocas del año', 'Frecuentemente - Varios competidores las inician', 'Constantemente - Es una batalla de descuentos'] },
+            
+            // SECCIÓN B: SATURACIÓN DE MERCADO
+            { id: 'b1', section: 'B', sectionTitle: 'SECCIÓN B: SATURACIÓN DE MERCADO', sectionDesc: 'Ahora evaluaremos qué tan saturado está tu mercado y cuánto espacio libre existe para crecer.', text: 'En los últimos 2 años, ¿cuántos competidores nuevos han entrado a tu mercado/área?', options: ['Ninguno - El mercado está estable', '1-2 nuevos competidores', '3-4 nuevos competidores', '5-7 nuevos competidores', 'Más de 7 - Es una invasión constante'] },
+            { id: 'b2', section: 'B', text: '¿Qué porcentaje de tu mercado objetivo crees que ya está siendo servido por alguien?', options: ['Menos del 30% - Mucho mercado sin explotar', '30-50% - Buen espacio para crecer', '51-70% - Mercado moderadamente servido', '71-85% - Mercado muy atendido', 'Más del 85% - Prácticamente saturado'] },
+            { id: 'b3', section: 'B', text: '¿Con qué facilidad podría un competidor nuevo copiar tu propuesta principal?', options: ['Imposible de replicar - Tengo ventajas únicas', 'Muy difícil - Requiere años desarrollar', 'Requiere inversión considerable y tiempo', 'Relativamente fácil con algunos recursos', 'Extremadamente fácil - Solo necesita dinero'] },
+            { id: 'b4', section: 'B', text: 'En tu área geográfica (física o digital), ¿cuántas opciones similares a la tuya existen?', options: ['Solo yo ofrezco esto específicamente', '1-2 opciones más similares', '3-5 alternativas comparables', '6-10 opciones similares disponibles', 'Más de 10 - Hay para elegir'] },
+            { id: 'b5', section: 'B', text: '¿Cómo describirías el crecimiento general de tu industria en los últimos 3 años?', options: ['Crecimiento explosivo - Demanda imparable', 'Crecimiento sólido y sostenido', 'Crecimiento moderado pero constante', 'Estancado - Sin crecimiento significativo', 'En declive - Mercado contraído'] },
+            { id: 'b6', section: 'B', text: '¿Qué tan fácil es para un cliente encontrar alternativas a tu servicio/producto?', options: ['Muy difícil - Somos únicos en el mercado', 'Difícil - Pocas alternativas disponibles', 'Moderadamente fácil - Algunas opciones existen', 'Fácil - Varias alternativas disponibles', 'Extremadamente fácil - Sobran opciones'] },
+            { id: 'b7', section: 'B', text: '¿Cuál consideras que es el principal limitante de crecimiento en tu industria?', options: ['Educación del mercado sobre los beneficios', 'Capacidad de producción/servicio limitada', 'Capital disponible para expansión', 'Diferenciación efectiva vs competencia', 'Número limitado de clientes/saturación'] },
+            { id: 'b8', section: 'B', text: 'En términos de innovación y cambios, ¿cómo está tu industria?', options: ['Constantemente revolucionándose con novedades', 'Innovaciones regulares y mejoras frecuentes', 'Cambios graduales y evolutivos', 'Muy poca innovación - Industria estática', 'Prácticamente sin cambios - Tradicional'] },
+            { id: 'b9', section: 'B', text: '¿Qué porcentaje de tus clientes potenciales "ya saben exactamente qué quieren" cuando llegan a ti?', options: ['Menos del 20% - Necesitan educación y guía', '20-40% - Algunos tienen ideas claras', '41-60% - La mitad sabe lo que busca', '61-80% - La mayoría tiene expectativas definidas', 'Más del 80% - Todos saben exactamente qué quieren'] },
+            { id: 'b10', section: 'B', text: '¿Con qué frecuencia aparecen nuevas formas/tecnologías para resolver el mismo problema que tú resuelves?', options: ['Nunca - Mi solución es la única forma', 'Raramente - Muy pocas alternativas nuevas', 'Ocasionalmente - Aparece alguna innovación', 'Frecuentemente - Siempre hay nuevas opciones', 'Constantemente - Aparecen alternativas todo el tiempo'] },
+            
+            // SECCIÓN C: COMMODITIZACIÓN DE VALOR
+            { id: 'c1', section: 'C', sectionTitle: 'SECCIÓN C: COMMODITIZACIÓN DE VALOR', sectionDesc: 'Esta sección final revelará si tu propuesta de valor es única y diferenciada, o si está commoditizada como la mayoría.', text: '¿Qué tan difícil te resulta explicar en qué eres diferente de tu competencia?', options: ['Muy fácil - Tengo diferencias claras y únicas', 'Fácil - Puedo explicar mis ventajas distintivas', 'Moderado - A veces me cuesta encontrar diferencias', 'Difícil - Las diferencias son muy sutiles', 'Muy difícil - Somos prácticamente iguales'] },
+            { id: 'c2', section: 'C', text: 'Cuando presentas tu propuesta de valor, ¿cuál es la reacción típica del cliente?', options: ['¡Wow! Esto es exactamente lo que necesitaba', 'Interesante, me gusta este enfoque diferente', 'Se ve bien, déjame comparar con otras opciones', '¿En qué te diferencias de [competidor X]?', '¿Cuál es tu precio? (sin preguntar sobre valor)'] },
+            { id: 'c3', section: 'C', text: '¿Qué porcentaje de los beneficios que ofreces también los ofrece tu competencia?', options: ['Menos del 20% - Soy mayormente único', '20-40% - Tengo ventajas distintivas significativas', '41-60% - Algunos beneficios compartidos', '61-80% - La mayoría son similares', 'Más del 80% - Ofrecemos prácticamente lo mismo'] },
+            { id: 'c4', section: 'C', text: '¿Con qué frecuencia escuchas "lo voy a pensar" después de tu presentación?', options: ['Casi nunca - Deciden rápidamente', 'Ocasionalmente - Algunos necesitan tiempo', 'Regularmente - Es una respuesta común', 'Frecuentemente - La mayoría lo dice', 'Casi siempre - Es la respuesta típica'] },
+            { id: 'c5', section: 'C', text: 'Si aumentaras tus precios 20%, ¿qué porcentaje de clientes crees que perderías?', options: ['Menos del 10% - Mi valor justifica el precio', '10-25% - Algunos son sensibles al precio', '26-50% - Perdería una porción considerable', '51-75% - La mayoría buscaría alternativas', 'Más del 75% - Sería catastrófico'] },
+            { id: 'c6', section: 'C', text: '¿Con qué frecuencia te preguntan "¿no tienes algo más barato?" o "¿puedes bajar el precio?"', options: ['Nunca - Entienden el valor que ofrezco', 'Raramente - Solo algunos clientes precio-sensibles', 'Ocasionalmente - Algunos negocian precio', 'Frecuentemente - Es una pregunta común', 'Casi siempre - Todo el mundo negocia precio'] },
+            { id: 'c7', section: 'C', text: '¿Cuál es tu mensaje principal de marketing?', options: ['Una experiencia/resultado único que solo yo ofrezco', 'Calidad superior y enfoque especializado', 'Buen servicio, precios competitivos, ubicación', 'Años de experiencia, confiabilidad, referencias', 'Los mejores precios, ofertas, descuentos'] },
+            { id: 'c8', section: 'C', text: '¿Qué tanto tiempo inviertes en justificar por qué tu precio está justificado?', options: ['Nada - El valor es evidente para los clientes', 'Muy poco - Ocasionalmente explico el valor', 'Algo de tiempo - Regularmente justifico precios', 'Mucho tiempo - Constantemente explico costos', 'La mayoría del tiempo - Siempre defendiendo precios'] },
+            { id: 'c9', section: 'C', text: '¿Cuál crees que es el principal factor por el que los clientes te eligen?', options: ['Mi propuesta única de valor/diferenciación', 'La calidad superior de mi trabajo', 'La confianza y reputación que he construido', 'Conveniencia, ubicación o disponibilidad', 'Precio competitivo o la mejor oferta'] },
+            { id: 'c10', section: 'C', text: 'Siendo completamente honesto, ¿sientes que básicamente vendes "lo mismo" que tu competencia?', options: ['Para nada - Ofrezco algo completamente único', 'No realmente - Tengo diferencias importantes', 'A veces lo pienso - Hay similitudes preocupantes', 'Frecuentemente - Las diferencias son menores', 'Sí, honestamente vendemos prácticamente lo mismo'] }
+        ];
+
+        // Validar formulario personal
+        function validateForm() {
+            const required = ['nombreCompleto', 'email', 'nombreEmpresa', 'industria', 'anosNegocio', 'tamanoEmpresa'];
+            let isValid = true;
+            
+            required.forEach(id => {
+                const element = document.getElementById(id);
+                if (!element.value.trim()) {
+                    isValid = false;
+                    element.style.borderColor = 'var(--accent-red)';
+                } else {
+                    element.style.borderColor = 'var(--glass-border)';
+                }
+            });
+            
+            document.getElementById('startBtn').disabled = !isValid;
+            return isValid;
+        }
+
+        // Event listeners para validación
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = ['nombreCompleto', 'email', 'nombreEmpresa', 'industria', 'anosNegocio', 'tamanoEmpresa'];
+            inputs.forEach(id => {
+                const element = document.getElementById(id);
+                element.addEventListener('input', validateForm);
+                element.addEventListener('change', validateForm);
+            });
+        });
+
+        // Iniciar test
+        function startTest() {
+            if (!validateForm()) return;
+            
+            // Guardar datos personales
+            testData.personalData = {
+                nombreCompleto: document.getElementById('nombreCompleto').value,
+                email: document.getElementById('email').value,
+                nombreEmpresa: document.getElementById('nombreEmpresa').value,
+                industria: document.getElementById('industria').value,
+                anosNegocio: document.getElementById('anosNegocio').value,
+                tamanoEmpresa: document.getElementById('tamanoEmpresa').value
+            };
+            
+            // Cambiar a pantalla de preguntas
+            showScreen('questionScreen');
+            showQuestion(0);
+        }
+
+        // Mostrar pantalla
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        // Mostrar pregunta
+        function showQuestion(index) {
+            testData.currentQuestion = index;
+            const question = allQuestions[index];
+            const questionNumber = index + 1;
+            
+            // Mostrar header de sección si es necesario
+            let sectionHeaderHTML = '';
+            if (question.sectionTitle) {
+                sectionHeaderHTML = `
+                    <div class="section-header">
+                        <h2>🎯 ${question.sectionTitle}</h2>
+                        <p>${question.sectionDesc}</p>
+                        <p>📊 Progreso: Preguntas ${questionNumber}-${Math.min(questionNumber + 9, 30)} de 30</p>
+                    </div>
+                `;
+            }
+            
+            document.getElementById('sectionHeader').innerHTML = sectionHeaderHTML;
+            
+            // Mostrar pregunta
+            const optionsHTML = question.options.map((option, optionIndex) => 
+                `<div class="option" onclick="selectOption('${question.id}', ${optionIndex})">${option}</div>`
+            ).join('');
+            
+            document.getElementById('questionContainer').innerHTML = `
+                <div class="question-container">
+                    <div class="question-number">Pregunta ${questionNumber} de 30</div>
+                    <div class="question-text">${question.text}</div>
+                    <div class="options" id="optionsContainer">
+                        ${optionsHTML}
+                    </div>
+                </div>
+            `;
+            
+            // Restaurar selección previa
+            if (testData.answers[question.id] !== undefined) {
+                const selectedIndex = testData.answers[question.id];
+                document.querySelectorAll('.option')[selectedIndex].classList.add('selected');
+            }
+            
+            updateProgress();
+            updateNavigation();
+        }
+
+        // Seleccionar opción
+        function selectOption(questionId, optionIndex) {
+            testData.answers[questionId] = optionIndex;
+            
+            // Actualizar UI
+            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            document.querySelectorAll('.option')[optionIndex].classList.add('selected');
+            
+            // Habilitar botón siguiente
+            document.getElementById('nextBtn').disabled = false;
+        }
+
+        // Navegar a siguiente pregunta
+        function nextQuestion() {
+            if (testData.currentQuestion < allQuestions.length - 1) {
+                showQuestion(testData.currentQuestion + 1);
+            } else {
+                showResults();
+            }
+        }
+
+        // Navegar a pregunta anterior
+        function previousQuestion() {
+            if (testData.currentQuestion > 0) {
+                showQuestion(testData.currentQuestion - 1);
+            }
+        }
+
+        // Actualizar progreso
+        function updateProgress() {
+            const progress = ((testData.currentQuestion + 1) / allQuestions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            
+            let sectionName = '';
+            if (testData.currentQuestion < 10) {
+                sectionName = 'Sección A: Presión Competitiva';
+            } else if (testData.currentQuestion < 20) {
+                sectionName = 'Sección B: Saturación de Mercado';
+            } else {
+                sectionName = 'Sección C: Commoditización de Valor';
+            }
+            
+            document.getElementById('progressText').textContent = `${sectionName} - ${Math.round(progress)}%`;
+        }
+
+        // Actualizar navegación
+        function updateNavigation() {
+            const currentQuestionId = allQuestions[testData.currentQuestion].id;
+            
+            document.getElementById('prevBtn').disabled = testData.currentQuestion === 0;
+            document.getElementById('nextBtn').disabled = testData.answers[currentQuestionId] === undefined;
+            document.getElementById('nextBtn').textContent = testData.currentQuestion === allQuestions.length - 1 ? 'Ver Resultados' : 'Siguiente';
+        }
+
+        // Calcular puntuaciones
+        function calculateScores() {
+            let seccionA = 0, seccionB = 0, seccionC = 0;
+            
+            allQuestions.forEach(question => {
+                const answerIndex = testData.answers[question.id];
+                if (answerIndex !== undefined) {
+                    const score = 5 - answerIndex; // Convertir índice a puntuación (0->5, 1->4, etc.)
+                    
+                    if (question.section === 'A') seccionA += score;
+                    else if (question.section === 'B') seccionB += score;
+                    else if (question.section === 'C') seccionC += score;
+                }
+            });
+            
+            return {
+                seccionA,
+                seccionB,
+                seccionC,
+                total: seccionA + seccionB + seccionC
+            };
+        }
+
+        // Obtener clasificación
+        function getClassification(score) {
+            if (score >= 136) return { name: "OCÉANO AZUL SÓLIDO", class: "oceano-azul" };
+            if (score >= 121) return { name: "OCÉANO AZUL EMERGENTE", class: "oceano-azul-emergente" };
+            if (score >= 91) return { name: "OCÉANO ROJO MODERADO", class: "oceano-rojo-moderado" };
+            if (score >= 61) return { name: "OCÉANO ROJO ALTO", class: "oceano-rojo-alto" };
+            return { name: "OCÉANO ROJO CRÍTICO", class: "oceano-rojo-critico" };
+        }
+
+        // Obtener descripción de resultado
+        function getResultDescription(score, classification) {
+            const nombre = testData.personalData.nombreCompleto;
+            const empresa = testData.personalData.nombreEmpresa;
+            
+            if (score >= 136) {
+                return `¡Felicitaciones ${nombre}! ${empresa} se encuentra en un OCÉANO AZUL SÓLIDO. Tu empresa tiene una posición competitiva excepcional con diferenciación clara, mercado no saturado y propuesta de valor única. Estás dominando un espacio con poca competencia destructiva.`;
+            }
+            if (score >= 121) {
+                return `¡Excelente ${nombre}! ${empresa} está en un OCÉANO AZUL EMERGENTE. Tienes una base sólida con buen potencial de diferenciación. Con algunos ajustes estratégicos puedes consolidar tu posición de dominio sin competencia.`;
+            }
+            if (score >= 91) {
+                return `${nombre}, ${empresa} está en un OCÉANO ROJO MODERADO. Hay competencia presente pero manejable. Tienes oportunidades claras para diferenciarte y moverte hacia aguas más azules con las estrategias correctas.`;
+            }
+            if (score >= 61) {
+                return `${nombre}, ${empresa} enfrenta un OCÉANO ROJO ALTO. La competencia es intensa y hay presión significativa en precios y diferenciación. Es urgente implementar estrategias para encontrar tu océano azul.`;
+            }
+            return `${nombre}, ${empresa} está en un OCÉANO ROJO CRÍTICO. La competencia es destructiva, el mercado está saturado y tu propuesta está commoditizada. Se requiere una transformación radical inmediata para sobrevivir.`;
+        }
+
+        // Obtener recomendaciones
+        function getRecommendations(scores) {
+            const { seccionA, seccionB, seccionC } = scores;
+            const minScore = Math.min(seccionA, seccionB, seccionC);
+            
+            let problema = "";
+            let recomendaciones = [];
+            
+            if (minScore === seccionA) {
+                problema = "Tu mayor vulnerabilidad: Presión Competitiva Destructiva";
+                recomendaciones = [
+                    "Desarrolla una propuesta de valor única e inimitable",
+                    "Deja de competir por precio y enfócate en valor diferenciado",
+                    "Identifica nichos de mercado no explotados",
+                    "Crea barreras de entrada para nuevos competidores",
+                    "Desarrolla relaciones más profundas con clientes clave"
+                ];
+            } else if (minScore === seccionB) {
+                problema = "Tu mayor vulnerabilidad: Saturación de Mercado";
+                recomendaciones = [
+                    "Busca mercados adyacentes o no explorados",
+                    "Innova en tu modelo de negocio para crear nuevos espacios",
+                    "Desarrolla productos/servicios complementarios únicos",
+                    "Considera expansión geográfica o segmentos no atendidos",
+                    "Crea categorías completamente nuevas de soluciones"
+                ];
+            } else {
+                problema = "Tu mayor vulnerabilidad: Commoditización de Valor";
+                recomendaciones = [
+                    "Redefine completamente tu propuesta de valor",
+                    "Desarrolla experiencias únicas que nadie más puede ofrecer",
+                    "Enfócate en resultados emocionales, no solo funcionales",
+                    "Crea un ecosistema de valor integral para tus clientes",
+                    "Personaliza radicalmente tu oferta para cada segmento"
+                ];
+            }
+            
+            return { problema, recomendaciones };
+        }
+
+        // Mostrar resultados
+        function showResults() {
+            const scores = calculateScores();
+            const classification = getClassification(scores.total);
+            const description = getResultDescription(scores.total, classification);
+            const recommendations = getRecommendations(scores);
+            
+            // Cambiar a pantalla de resultados
+            showScreen('resultsScreen');
+            
+            // Actualizar elementos
+            document.getElementById('scoreText').textContent = `${scores.total}/150`;
+            
+            const categoryElement = document.getElementById('resultCategory');
+            categoryElement.textContent = classification.name;
+            categoryElement.className = `result-category ${classification.class}`;
+            
+            document.getElementById('resultDescription').textContent = description;
+            
+            // Puntuaciones por sección
+            document.getElementById('sectionScores').innerHTML = `
+                <div class="section-score">
+                    <h4>Presión Competitiva</h4>
+                    <div class="score">${scores.seccionA}/50</div>
+                </div>
+                <div class="section-score">
+                    <h4>Saturación Mercado</h4>
+                    <div class="score">${scores.seccionB}/50</div>
+                </div>
+                <div class="section-score">
+                    <h4>Commoditización</h4>
+                    <div class="score">${scores.seccionC}/50</div>
+                </div>
+            `;
+            
+            // Recomendaciones
+            const recommendationsHTML = recommendations.recomendaciones
+                .map(rec => `<li>${rec}</li>`)
+                .join('');
+            
+            document.getElementById('recommendations').innerHTML = `
+                <h4>${recommendations.problema}</h4>
+                <p><strong>Plan de acción inmediato:</strong></p>
+                <ul>${recommendationsHTML}</ul>
+            `;
+            
+            // Actualizar círculo de puntuación
+            const percentage = (scores.total / 150) * 360;
+            document.getElementById('scoreCircle').style.background = 
+                `conic-gradient(var(--success-green) 0deg, var(--accent-cyan) ${percentage * 0.6}deg, rgba(255, 255, 255, 0.2) ${percentage}deg)`;
+            
+            // Actualizar progreso
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('progressText').textContent = '¡Diagnóstico Completado!';
+        }
+
+        // Función WhatsApp
+        function openWhatsApp() {
+            const nombre = testData.personalData.nombreCompleto || 'Cliente';
+            const empresa = testData.personalData.nombreEmpresa || 'su empresa';
+            const scores = calculateScores();
+            const classification = getClassification(scores.total);
+            
+            const message = encodeURIComponent(
+                `🔍 Hola! Soy ${nombre} de ${empresa}. Acabo de completar el Océano Rojo Detector™ y mi resultado es: ${classification.name} (${scores.total}/150 puntos). Me interesa una consulta gratuita para desarrollar mi estrategia de Océano Azul.`
+            );
+            
+            window.open(`https://wa.me/50376578075?text=${message}`, '_blank');
+        }
+
+        // Reiniciar test
+        function restartTest() {
+            testData.personalData = {};
+            testData.answers = {};
+            testData.currentQuestion = 0;
+            
+            // Limpiar formulario
+            ['nombreCompleto', 'email', 'nombreEmpresa', 'industria', 'anosNegocio', 'tamanoEmpresa'].forEach(id => {
+                document.getElementById(id).value = '';
+            });
+            
+            // Resetear progreso
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('progressText').textContent = 'Preparando diagnóstico...';
+            
+            // Volver a pantalla inicial
+            showScreen('personalDataScreen');
+            validateForm();
+        }
+    </script>
+</body>
+</html>
