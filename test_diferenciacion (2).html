@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Diferenciación Gratuito - LA ESTRATEGA™</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0F1419;
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Fondo animado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(229, 62, 62, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 217, 255, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(95, 39, 205, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #0F1419 0%, #1A2332 100%);
+            animation: backgroundPulse 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(1deg); }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Header del test */
+        .test-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .brand {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #E53E3E;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(229, 62, 62, 0.5);
+        }
+
+        .test-title {
+            font-size: 2.8em;
+            font-weight: 900;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #E53E3E 0%, #00D9FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes titleShimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .test-subtitle {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .progress-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 8px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #E53E3E, #00D9FF);
+            border-radius: 20px;
+            transition: width 0.6s ease;
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; box-shadow: 0 0 20px rgba(0, 217, 255, 0.5); }
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Contenedor principal del test */
+        .test-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 50px;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .test-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #E53E3E, #00D9FF, #5F27CD);
+            animation: borderGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* Preguntas */
+        .question {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .question.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .question-number {
+            font-size: 0.9em;
+            color: #00D9FF;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .question-text {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            color: white;
+        }
+
+        /* Opciones de respuesta */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .option:hover::before {
+            left: 100%;
+        }
+
+        .option:hover {
+            transform: translateX(10px);
+            border-color: rgba(0, 217, 255, 0.3);
+            background: rgba(0, 217, 255, 0.05);
+        }
+
+        .option.selected {
+            border-color: #E53E3E;
+            background: rgba(229, 62, 62, 0.1);
+            transform: translateX(10px);
+        }
+
+        .option-text {
+            font-size: 1.1em;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        /* Botón continuar */
+        .continue-btn {
+            background: linear-gradient(135deg, #E53E3E, #5F27CD);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            margin-top: 40px;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+            position: relative;
+            overflow: hidden;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .continue-btn.enabled {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .continue-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .continue-btn:hover::before {
+            left: 100%;
+        }
+
+        .continue-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(229, 62, 62, 0.4);
+        }
+
+        /* Pantalla de resultados */
+        .results {
+            display: none;
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            font-weight: 900;
+            position: relative;
+            animation: scoreAppear 1.5s ease;
+        }
+
+        @keyframes scoreAppear {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .score-circle.low {
+            background: linear-gradient(135deg, #E53E3E, #ff6b7a);
+            color: white;
+        }
+
+        .score-circle.medium {
+            background: linear-gradient(135deg, #ff9f40, #ffb74d);
+            color: white;
+        }
+
+        .score-circle.high {
+            background: linear-gradient(135deg, #00D9FF, #33e4ff);
+            color: #0F1419;
+        }
+
+        .result-title {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .result-title.low { color: #E53E3E; }
+        .result-title.medium { color: #ff9f40; }
+        .result-title.high { color: #00D9FF; }
+
+        .result-description {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .recommendations {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .recommendations h3 {
+            color: #00D9FF;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .recommendation-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .recommendation-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .recommendation-icon {
+            color: #E53E3E;
+            font-size: 1.2em;
+            margin-top: 2px;
+        }
+
+        .recommendation-text {
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+
+        /* CTA final */
+        .cta-section {
+            background: rgba(0, 217, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 25px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: 1.8em;
+            color: #00D9FF;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .cta-text {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 18px 35px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.4);
+        }
+
+        .restart-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .restart-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .test-container {
+                padding: 30px 25px;
+            }
+
+            .test-title {
+                font-size: 2.2em;
+            }
+
+            .question-text {
+                font-size: 1.2em;
+            }
+
+            .option {
+                padding: 18px 20px;
+            }
+
+            .option-text {
+                font-size: 1rem;
+            }
+
+            .continue-btn {
+                padding: 16px 30px;
+                font-size: 1.1em;
+            }
+
+            .score-circle {
+                width: 150px;
+                height: 150px;
+                font-size: 2.2em;
+            }
+
+            .result-title {
+                font-size: 1.8em;
+            }
+
+            .recommendations {
+                padding: 25px 20px;
+            }
+
+            .cta-section {
+                padding: 30px 20px;
+            }
+
+            .whatsapp-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 16px 30px;
+            }
+        }
+
+        /* Animaciones adicionales */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header del test -->
+        <div class="test-header">
+            <div class="brand">LA ESTRATEGA™</div>
+            <h1 class="test-title">Test de Diferenciación</h1>
+            <p class="test-subtitle">Descubre qué tan diferenciada está realmente tu PYME en el mercado</p>
+        </div>
+
+        <!-- Barra de progreso -->
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-text">
+                <span id="currentQuestion">1</span> de <span id="totalQuestions">8</span> preguntas
+            </div>
+        </div>
+
+        <!-- Contenedor del test -->
+        <div class="test-container" id="testContainer">
+            <!-- Pregunta 1 -->
+            <div class="question active" data-question="1">
+                <div class="question-number">Pregunta 1 de 8</div>
+                <div class="question-text">¿Cuántas empresas consideras que ofrecen algo muy similar a lo tuyo en tu mercado local?</div>
+                <div class="options">
+                    <div class="option" data-value="1">
+                        <div class="option-text">Más de 10 empresas ofrecen básicamente lo mismo</div>
+                    </div>
+                    <div class="option" data-value="2">
+                        <div class="option-text">Entre 5-10 empresas similares</div>
+                    </div>
+                    <div class="option" data-value="3">
+                        <div class="option-text">Entre 2-4 competidores directos</div>
+                    </div>
+                    <div class="option" data-value="4">
+                        <div class="option-text">Solo 1-2 empresas hacen algo parecido</div>
+                    </div>
+                    <div class="option" data-value="5">
+                        <div class="option-text">Nadie ofrece exactamente lo que nosotros hacemos</div>
+                    </div>
+                </div>
+                <button class="continue-btn" onclick="nextQuestion()">Continuar</button>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="question" data-question="2">
+                <div class="question-number">Pregunta 2 de 8</div>
+                <div class="question-text">¿Con qué frecuencia tus clientes comparan tu precio con la competencia?</div>
+                <div class="options">
+                    <div class="option" data-value="1">
+                        <div class="option-text">Siempre preguntan precios de otros antes de decidir</div>
+                    </div>
+                    <div class="option" data-value="2">
+                        <div class="option-text">Frecuentemente comparan precios</div>
+                    </div>
+                    <div class="option" data-value="3">
+                        <div class="option-text">A veces mencionan otros precios</div>
+                    </div>
+                    <div class="option" data-value="4">
+                        <div class="option-text">Rara vez comparan precios</div>
+                    </div>
+                    <div class="option" data-value="5">
+                        <div class="option-text">Nunca mencionan precios de competidores</div>
+                    </div>
+                </div>
+                <button class="continue-btn" onclick="nextQuestion()">Continuar</button>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="question" data-question="3">
+                <div class="question-text">¿Qué tan fácil sería para un competidor replicar exactamente lo que ofreces?</div>
+                <div class="options">
+                    <div class="option" data-value="1">
+                        <div class="option-text">Muy fácil, en menos de 1 mes podrían copiarnos</div>
+                    </div>
+                    <div class="option" data-value="2">
+                        <div class="option-text">Relativamente fácil, en 3-6 meses</div>
+                    </div>
+                    <div class="option" data-value="3">
+                        <div class="option-text">Requeriría esfuerzo considerable, 6-12 meses</div>
+                    </div>
+                    <div class="option" data-value="4">
+                        <div class="option-text">Muy difícil, necesitarían 1-2 años y mucha inversión</div>
+                    </div>
+                    <div class="option" data-value="5">
+                        <div class="option-text">Prácticamente imposible de replicar</div>
+                    </div>
+                </div>
+                <button class="continue-btn" onclick="nextQuestion()">Continuar</button>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="question" data-question="4">
+                <div class="question-text">¿Cómo reaccionan tus clientes cuando aumentas precios?</div>
+                <div class="options">
+                    <div class="option" data-value="1">
+                        <div class="option-text">Se quejan mucho y algunos se van a la competencia</div>
+                    </div>
+                    <div class="option" data-value="2">
+                        <div class="option-text">Expresan inconformidad pero la mayoría acepta</div>
+                    </div>
+                    <div class="option" data-value="3">
+                        <div class="option-text">Algunos comentarios, pero generalmente aceptan</div>
+                    </div>
+                    <div class="option" data-value="4">
+                        <div class="option-text">Mínima resistencia, comprenden el valor</div>
+                    </div>
+                    <div class="option" data-value="5">
+                        <div class="option-text">Aceptan sin cuestionar, ven justificado el precio</div>
+                    </div>
+                </div>
+                <button class="continue-btn" onclick="nextQuestion()">Continuar</button>
+            </div>
+
+            <!-- Pregunta 5 -->
+            <div class="question" data-question="5">
+                <div class="question-text">¿Puedes explicar en una frase clara qué te hace único vs la competencia?</div>
+                <div class="options">
+                    <div class="option" data-value="1">
+                        <div class="option-text">No, solo puedo decir que tenemos "mejor calidad y servicio"</div>
+                    </div>
+                    <div class="option" data-value="2">
+                        <div class="option-text">Menciono varios beneficios generales</div>
+                    </div>
+                    <div class="option" data-value="3">
+                        <div class="option-text">Tengo una explicación, pero es un poco larga</div>
+                    </div>
+                    <div class="option" data-value="4">
+                        <div class="option-text">Sí, tengo una diferencia clara y específica</div>
+                    </div>
+                    <div class="option" data-value="5">
+                        <div class="option-text">Absolutamente, somos conocidos por algo muy específico</div>
+                    </div>
+                </div>
+                <button class="continue-btn" onclick="nextQuestion()">Continuar</button>
+            </div>
+
+            <!-- Pregunta 6 -->
+            <div class="question" data-question="6">
+                <div class="question-text">¿Cómo encuentran los clientes típicamente tu empresa?</div>
+                <div class="options">
+                    <div class="option" data-value="1">
+                        <div class="option-text">Buscando la opción más barata en el mercado</div>
+                    </div>
+                    <div class="option" data-value="2">
+                        <div class="option-text">Comparando varias opciones similares</div>
+                    </div>
+                    <div class="option" data-value="3">
+                        <div class="option-text">Por recomendaciones generales</div>
+                    </div>
+                    <div class="option" data-value="4">
+                        <div class="option-text">Buscando específicamente nuestro tipo de solución</div>
+                    </div>
+                    <div class="option" data-value="5">
+                        <div class="option-text">Nos buscan directamente por nuestra reputación única</div>
+                    </div>
+                </div>
+                <button class="continue-btn" onclick="nextQuestion()">Continuar</button>
+            </div>
+
+            <!-- Pregunta 7 -->
+            <div class="question" data-question="7">
+                <div class="question-text">¿Qué porcentaje de tus ventas son a precios premium (por encima del mercado)?</div>
+                <div class="options">
+                    <div class="option" data-value="1">
+                        <div class="option-text">0-20% - Casi siempre competimos por precio</div>
+                    </div>
+                    <div class="option" data-value="2">
+                        <div class="option-text">21-40% - Algunas veces logramos premium</div>
+                    </div>
+                    <div class="option" data-value="3">
+                        <div class="option-text">41-60% - Regularmente cobramos por encima del mercado</div>
+                    </div>
+                    <div class="option" data-value="4">
+                        <div class="option-text">61-80% - Generalmente cobramos premium</div>
+                    </div>
+                    <div class="option" data-value="5">
+                        <div class="option-text">81-100% - Casi siempre cobramos premium</div>
+                    </div>
+                </div>
+                <button class="continue-btn" onclick="nextQuestion()">Continuar</button>
+            </div>
+
+            <!-- Pregunta 8 -->
+            <div class="question" data-question="8">
+                <div class="question-text">¿Qué tan dispuestos están tus clientes a esperar por tu servicio vs ir con competencia inmediata?</div>
+                <div class="options">
+                    <div class="option" data-value="1">
+                        <div class="option-text">Se van inmediatamente si no podemos atender ya</div>
+                    </div>
+                    <div class="option" data-value="2">
+                        <div class="option-text">Esperan muy poco tiempo</div>
+                    </div>
+                    <div class="option" data-value="3">
+                        <div class="option-text">Esperan un tiempo razonable</div>
+                    </div>
+                    <div class="option" data-value="4">
+                        <div class="option-text">Generalmente prefieren esperar por nosotros</div>
+                    </div>
+                    <div class="option" data-value="5">
+                        <div class="option-text">Esperan lo que sea necesario, somos su primera opción</div>
+                    </div>
+                </div>
+                <button class="continue-btn" onclick="showResults()">Ver Resultados</button>
+            </div>
+
+            <!-- Pantalla de resultados -->
+            <div class="results" id="results">
+                <div class="score-circle" id="scoreCircle">
+                    <span id="scoreText">0</span>
+                </div>
+                
+                <h2 class="result-title" id="resultTitle">Tu Nivel de Diferenciación</h2>
+                
+                <div class="result-description" id="resultDescription">
+                    <!-- Se llena dinámicamente -->
+                </div>
+
+                <div class="recommendations" id="recommendations">
+                    <h3>Recomendaciones Específicas:</h3>
+                    <div id="recommendationsList">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h3 class="cta-title">¿Quieres Transformar estos Resultados?</h3>
+                    <p class="cta-text">
+                        Agenda una sesión estratégica gratuita de 30 minutos para diseñar un plan específico de diferenciación para tu PYME.
+                    </p>
+                    <a href="#" class="whatsapp-btn" id="whatsappBtn">
+                        📱 Agenda tu Sesión Gratuita
+                    </a>
+                    <br>
+                    <button class="restart-btn" onclick="restartTest()">🔄 Realizar Test Nuevamente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestionIndex = 1;
+        let totalQuestions = 8;
+        let answers = [];
+        
+        // Inicializar
+        updateProgress();
+        updateContinueButton();
+
+        function updateProgress() {
+            const progress = (currentQuestionIndex / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('currentQuestion').textContent = currentQuestionIndex;
+        }
+
+        function updateContinueButton() {
+            const currentQuestion = document.querySelector(`.question[data-question="${currentQuestionIndex}"]`);
+            const selectedOption = currentQuestion.querySelector('.option.selected');
+            const continueBtn = currentQuestion.querySelector('.continue-btn');
+            
+            if (selectedOption) {
+                continueBtn.classList.add('enabled');
+            } else {
+                continueBtn.classList.remove('enabled');
+            }
+        }
+
+        // Manejar selección de opciones
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.option')) {
+                const option = e.target.closest('.option');
+                const question = option.closest('.question');
+                
+                // Remover selección previa
+                question.querySelectorAll('.option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                
+                // Seleccionar nueva opción
+                option.classList.add('selected');
+                
+                // Guardar respuesta
+                const questionNum = parseInt(question.dataset.question);
+                const value = parseInt(option.dataset.value);
+                answers[questionNum - 1] = value;
+                
+                updateContinueButton();
+            }
+        });
+
+        function nextQuestion() {
+            const currentQuestion = document.querySelector(`.question[data-question="${currentQuestionIndex}"]`);
+            const selectedOption = currentQuestion.querySelector('.option.selected');
+            
+            if (!selectedOption) return;
+            
+            // Ocultar pregunta actual
+            currentQuestion.classList.remove('active');
+            
+            // Mostrar siguiente pregunta
+            currentQuestionIndex++;
+            updateProgress();
+            
+            setTimeout(() => {
+                const nextQuestion = document.querySelector(`.question[data-question="${currentQuestionIndex}"]`);
+                if (nextQuestion) {
+                    nextQuestion.classList.add('active');
+                    updateContinueButton();
+                }
+            }, 300);
+        }
+
+        function showResults() {
+            const currentQuestion = document.querySelector(`.question[data-question="${currentQuestionIndex}"]`);
+            const selectedOption = currentQuestion.querySelector('.option.selected');
+            
+            if (!selectedOption) return;
+            
+            // Ocultar última pregunta
+            currentQuestion.classList.remove('active');
+            
+            // Calcular y mostrar resultados
+            setTimeout(() => {
+                calculateResults();
+                document.getElementById('results').classList.add('show');
+            }, 300);
+        }
+
+        function calculateResults() {
+            const totalScore = answers.reduce((sum, score) => sum + score, 0);
+            const maxScore = totalQuestions * 5;
+            const percentage = Math.round((totalScore / maxScore) * 100);
+            
+            const scoreCircle = document.getElementById('scoreCircle');
+            const scoreText = document.getElementById('scoreText');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultDescription = document.getElementById('resultDescription');
+            const recommendationsList = document.getElementById('recommendationsList');
+            
+            // Animar score
+            animateScore(scoreText, percentage);
+            
+            let level, title, description, recommendations;
+            
+            if (percentage < 40) {
+                level = 'low';
+                title = 'Diferenciación Baja';
+                description = `Con ${percentage}% de diferenciación, tu PYME está en un océano rojo muy competitivo. Estás compitiendo principalmente por precio y los clientes te ven como una opción más del mercado. Es momento de crear diferenciación genuina.`;
+                recommendations = [
+                    { icon: '🎯', text: 'Identificar atributos únicos que nadie más ofrece en tu mercado' },
+                    { icon: '💡', text: 'Desarrollar una propuesta de valor específica y defendible' },
+                    { icon: '🚀', text: 'Implementar metodología de océano azul para crear espacios no disputados' },
+                    { icon: '📈', text: 'Rediseñar procesos para crear barreras de imitación' }
+                ];
+            } else if (percentage < 70) {
+                level = 'medium';
+                title = 'Diferenciación Moderada';
+                description = `Con ${percentage}% de diferenciación, tienes algunas ventajas competitivas pero aún enfrentas mucha competencia directa. Hay potencial significativo para crear mayor diferenciación y pricing power.`;
+                recommendations = [
+                    { icon: '⚡', text: 'Fortalecer los atributos diferenciadores existentes' },
+                    { icon: '🎨', text: 'Comunicar mejor tu propuesta de valor única' },
+                    { icon: '🏆', text: 'Desarrollar nuevas barreras competitivas sostenibles' },
+                    { icon: '💎', text: 'Optimizar estrategia de pricing premium' }
+                ];
+            } else {
+                level = 'high';
+                title = 'Diferenciación Alta';
+                description = `¡Excelente! Con ${percentage}% de diferenciación, tu PYME ha logrado crear ventajas competitivas significativas. Los clientes te valoran por tu propuesta única y tienes pricing power considerable.`;
+                recommendations = [
+                    { icon: '🔒', text: 'Proteger y fortalecer tu posición diferenciada actual' },
+                    { icon: '🌊', text: 'Explorar nuevos océanos azules para expansión' },
+                    { icon: '📊', text: 'Optimizar márgenes y captura de valor' },
+                    { icon: '🚀', text: 'Escalar tu modelo diferenciado a nuevos mercados' }
+                ];
+            }
+            
+            scoreCircle.className = `score-circle ${level}`;
+            resultTitle.className = `result-title ${level}`;
+            resultTitle.textContent = title;
+            resultDescription.textContent = description;
+            
+            // Llenar recomendaciones
+            recommendationsList.innerHTML = recommendations.map(rec => `
+                <div class="recommendation-item">
+                    <div class="recommendation-icon">${rec.icon}</div>
+                    <div class="recommendation-text">${rec.text}</div>
+                </div>
+            `).join('');
+            
+            // Configurar WhatsApp
+            setupWhatsAppButton(percentage, level);
+        }
+
+        function animateScore(element, finalScore) {
+            let currentScore = 0;
+            const increment = finalScore / 30;
+            
+            const timer = setInterval(() => {
+                currentScore += increment;
+                if (currentScore >= finalScore) {
+                    element.textContent = finalScore + '%';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(currentScore) + '%';
+                }
+            }, 50);
+        }
+
+        function setupWhatsAppButton(score, level) {
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            let statusText = '';
+            
+            if (level === 'low') {
+                statusText = 'Mi PYME tiene diferenciación baja y necesito ayuda urgente para crear ventajas competitivas';
+            } else if (level === 'medium') {
+                statusText = 'Mi PYME tiene diferenciación moderada pero quiero llevarla al siguiente nivel';
+            } else {
+                statusText = 'Mi PYME tiene buena diferenciación pero quiero optimizar y proteger mi posición';
+            }
+            
+            const message = encodeURIComponent(`🎯 Hola! Acabo de completar el Test de Diferenciación y obtuve ${score}%.
+
+${statusText}.
+
+¿Podemos agendar una sesión estratégica gratuita de 30 minutos para diseñar un plan específico de diferenciación para mi PYME?
+
+¡Estoy lista para transformar mi negocio en un líder único del mercado!`);
+            
+            whatsappBtn.href = `https://wa.me/50376578075?text=${message}`;
+        }
+
+        function restartTest() {
+            // Reiniciar variables
+            currentQuestionIndex = 1;
+            answers = [];
+            
+            // Ocultar resultados
+            document.getElementById('results').classList.remove('show');
+            
+            // Limpiar selecciones
+            document.querySelectorAll('.option.selected').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Mostrar primera pregunta
+            document.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+            document.querySelector('.question[data-question="1"]').classList.add('active');
+            
+            // Actualizar UI
+            updateProgress();
+            updateContinueButton();
+            
+            // Scroll al inicio
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
