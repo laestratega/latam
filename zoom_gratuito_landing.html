@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoom Gratuito - Descubre tu Océano Azul | LA ESTRATEGA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0F1419;
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Fondo animado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 85%, rgba(229, 62, 62, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 15%, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(95, 39, 205, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #0F1419 0%, #1A2332 100%);
+            animation: backgroundFlow 25s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes backgroundFlow {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            33% { transform: scale(1.05) rotate(1deg); }
+            66% { transform: scale(0.95) rotate(-1deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 60px 0 40px 0;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: headerPulse 4s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes headerPulse {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.5; }
+            50% { transform: translateX(-50%) scale(1.2); opacity: 0.8; }
+        }
+
+        .brand {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #E53E3E;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(229, 62, 62, 0.5);
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #E53E3E 0%, #00D9FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleShimmer 3s ease-in-out infinite;
+            line-height: 1.1;
+        }
+
+        @keyframes titleShimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.4); }
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .urgency-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #E53E3E, #5F27CD);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 20px;
+            animation: badgePulse 2s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Sección principal */
+        .main-content {
+            padding: 60px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .left-content {
+            position: relative;
+        }
+
+        .benefits-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefits-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00D9FF, #E53E3E, #5F27CD);
+            animation: cardShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes cardShimmer {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; box-shadow: 0 0 20px rgba(0, 217, 255, 0.5); }
+        }
+
+        .benefits-card h3 {
+            font-size: 1.8em;
+            color: #00D9FF;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateX(10px);
+            color: #00D9FF;
+        }
+
+        .benefit-icon {
+            color: #E53E3E;
+            font-size: 1.3em;
+            margin-right: 15px;
+            margin-top: 2px;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .benefit-text {
+            font-size: 1.1em;
+            flex: 1;
+        }
+
+        .benefit-text strong {
+            color: #00D9FF;
+            font-weight: 600;
+        }
+
+        /* Tarjeta de registro */
+        .signup-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 25px;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .signup-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(135deg, #E53E3E, #00D9FF, #5F27CD);
+            border-radius: 25px;
+            z-index: -1;
+            animation: borderGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .signup-card h2 {
+            font-size: 2.2em;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .signup-card .highlight {
+            color: #00D9FF;
+            font-weight: 800;
+        }
+
+        .signup-subtitle {
+            font-size: 1.2em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .value-proposition {
+            background: rgba(229, 62, 62, 0.1);
+            border-left: 4px solid #E53E3E;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 15px 15px 0;
+            font-style: italic;
+            font-size: 1.1em;
+        }
+
+        /* CTA Principal */
+        .cta-main {
+            background: linear-gradient(135deg, #E53E3E 0%, #5F27CD 100%);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.4em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin: 30px 0 20px 0;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(229, 62, 62, 0.4);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cta-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cta-main:hover::before {
+            left: 100%;
+        }
+
+        .cta-main:hover {
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 
+                0 25px 50px rgba(229, 62, 62, 0.5),
+                0 0 40px rgba(95, 39, 205, 0.3);
+            background: linear-gradient(135deg, #5F27CD 0%, #E53E3E 100%);
+        }
+
+        .cta-secondary {
+            display: block;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 15px;
+        }
+
+        /* Sección de credibilidad */
+        .credibility {
+            text-align: center;
+            padding: 80px 0;
+            background: rgba(255, 255, 255, 0.02);
+            margin: 60px 0;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .credibility::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 217, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(95, 39, 205, 0.1) 0%, transparent 50%);
+            border-radius: 25px;
+            z-index: -1;
+        }
+
+        .credibility h3 {
+            font-size: 2em;
+            color: #00D9FF;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 217, 255, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: #E53E3E;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Testimonio */
+        .testimonial {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4em;
+            color: #00D9FF;
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            color: #E53E3E;
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-brand {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #E53E3E;
+            margin-bottom: 10px;
+        }
+
+        .footer-contact {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1em;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .header h1 {
+                font-size: 2.5em;
+            }
+
+            .subtitle {
+                font-size: 1.2em;
+            }
+
+            .benefits-card,
+            .signup-card {
+                padding: 30px 25px;
+            }
+
+            .cta-main {
+                font-size: 1.2em;
+                padding: 18px 30px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        /* Animaciones adicionales */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Partículas decorativas */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 50%;
+            animation: particleFloat 15s linear infinite;
+        }
+
+        .particle:nth-child(1) { width: 4px; height: 4px; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 6px; height: 6px; left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { width: 3px; height: 3px; left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { width: 5px; height: 5px; left: 40%; animation-delay: 6s; }
+        .particle:nth-child(5) { width: 4px; height: 4px; left: 50%; animation-delay: 8s; }
+        .particle:nth-child(6) { width: 6px; height: 6px; left: 60%; animation-delay: 10s; }
+        .particle:nth-child(7) { width: 3px; height: 3px; left: 70%; animation-delay: 12s; }
+        .particle:nth-child(8) { width: 5px; height: 5px; left: 80%; animation-delay: 14s; }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="brand">LA ESTRATEGA™</div>
+            <h1>Descubre tu<br>Océano Azul</h1>
+            <p class="subtitle">Sesión estratégica gratuita de 30 minutos para identificar oportunidades únicas de diferenciación en tu negocio</p>
+            <div class="urgency-badge">🔥 Solo 5 sesiones disponibles esta semana</div>
+        </div>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <div class="left-content">
+                <div class="benefits-card floating">
+                    <h3>¿Qué descubrirás en esta sesión?</h3>
+                    
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🎯</div>
+                        <div class="benefit-text">
+                            <strong>Diagnóstico express</strong> de tu posición competitiva actual
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">💡</div>
+                        <div class="benefit-text">
+                            <strong>3 oportunidades específicas</strong> para diferenciarte radicalmente
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🚀</div>
+                        <div class="benefit-text">
+                            <strong>Estrategia inicial</strong> para crear tu océano azul
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">📈</div>
+                        <div class="benefit-text">
+                            <strong>Plan de acción</strong> con pasos concretos para implementar
+                        </div>
+                    </div>
+
+                    <div class="benefit-item">
+                        <div class="benefit-icon">🎁</div>
+                        <div class="benefit-text">
+                            <strong>Bonus:</strong> Template exclusivo de análisis competitivo
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "En 30 minutos identifiqué 2 oportunidades que cambiarán completamente mi negocio. La metodología MAPEA es revolucionaria."
+                    </div>
+                    <div class="testimonial-author">— María José, CEO TechSolutions</div>
+                </div>
+            </div>
+
+            <div class="right-content">
+                <div class="signup-card">
+                    <h2>Agenda tu sesión <span class="highlight">GRATUITA</span></h2>
+                    <p class="signup-subtitle">
+                        No es una venta disfrazada. Es una sesión estratégica real donde te llevas valor inmediato.
+                    </p>
+
+                    <div class="value-proposition">
+                        💰 <strong>Valor de esta sesión: $200</strong><br>
+                        🎯 <strong>Tu inversión hoy: $0</strong>
+                    </div>
+
+                    <a href="https://wa.me/50376578075?text=Hola%2C%20quiero%20agendar%20mi%20sesi%C3%B3n%20gratuita%20de%2030%20minutos%20para%20descubrir%20mi%20oc%C3%A9ano%20azul.%20%C2%BFCu%C3%A1ndo%20podemos%20coordinar%3F" 
+                       target="_blank" 
+                       class="cta-main">
+                        📞 RESERVAR MI SESIÓN GRATUITA
+                    </a>
+                    
+                    <div class="cta-secondary">
+                        ✅ Respuesta inmediata por WhatsApp<br>
+                        ✅ Sin compromiso • Sin tarjeta de crédito
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de credibilidad -->
+        <div class="credibility">
+            <h3>Resultados que hablan por sí solos</h3>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">150+</span>
+                    <span class="stat-label">PYMEs transformadas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">300%</span>
+                    <span class="stat-label">Incremento promedio en diferenciación</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">45</span>
+                    <span class="stat-label">Océanos azules creados</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Tasa de satisfacción</span>
+                </div>
+            </div>
+
+            <div class="testimonial">
+                <div class="testimonial-text">
+                    "Pasamos de competir por precio a ser los únicos en nuestro mercado. Nuestros márgenes se triplicaron en 6 meses."
+                </div>
+                <div class="testimonial-author">— Carlos Mendoza, Director General RestaurantePlus</div>
+            </div>
+        </div>
+
+        <!-- CTA Final -->
+        <div style="text-align: center; padding: 60px 0;">
+            <h3 style="font-size: 2.2em; color: #00D9FF; margin-bottom: 30px; font-weight: 700;">
+                ¿Listo para dejar de competir y empezar a dominar?
+            </h3>
+            <a href="https://wa.me/50376578075?text=Hola%2C%20quiero%20agendar%20mi%20sesi%C3%B3n%20gratuita%20de%2030%20minutos%20para%20descubrir%20mi%20oc%C3%A9ano%20azul.%20%C2%BFCu%C3%A1ndo%20podemos%20coordinar%3F" 
+               target="_blank" 
+               class="cta-main">
+                🚀 SÍ, QUIERO MI SESIÓN GRATUITA
+            </a>
+            <p style="color: rgba(255,255,255,0.7); margin-top: 20px; font-style: italic;">
+                * Plazas limitadas • Solo empresarios serios
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-brand">LA ESTRATEGA™</div>
+        <div class="footer-contact">
+            📱 WhatsApp: +503 76578075 | 📧 laestratega.latam@gmail.com | 🌐 laestratega.info
+        </div>
+    </div>
+
+    <script>
+        // Animaciones adicionales
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efecto de typing en el título (simplificado)
+            const title = document.querySelector('.header h1');
+            title.style.opacity = '0';
+            title.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                title.style.transition = 'all 1s ease';
+                title.style.opacity = '1';
+                title.style.transform = 'translateY(0)';
+            }, 500);
+
+            // Contador regresivo para urgencia
+            const badge = document.querySelector('.urgency-badge');
+            let count = 5;
+            
+            setInterval(() => {
+                count = count > 1 ? count - 1 : 5;
+                badge.innerHTML = `🔥 Solo ${count} sesiones disponibles esta semana`;
+            }, 10000);
+
+            // Efectos de scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observar elementos para animaciones
+            document.querySelectorAll('.benefit-item, .stat-item, .testimonial').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'all 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Efecto de conteo animado para estadísticas
+            const animateCounter = (element, target) => {
+                let current = 0;
+                const increment = target / 100;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        element.textContent = target + (element.textContent.includes('%') ? '%' : element.textContent.includes('+') ? '+' : '');
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(current) + (element.textContent.includes('%') ? '%' : element.textContent.includes('+') ? '+' : '');
+                    }
+                }, 20);
+            };
+
+            // Activar contadores cuando entren en vista
+            const statNumbers = document.querySelectorAll('.stat-number');
+            const statObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.textContent);
+                        animateCounter(entry.target, target);
+                        statObserver.unobserve(entry.target);
+                    }
+                });
+            });
+
+            statNumbers.forEach(stat => statObserver.observe(stat));
+        });
+
+        // Efectos de hover mejorados
+        document.querySelectorAll('.benefit-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(15px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0) scale(1)';
+            });
+        });
+
+        // Efecto de parallax suave
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.floating');
+            
+            parallaxElements.forEach(element => {
+                const speed = 0.5;
+                const yPos = -(scrolled * speed);
+                element.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
