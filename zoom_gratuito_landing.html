@@ -610,37 +610,6 @@
             </div>
         </div>
 
-        <!-- Sección de credibilidad -->
-        <div class="credibility">
-            <h3>Resultados que hablan por sí solos</h3>
-            
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number">150+</span>
-                    <span class="stat-label">PYMEs transformadas</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">300%</span>
-                    <span class="stat-label">Incremento promedio en diferenciación</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">45</span>
-                    <span class="stat-label">Océanos azules creados</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">98%</span>
-                    <span class="stat-label">Tasa de satisfacción</span>
-                </div>
-            </div>
-
-            <div class="testimonial">
-                <div class="testimonial-text">
-                    "Pasamos de competir por precio a ser los únicos en nuestro mercado. Nuestros márgenes se triplicaron en 6 meses."
-                </div>
-                <div class="testimonial-author">— Carlos Mendoza, Director General RestaurantePlus</div>
-            </div>
-        </div>
-
         <!-- CTA Final -->
         <div style="text-align: center; padding: 60px 0;">
             <h3 style="font-size: 2.2em; color: #00D9FF; margin-bottom: 30px; font-weight: 700;">
@@ -704,41 +673,12 @@
             }, observerOptions);
 
             // Observar elementos para animaciones
-            document.querySelectorAll('.benefit-item, .stat-item, .testimonial').forEach(el => {
+            document.querySelectorAll('.benefit-item, .testimonial').forEach(el => {
                 el.style.opacity = '0';
                 el.style.transform = 'translateY(30px)';
                 el.style.transition = 'all 0.6s ease';
                 observer.observe(el);
             });
-
-            // Efecto de conteo animado para estadísticas
-            const animateCounter = (element, target) => {
-                let current = 0;
-                const increment = target / 100;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        element.textContent = target + (element.textContent.includes('%') ? '%' : element.textContent.includes('+') ? '+' : '');
-                        clearInterval(timer);
-                    } else {
-                        element.textContent = Math.floor(current) + (element.textContent.includes('%') ? '%' : element.textContent.includes('+') ? '+' : '');
-                    }
-                }, 20);
-            };
-
-            // Activar contadores cuando entren en vista
-            const statNumbers = document.querySelectorAll('.stat-number');
-            const statObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const target = parseInt(entry.target.textContent);
-                        animateCounter(entry.target, target);
-                        statObserver.unobserve(entry.target);
-                    }
-                });
-            });
-
-            statNumbers.forEach(stat => statObserver.observe(stat));
         });
 
         // Efectos de hover mejorados
