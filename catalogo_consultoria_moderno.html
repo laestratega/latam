@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Consultorías - LA ESTRATEGA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0F1419;
+            color: white;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* Fondo animado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(229, 62, 62, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 217, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(95, 39, 205, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #0F1419 0%, #1A2332 100%);
+            animation: backgroundShift 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(1deg); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Efectos glassmorphism base */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        /* Portada */
+        .cover {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(229, 62, 62, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(0, 217, 255, 0.2) 0%, transparent 50%);
+            animation: coverPulse 8s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes coverPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .cover h1 {
+            font-size: 4em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00D9FF 0%, #E53E3E 50%, #5F27CD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+        }
+
+        @keyframes shimmer {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .cover .subtitle {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            font-weight: 400;
+            color: #00D9FF;
+        }
+
+        .cover .tagline {
+            font-size: 1.3em;
+            font-style: italic;
+            margin-bottom: 40px;
+            padding: 25px 30px;
+            border-radius: 20px;
+            font-weight: 300;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .cover .brand {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #E53E3E;
+            margin-top: 40px;
+            text-shadow: 0 0 20px rgba(229, 62, 62, 0.5);
+        }
+
+        /* Secciones */
+        .section {
+            min-height: 100vh;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section h2 {
+            font-size: 2.8em;
+            color: #00D9FF;
+            margin-bottom: 40px;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        /* Cards de consultorías */
+        .consultoria-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .consultoria-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #E53E3E, #00D9FF, #5F27CD);
+            animation: progressShimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes progressShimmer {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; box-shadow: 0 0 20px rgba(0, 217, 255, 0.5); }
+        }
+
+        .consultoria-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.3),
+                0 0 50px rgba(0, 217, 255, 0.1);
+            border-color: rgba(0, 217, 255, 0.3);
+        }
+
+        .consultoria-card:hover::before {
+            height: 6px;
+            box-shadow: 0 0 20px rgba(0, 217, 255, 0.7);
+        }
+
+        .consultoria-card h3 {
+            font-size: 2.2em;
+            color: #E53E3E;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+        }
+
+        .consultoria-card .icon {
+            font-size: 1.2em;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #E53E3E, #5F27CD);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(229, 62, 62, 0.3);
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .consultoria-card .objetivo {
+            font-size: 1.3em;
+            color: #00D9FF;
+            margin-bottom: 25px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .consultoria-card .incluye {
+            margin-bottom: 25px;
+        }
+
+        .consultoria-card .incluye h4 {
+            font-size: 1.2em;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .consultoria-card .incluye ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .consultoria-card .incluye li {
+            padding: 10px 0;
+            font-size: 1.1em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .consultoria-card .incluye li:hover {
+            color: #00D9FF;
+            padding-left: 35px;
+        }
+
+        .consultoria-card .incluye li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            animation: checkPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes checkPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .consultoria-card .ideal-para {
+            background: rgba(0, 217, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #00D9FF;
+            margin-top: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .consultoria-card .ideal-para h4 {
+            color: #00D9FF;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* Sección diferenciadores */
+        .diferenciadores {
+            background: rgba(229, 62, 62, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(229, 62, 62, 0.2);
+            border-radius: 25px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .diferenciadores h3 {
+            font-size: 2.2em;
+            color: #E53E3E;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .diferenciadores ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .diferenciadores li {
+            padding: 18px 0;
+            font-size: 1.2em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding-left: 35px;
+            transition: all 0.3s ease;
+        }
+
+        .diferenciadores li:hover {
+            color: #E53E3E;
+            padding-left: 40px;
+        }
+
+        .diferenciadores li:before {
+            content: "🏆";
+            position: absolute;
+            left: 0;
+            top: 18px;
+            font-size: 1.2em;
+            animation: trophyRotate 4s ease-in-out infinite;
+        }
+
+        @keyframes trophyRotate {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        /* Contraportada */
+        .back-cover {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        .back-cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 70% 30%, rgba(95, 39, 205, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(229, 62, 62, 0.2) 0%, transparent 50%);
+            animation: backCoverPulse 10s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes backCoverPulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.03); }
+        }
+
+        .back-cover h2 {
+            font-size: 3em;
+            margin-bottom: 30px;
+            color: #fff;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00D9FF 0%, #5F27CD 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-cover .quote {
+            font-size: 1.6em;
+            font-style: italic;
+            margin-bottom: 40px;
+            padding: 30px;
+            border-radius: 20px;
+            font-weight: 300;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-cover .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .back-cover .contact-info h3 {
+            color: #00D9FF;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        .back-cover .contact-item {
+            font-size: 1.3em;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .back-cover .contact-item:hover {
+            color: #00D9FF;
+            transform: scale(1.05);
+        }
+
+        .back-cover .cta-button {
+            background: linear-gradient(135deg, #E53E3E, #5F27CD);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            margin-top: 30px;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 10px 30px rgba(229, 62, 62, 0.3);
+        }
+
+        .back-cover .cta-button:hover {
+            transform: scale(1.08) translateY(-5px);
+            box-shadow: 
+                0 20px 40px rgba(229, 62, 62, 0.4),
+                0 0 30px rgba(95, 39, 205, 0.3);
+            background: linear-gradient(135deg, #5F27CD, #E53E3E);
+        }
+
+        /* Navegación */
+        .nav-indicator {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-dot:hover {
+            background: #00D9FF;
+            transform: scale(1.3);
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
+        }
+
+        .nav-dot.active {
+            background: #E53E3E;
+            transform: scale(1.5);
+            box-shadow: 0 0 20px rgba(229, 62, 62, 0.7);
+        }
+
+        .nav-dot.active::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(229, 62, 62, 0.3);
+            top: -4px;
+            left: -4px;
+            animation: ripple 1.5s ease-out infinite;
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        /* Scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cover h1 {
+                font-size: 2.5em;
+            }
+            
+            .cover .subtitle {
+                font-size: 1.3em;
+            }
+            
+            .cover .tagline {
+                font-size: 1.1em;
+                padding: 20px;
+            }
+            
+            .section {
+                padding: 40px 20px;
+            }
+            
+            .consultoria-card {
+                padding: 25px;
+                margin: 20px 0;
+            }
+            
+            .consultoria-card h3 {
+                font-size: 1.8em;
+            }
+            
+            .nav-indicator {
+                display: none;
+            }
+        }
+
+        /* Animaciones de entrada */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .consultoria-card {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .consultoria-card:nth-child(odd) {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .consultoria-card:nth-child(even) {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        /* Efectos de partículas sutiles */
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, rgba(0, 217, 255, 0.1), transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(229, 62, 62, 0.1), transparent),
+                radial-gradient(1px 1px at 90px 40px, rgba(95, 39, 205, 0.1), transparent);
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            animation: particleFloat 20s linear infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Portada -->
+        <section class="cover" id="portada">
+            <h1>CONSULTORÍAS</h1>
+            <p class="subtitle">Portfolio de Servicios Especializados</p>
+            <div class="tagline">
+                "No creamos estrategias para competir mejor.<br>
+                Creamos océanos donde la competencia es irrelevante."
+            </div>
+            <div class="brand">LA ESTRATEGA™</div>
+        </section>
+
+        <!-- Sección 1: Océano Azul -->
+        <section class="section" id="oceano-azul">
+            <h2>🌊 DIFERENCIACIÓN & OCÉANO AZUL</h2>
+            
+            <div class="consultoria-card">
+                <h3><span class="icon">🎯</span>DIAGNÓSTICO OCÉANO AZUL EXPRESS</h3>
+                <div class="objetivo">Identificar oportunidades inmediatas de diferenciación radical</div>
+                <div class="incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Mapeo competitivo actual (océano rojo)</li>
+                        <li>Análisis de no-clientes y fricciones</li>
+                        <li>Identificación de 3 espacios azules potenciales</li>
+                        <li>Roadmap básico de diferenciación</li>
+                    </ul>
+                </div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>PYMEs que sienten que "todos hacen lo mismo" en su mercado.</p>
+                </div>
+            </div>
+
+            <div class="consultoria-card">
+                <h3><span class="icon">🚀</span>METODOLOGÍA MAPEA COMPLETA</h3>
+                <div class="objetivo">Transformación completa hacia océano azul</div>
+                <div class="incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Aplicación completa de metodología MAPEA</li>
+                        <li>Rediseño de propuesta de valor</li>
+                        <li>Plan de implementación de 6 meses</li>
+                        <li>Acompañamiento en primeros pasos</li>
+                        <li>Templates y herramientas personalizadas</li>
+                    </ul>
+                </div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>Empresas comprometidas con transformación radical.</p>
+                </div>
+            </div>
+
+            <div class="consultoria-card">
+                <h3><span class="icon">⭐</span>DIFERENCIACIÓN RADICAL EXPRESS</h3>
+                <div class="objetivo">Crear diferenciación tangible e inmediata que haga que los clientes te elijan sin comparar precio</div>
+                <div class="incluye">
+                    <h4>Framework D.I.F.E.R.E.N.C.I.A.:</h4>
+                    <ul>
+                        <li>Diagnóstico de commoditización actual</li>
+                        <li>Identificación de atributos únicos latentes</li>
+                        <li>Rediseño de experiencia cliente</li>
+                        <li>Nueva propuesta de valor única</li>
+                        <li>Creación de barreras de imitación</li>
+                        <li>Plan de implementación de 60 días</li>
+                        <li>Sistema de medición de diferenciación percibida</li>
+                    </ul>
+                </div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>PYMEs que no necesitan crear nuevos mercados, sino destacar radicalmente en su mercado actual.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 2: Posicionamiento -->
+        <section class="section" id="posicionamiento">
+            <h2>🏆 POSICIONAMIENTO ESTRATÉGICO</h2>
+            
+            <div class="consultoria-card">
+                <h3><span class="icon">🎨</span>REPOSICIONAMIENTO DE MARCA PYME</h3>
+                <div class="objetivo">Crear posicionamiento único en mercado saturado</div>
+                <div class="incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Análisis de percepción actual vs. competencia</li>
+                        <li>Identificación de territorio único de marca</li>
+                        <li>Desarrollo de nueva propuesta de valor</li>
+                        <li>Estrategia de comunicación diferenciada</li>
+                        <li>Guía de implementación de rebranding</li>
+                    </ul>
+                </div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>PYMEs con 3+ años que se sienten "una más del montón".</p>
+                </div>
+            </div>
+
+            <div class="consultoria-card">
+                <h3><span class="icon">💎</span>POSICIONAMIENTO PREMIUM PARA PYMES</h3>
+                <div class="objetivo">Justificar precios superiores mediante diferenciación percibida</div>
+                <div class="incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Análisis de atributos de valor premium</li>
+                        <li>Rediseño de experiencia de cliente</li>
+                        <li>Estrategia de comunicación aspiracional</li>
+                        <li>Desarrollo de servicios de valor agregado</li>
+                        <li>Pricing strategy diferenciado</li>
+                    </ul>
+                </div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>PYMEs que compiten por precio y quieren elevar márgenes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 3: Crecimiento -->
+        <section class="section" id="crecimiento">
+            <h2>📈 ESTRATEGIA EMPRESARIAL</h2>
+            
+            <div class="consultoria-card">
+                <h3><span class="icon">🌱</span>CRECIMIENTO SOSTENIBLE PYME</h3>
+                <div class="objetivo">Escalar sin perder identidad ni calidad</div>
+                <div class="incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Análisis de capacidades de crecimiento</li>
+                        <li>Identificación de cuellos de botella</li>
+                        <li>Estrategia de expansión controlada</li>
+                        <li>Desarrollo de procesos escalables</li>
+                        <li>Plan de contratación estratégica</li>
+                    </ul>
+                </div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>PYMEs en fase de crecimiento acelerado.</p>
+                </div>
+            </div>
+
+            <div class="consultoria-card">
+                <h3><span class="icon">📈</span>ACELERADOR DE CRECIMIENTO PYME</h3>
+                <div class="objetivo">Marketing estratégico para acelerar crecimiento en áreas críticas del negocio</div>
+                <div class="incluye">
+                    <h4>3 Especializaciones - Framework C.R.E.C.E.R.:</h4>
+                    <ul>
+                        <li><strong>Penetración de Mercado Express:</strong> Incrementar market share en 45-60 días</li>
+                        <li><strong>Expansión de Cartera Estratégica:</strong> Crecer base de clientes sosteniblemente</li>
+                        <li><strong>Aceleración de Ventas Inmediata:</strong> Incrementar ventas sin incrementar costos</li>
+                        <li>Plan de implementación con cronograma semanal</li>
+                        <li>KPIs y dashboard de seguimiento</li>
+                        <li>Seguimiento y optimización por 90 días</li>
+                    </ul>
+                </div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>PYMEs con objetivos de crecimiento específicos y urgentes que necesitan marketing estratégico con ROI medible.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: Digital -->
+        <section class="section" id="digital">
+            <h2>💻 TRANSFORMACIÓN DIGITAL</h2>
+            
+            <div class="consultoria-card">
+                <h3><span class="icon">📊</span>DIAGNÓSTICO DIGITAL EXPRESS</h3>
+                <div class="objetivo">Radiografía completa de madurez digital actual</div>
+                <div class="incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Assessment de herramientas digitales actuales</li>
+                        <li>Identificación de gaps críticos</li>
+                        <li>Benchmarking vs. competidores digitales</li>
+                        <li>Roadmap de prioridades digitales</li>
+                        <li>Quick wins inmediatos</li>
+                    </ul>
+                </div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>PYMEs que no saben por dónde empezar digitalmente.</p>
+                </div>
+            </div>
+
+            <div class="consultoria-card">
+                <h3><span class="icon">⚡</span>DIGITALIZACIÓN EXPRESS (90 DÍAS)</h3>
+                <div class="objetivo">Implementación acelerada de herramientas digitales básicas</div>
+                <div class="incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Setup de herramientas esenciales (CRM, automatización, analytics)</li>
+                        <li>Digitalización de procesos manuales clave</li>
+                        <li>Capacitación de equipo en nuevas herramientas</li>
+                        <li>Integración de sistemas existentes</li>
+                        <li>Medición de impacto en eficiencia</li>
+                    </ul>
+                </div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>PYMEs que necesitan digitalizarse rápidamente.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 5: Familia -->
+        <section class="section" id="familia">
+            <h2>👨‍👩‍👧‍👦 EMPRESAS FAMILIARES</h2>
+            
+            <div class="consultoria-card">
+                <h3><span class="icon">🏢</span>PROFESIONALIZACIÓN DE EMPRESA FAMILIAR</h3>
+                <div class="objetivo">Separar familia de negocio sin perder valores</div>
+                <div class="incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Definición de roles familiares vs. empresariales</li>
+                        <li>Desarrollo de gobierno corporativo familiar</li>
+                        <li>Implementación de procesos profesionales</li>
+                        <li>Gestión de conflictos familia-empresa</li>
+                        <li>Plan de sucesión preliminar</li>
+                    </ul>
+                </div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>Empresas familiares de 2da-3ra generación.</p>
+                </div>
+            </div>
+
+            <div class="consultoria-card">
+                <h3><span class="icon">💪</span>PROGRAMA "FORTALEZA VISIBLE"</h3>
+                <div class="objetivo">De Expertise Oculto a Diferenciación Premium Reconocida</div>
+                <div class="incluye">
+                    <h4>Transformación Estratégica en 3 Fases Intensivas (90 días):</h4>
+                    <ul>
+                        <li><strong>Fase 1:</strong> Fundación Estratégica (30 días)</li>
+                        <li><strong>Fase 2:</strong> Diferenciación Competitiva (30 días)</li>
+                        <li><strong>Fase 3:</strong> Implementación y Resultados (30 días)</li>
+                        <li>Transformación estratégica completa</li>
+                        <li>Posicionamiento premium sostenible</li>
+                    </ul>
+                </div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>Empresas familiares que buscan diferenciación premium reconocida en el mercado.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 6: Híbridas -->
+        <section class="section" id="hibridas">
+            <h2>🔗 CONSULTORÍAS HÍBRIDAS</h2>
+            
+            <div class="consultoria-card">
+                <h3><span class="icon">🌊</span>OCÉANO AZUL + DIGITALIZACIÓN</h3>
+                <div class="objetivo">Combina diferenciación radical con herramientas digitales únicas</div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>Empresas que buscan transformación completa y ventaja tecnológica.</p>
+                </div>
+            </div>
+
+            <div class="consultoria-card">
+                <h3><span class="icon">👨‍👩‍👧‍👦</span>EMPRESA FAMILIAR + TRANSFORMACIÓN DIGITAL</h3>
+                <div class="objetivo">Moderniza empresa familiar respetando valores tradicionales</div>
+                <div class="ideal-para">
+                    <h4>Ideal para:</h4>
+                    <p>Empresas familiares que necesitan modernizarse sin perder su esencia.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Diferenciadores -->
+        <section class="section" id="diferenciadores">
+            <div class="diferenciadores">
+                <h3>🏆 DIFERENCIADORES ÚNICOS DE LA ESTRATEGA</h3>
+                <ul>
+                    <li><strong>Metodología MAPEA Exclusiva</strong> - No disponible con otros consultores</li>
+                    <li><strong>Enfoque Océano Azul Especializado</strong> - Más allá de consultoría tradicional</li>
+                    <li><strong>Experiencia en PYMEs Reales</strong> - Entendimiento profundo de limitaciones y oportunidades</li>
+                    <li><strong>Resultados Medibles</strong> - KPIs específicos para cada tipo de consultoría</li>
+                    <li><strong>Follow-up Garantizado</strong> - Acompañamiento post-implementación incluido</li>
+                    <li><strong>Templates y Herramientas Propias</strong> - Activos que el cliente conserva</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Contraportada -->
+        <section class="back-cover" id="contraportada">
+            <h2>Tu océano azul te está esperando</h2>
+            <div class="quote">
+                "No creamos estrategias para competir mejor.<br>
+                Creamos océanos donde la competencia es irrelevante."
+                <br><br><strong>— LA ESTRATEGA™</strong>
+            </div>
+            
+            <div class="contact-info">
+                <h3>📞 Contacto</h3>
+                <div class="contact-item">
+                    <span>📱</span> WhatsApp: +503 76578075
+                </div>
+                <div class="contact-item">
+                    <span>📧</span> laestratega.latam@gmail.com
+                </div>
+                <div class="contact-item">
+                    <span>🌐</span> laestratega.info
+                </div>
+                <a href="https://wa.me/50376578075?text=Hola%2C%20me%20interesa%20agendar%20una%20llamada%20de%2030%20minutos%20para%20conocer%20m%C3%A1s%20sobre%20las%20consultor%C3%ADas%20de%20LA%20ESTRATEGA" target="_blank" class="cta-button" style="text-decoration: none; display: inline-block;">Agenda tu llamada de 30 minutos</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Navegación lateral -->
+    <div class="nav-indicator">
+        <div class="nav-dot active" onclick="scrollToSection('portada')"></div>
+        <div class="nav-dot" onclick="scrollToSection('oceano-azul')"></div>
+        <div class="nav-dot" onclick="scrollToSection('posicionamiento')"></div>
+        <div class="nav-dot" onclick="scrollToSection('crecimiento')"></div>
+        <div class="nav-dot" onclick="scrollToSection('digital')"></div>
+        <div class="nav-dot" onclick="scrollToSection('familia')"></div>
+        <div class="nav-dot" onclick="scrollToSection('hibridas')"></div>
+        <div class="nav-dot" onclick="scrollToSection('diferenciadores')"></div>
+        <div class="nav-dot" onclick="scrollToSection('contraportada')"></div>
+    </div>
+
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Actualizar navegación basada en scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navDots = document.querySelectorAll('.nav-dot');
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navDots.forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (sections[index] && sections[index].getAttribute('id') === current) {
+                    dot.classList.add('active');
+                }
+            });
+        });
+
+        // Animación de entrada para las cards
+        function observeCards() {
+            const cards = document.querySelectorAll('.consultoria-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                card.style.transition = 'all 0.8s ease';
+                observer.observe(card);
+            });
+        }
+
+        // Inicializar animaciones cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', observeCards);
+
+        // Efectos de hover mejorados
+        document.querySelectorAll('.consultoria-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Animación de parallax para el fondo
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                const rate = scrolled * -0.5;
+                section.style.backgroundPosition = `center ${rate}px`;
+            });
+        });
+
+        // Efectos de cursor personalizados
+        document.addEventListener('mousemove', function(e) {
+            const cursor = document.querySelector('.cursor');
+            if (!cursor) {
+                const newCursor = document.createElement('div');
+                newCursor.className = 'cursor';
+                newCursor.style.cssText = `
+                    position: fixed;
+                    width: 20px;
+                    height: 20px;
+                    background: radial-gradient(circle, rgba(0,217,255,0.8) 0%, transparent 70%);
+                    border-radius: 50%;
+                    pointer-events: none;
+                    z-index: 9999;
+                    transition: transform 0.1s ease;
+                `;
+                document.body.appendChild(newCursor);
+            }
+            
+            const cursorEl = document.querySelector('.cursor');
+            cursorEl.style.left = e.clientX - 10 + 'px';
+            cursorEl.style.top = e.clientY - 10 + 'px';
+        });
+    </script>
+</body>
+</html>
