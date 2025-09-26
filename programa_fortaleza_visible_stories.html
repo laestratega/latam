@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programa Fortaleza Visible - LA ESTRATEGA®</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0F1419 0%, #1A2332 50%, #0F1419 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(95, 39, 205, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(229, 62, 62, 0.1) 0%, transparent 50%);
+            animation: backgroundPulse 8s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { 
+                background: 
+                    radial-gradient(circle at 20% 30%, rgba(95, 39, 205, 0.2) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 70%, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 50%, rgba(229, 62, 62, 0.1) 0%, transparent 50%);
+            }
+            50% { 
+                background: 
+                    radial-gradient(circle at 80% 20%, rgba(95, 39, 205, 0.2) 0%, transparent 50%),
+                    radial-gradient(circle at 20% 80%, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 60% 40%, rgba(229, 62, 62, 0.1) 0%, transparent 50%);
+            }
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            max-width: 430px;
+            margin: 0 auto;
+            padding: 40px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .program-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00D9FF 0%, #5F27CD 50%, #E53E3E 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+            animation: pulse 3s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .program-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .program-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #E53E3E 0%, #00D9FF 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .program-subtitle {
+            font-size: 1rem;
+            color: #00D9FF;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .program-description {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 500;
+        }
+
+        /* Content Section */
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .phases-section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            color: #5F27CD;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .phase-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #00D9FF;
+        }
+
+        .phase-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(135deg, #00D9FF 0%, #5F27CD 100%);
+        }
+
+        .phase-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00D9FF 0%, #5F27CD 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1rem;
+            margin-right: 15px;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(0, 217, 255, 0.3);
+        }
+
+        .phase-content {
+            flex: 1;
+        }
+
+        .phase-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .phase-duration {
+            font-size: 0.8rem;
+            color: #00D9FF;
+            font-weight: 500;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            margin-bottom: 25px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .benefit-item:last-child {
+            border-bottom: none;
+        }
+
+        .benefit-check {
+            width: 24px;
+            height: 24px;
+            background: #28a745;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .benefit-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        /* Target Section */
+        .target-section {
+            background: rgba(95, 39, 205, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(95, 39, 205, 0.3);
+            margin-bottom: 25px;
+        }
+
+        .target-title {
+            font-size: 0.9rem;
+            color: #5F27CD;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .target-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #E53E3E 0%, #FF6B6B 100%);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(229, 62, 62, 0.4);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(229, 62, 62, 0.5);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-text {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        /* Brand Footer */
+        .brand-footer {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .brand-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #00D9FF 0%, #5F27CD 50%, #E53E3E 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Animation */
+        .phase-item, .benefit-item, .target-section {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .phase-item:nth-child(2) { animation-delay: 0.1s; }
+        .phase-item:nth-child(3) { animation-delay: 0.2s; }
+        .phase-item:nth-child(4) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="program-icon">💎</div>
+            <div class="program-title">Programa "Fortaleza Visible"</div>
+            <div class="program-subtitle">De Expertise Oculto a Diferenciación Premium Reconocida</div>
+            <div class="program-description">Transformación Estratégica en 3 Fases Intensivas (90 días)</div>
+        </div>
+
+        <!-- Content -->
+        <div class="content">
+            <!-- Phases Section -->
+            <div class="phases-section">
+                <div class="section-title">🚀 Fases de Transformación</div>
+                
+                <div class="phase-item">
+                    <div class="phase-number">1</div>
+                    <div class="phase-content">
+                        <div class="phase-title">Fundación Estratégica</div>
+                        <div class="phase-duration">30 días</div>
+                    </div>
+                </div>
+
+                <div class="phase-item">
+                    <div class="phase-number">2</div>
+                    <div class="phase-content">
+                        <div class="phase-title">Diferenciación Competitiva</div>
+                        <div class="phase-duration">30 días</div>
+                    </div>
+                </div>
+
+                <div class="phase-item">
+                    <div class="phase-number">3</div>
+                    <div class="phase-content">
+                        <div class="phase-title">Implementación y Resultados</div>
+                        <div class="phase-duration">30 días</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Benefits Section -->
+            <div class="benefits-section">
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">Transformación estratégica completa</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-check">✓</div>
+                    <div class="benefit-text">Posicionamiento premium sostenible</div>
+                </div>
+            </div>
+
+            <!-- Target Section -->
+            <div class="target-section">
+                <div class="target-title">Ideal para:</div>
+                <div class="target-text">
+                    Empresas familiares que buscan diferenciación premium reconocida en el mercado
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <a href="https://wa.me/50376578075?text=Hola,%20me%20interesa%20el%20Programa%20Fortaleza%20Visible.%20Quiero%20transformar%20mi%20expertise%20oculto%20en%20diferenciación%20premium." class="cta-button">
+                    💬 Quiero Info
+                </a>
+                <div class="cta-text">Transforma tu expertise oculto en ventaja visible</div>
+            </div>
+        </div>
+
+        <!-- Brand Footer -->
+        <div class="brand-footer">
+            <div class="brand-text">LA ESTRATEGA® 2025</div>
+        </div>
+    </div>
+</body>
+</html>
