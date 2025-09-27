@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROGRAMA FORTALEZA VISIBLE - LA ESTRATEGA®</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0F1419 0%, #1A2332 50%, #0F1419 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Fondo animado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 217, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(95, 39, 205, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(229, 62, 62, 0.05) 0%, transparent 50%);
+            animation: gradientShift 15s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header con efecto shimmer */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(15, 20, 25, 0.3);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: slideInDown 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(0, 217, 255, 0.1),
+                transparent
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg) translate(-50%, -50%); }
+            100% { transform: rotate(360deg) translate(-50%, -50%); }
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #5F27CD, #00D9FF);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00D9FF, #5F27CD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #00D9FF;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #E53E3E;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Fases del programa */
+        .phases-container {
+            margin: 40px 0;
+        }
+
+        .phase-card {
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.4s ease;
+            animation: slideInLeft 1s ease-out;
+            animation-delay: calc(var(--delay) * 0.2s);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Fase 1 - Azul/Cyan (Fundación) */
+        .phase-card.phase-1 {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15), rgba(15, 20, 25, 0.8));
+            border: 1px solid rgba(0, 217, 255, 0.4);
+            box-shadow: 0 8px 32px rgba(0, 217, 255, 0.2);
+        }
+
+        .phase-card.phase-1:hover {
+            transform: translateY(-8px) rotate(1deg);
+            border-color: #00D9FF;
+            box-shadow: 0 15px 50px rgba(0, 217, 255, 0.4);
+        }
+
+        .phase-card.phase-1::before {
+            content: '🏗️';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        /* Fase 2 - Púrpura (Diferenciación) */
+        .phase-card.phase-2 {
+            background: linear-gradient(135deg, rgba(95, 39, 205, 0.15), rgba(15, 20, 25, 0.8));
+            border: 1px solid rgba(95, 39, 205, 0.4);
+            box-shadow: 0 8px 32px rgba(95, 39, 205, 0.2);
+        }
+
+        .phase-card.phase-2:hover {
+            transform: translateY(-8px) rotate(-1deg);
+            border-color: #5F27CD;
+            box-shadow: 0 15px 50px rgba(95, 39, 205, 0.4);
+        }
+
+        .phase-card.phase-2::before {
+            content: '🚀';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        /* Fase 3 - Rojo (Implementación) */
+        .phase-card.phase-3 {
+            background: linear-gradient(135deg, rgba(229, 62, 62, 0.15), rgba(15, 20, 25, 0.8));
+            border: 1px solid rgba(229, 62, 62, 0.4);
+            box-shadow: 0 8px 32px rgba(229, 62, 62, 0.2);
+        }
+
+        .phase-card.phase-3:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: #E53E3E;
+            box-shadow: 0 15px 50px rgba(229, 62, 62, 0.4);
+        }
+
+        .phase-card.phase-3::before {
+            content: '⚡';
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 2rem;
+            opacity: 0.3;
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .phase-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .phase-1 .phase-number {
+            background: linear-gradient(135deg, #00D9FF, #0F1419);
+            box-shadow: 0 4px 15px rgba(0, 217, 255, 0.3);
+        }
+
+        .phase-2 .phase-number {
+            background: linear-gradient(135deg, #5F27CD, #0F1419);
+            box-shadow: 0 4px 15px rgba(95, 39, 205, 0.3);
+        }
+
+        .phase-3 .phase-number {
+            background: linear-gradient(135deg, #E53E3E, #0F1419);
+            box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
+        }
+
+        .phase-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #00D9FF;
+        }
+
+        .phase-subtitle {
+            font-size: 0.9rem;
+            color: #00D9FF;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .phase-description {
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Sección de beneficios */
+        .benefits {
+            background: rgba(15, 20, 25, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(229, 62, 62, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .benefits-title {
+            font-size: 1.5rem;
+            color: #E53E3E;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            background: rgba(0, 217, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .benefit-check {
+            color: #00D9FF;
+            font-size: 1.2rem;
+            margin-right: 10px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(95, 39, 205, 0.3), rgba(0, 217, 255, 0.3));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 217, 255, 0.5);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px 0;
+            animation: slideInUp 1s ease-out;
+            animation-delay: 0.8s;
+        }
+
+        .cta-title {
+            font-size: 1.8rem;
+            color: #00D9FF;
+            margin-bottom: 20px;
+        }
+
+        .cta-text {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #E53E3E, #5F27CD);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(229, 62, 62, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(229, 62, 62, 0.5);
+        }
+
+        /* Contact info */
+        .contact-info {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(15, 20, 25, 0.3);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+        }
+
+        .contact-item {
+            margin: 10px 0;
+            color: #00D9FF;
+        }
+
+        .signature {
+            text-align: center;
+            margin: 30px 0;
+            font-style: italic;
+            color: #5F27CD;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Animaciones */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .phase-card {
+                padding: 20px;
+            }
+
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">💪</div>
+            <h1 class="main-title">PROGRAMA FORTALEZA VISIBLE</h1>
+            <p class="subtitle">De Expertise Oculto a Diferenciación Premium Reconocida.</p>
+            <p class="tagline">Transformación Estratégica en 3 Fases Intensivas (90 días).</p>
+        </div>
+
+        <!-- Fases del programa -->
+        <div class="phases-container">
+            <div class="phase-card phase-1" style="--delay: 1;">
+                <div class="phase-header">
+                    <div class="phase-number">1</div>
+                    <div>
+                        <div class="phase-title">FUNDACIÓN ESTRATÉGICA</div>
+                        <div class="phase-subtitle">"De Estructura Informal a Base Estratégica".</div>
+                    </div>
+                </div>
+                <div class="phase-description">
+                    <strong>Lo que verás:</strong><br>
+                    • <strong>Roles & Estructura:</strong> Sesiones familiares, matriz de decisiones, organigrama funcional y protocolos de comunicación.<br>
+                    • <strong>Cadena de Valor:</strong> Mapeo completo del journey del cliente, análisis de actividades que agregan valor e inventario de capacidades únicas.<br>
+                    • <strong>Análisis Competitivo:</strong> Research de 5-7 competidores principales, análisis de posicionamiento y identificación de espacios en blanco.<br><br>
+                    <strong>Resultado:</strong> Base sólida con roles claros, procesos mapeados y oportunidades identificadas.
+                </div>
+            </div>
+
+            <div class="phase-card phase-2" style="--delay: 2;">
+                <div class="phase-header">
+                    <div class="phase-number">2</div>
+                    <div>
+                        <div class="phase-title">DIFERENCIACIÓN COMPETITIVA</div>
+                        <div class="phase-subtitle">"De Commodity Invisible a Propuesta Única".</div>
+                    </div>
+                </div>
+                <div class="phase-description">
+                    <strong>Lo que verás:</strong><br>
+                    • <strong>Océano Azul:</strong> Canvas para eliminar-reducir-incrementar-crear, nueva categoría de servicio y value proposition específico.<br>
+                    • <strong>Comunicación:</strong> Audit de messaging actual, story brand framework, kit de materiales de ventas y estrategia multicanal.<br>
+                    • <strong>Pricing Premium:</strong> Análisis valor vs. precio, framework de pricing basado en valor y plan de transición de tarifas.<br><br>
+                    <strong>Resultado:</strong> Propuesta de valor única, materiales comerciales diferenciados y pricing premium justificado.
+                </div>
+            </div>
+
+            <div class="phase-card phase-3" style="--delay: 3;">
+                <div class="phase-header">
+                    <div class="phase-number">3</div>
+                    <div>
+                        <div class="phase-title">IMPLEMENTACIÓN Y RESULTADOS</div>
+                        <div class="phase-subtitle">"De Estrategia a Resultados Medibles".</div>
+                    </div>
+                </div>
+                <div class="phase-description">
+                    <strong>Lo que verás:</strong><br>
+                    • <strong>Launch al Mercado:</strong> Lanzamiento a clientes actuales, campaña en redes, comunicados de mercado y optimización post-lanzamiento.<br>
+                    • <strong>Prospección:</strong> Perfil del cliente ideal detallado, sistema de prospección, coaching intensivo y role playing.<br>
+                    • <strong>Métricas & ROI:</strong> Dashboard de KPIs específicos, sistema de mejora continua, reviews semanales y roadmap del siguiente trimestre.<br><br>
+                    <strong>Resultado:</strong> Nueva propuesta funcionando en mercado, equipo capacitado y sistema de crecimiento operando.
+                </div>
+            </div>
+        </div>
+
+        <!-- Beneficios -->
+        <div class="benefits">
+            <h3 class="benefits-title">✅ RESULTADOS GARANTIZADOS.</h3>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <span class="benefit-check">✓</span>
+                    <span>Transformación estratégica completa.</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-check">✓</span>
+                    <span>Posicionamiento premium sostenible.</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-check">✓</span>
+                    <span>Diferenciación radical medible.</span>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-check">✓</span>
+                    <span>Sistema de crecimiento funcional.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-section">
+            <h2 class="cta-title">¿Lista para ser LA REFERENCIA en tu sector?</h2>
+            <p class="cta-text">
+                Ideal para empresas familiares que buscan diferenciación premium reconocida en el mercado.
+                <br><strong>No creamos estrategias para competir mejor. Creamos océanos donde la competencia es irrelevante.</strong>
+            </p>
+            <a href="https://wa.me/50376578075?text=Hola%20LA%20ESTRATEGA®%2C%20quiero%20información%20sobre%20el%20Programa%20FORTALEZA%20VISIBLE%20para%20transformar%20mi%20empresa%20familiar%20en%2090%20días" class="cta-button" target="_blank">
+                SOLICITAR DIAGNÓSTICO GRATUITO
+            </a>
+        </div>
+
+        <!-- Signature -->
+        <div class="signature">
+            "No creamos estrategias para competir mejor.<br>Creamos océanos donde la competencia es irrelevante."
+        </div>
+
+        <!-- Contact Info -->
+        <div class="contact-info">
+            <div class="contact-item">📱 WhatsApp: +503 76578075.</div>
+            <div class="contact-item">📧 laestratega.latam@gmail.com.</div>
+            <div class="contact-item">🌐 laestratega.info.</div>
+            <div class="contact-item" style="margin-top: 15px; color: #E53E3E; font-weight: bold;">
+                LA ESTRATEGA® - Consultora Especializada en Diferenciación Estratégica.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Efecto de entrada escalonada
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.phase-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+            });
+
+            // Auto-guardado simulado con efectos únicos por fase
+            setInterval(() => {
+                const phase1 = document.querySelector('.phase-1');
+                const phase2 = document.querySelector('.phase-2');
+                const phase3 = document.querySelector('.phase-3');
+                const benefits = document.querySelector('.benefits');
+                const cta = document.querySelector('.cta-section');
+                
+                // Efecto único para cada fase
+                if (phase1) {
+                    phase1.style.boxShadow = '0 0 30px rgba(0, 217, 255, 0.5)';
+                    setTimeout(() => phase1.style.boxShadow = '', 300);
+                }
+                
+                setTimeout(() => {
+                    if (phase2) {
+                        phase2.style.boxShadow = '0 0 30px rgba(95, 39, 205, 0.5)';
+                        setTimeout(() => phase2.style.boxShadow = '', 300);
+                    }
+                }, 100);
+                
+                setTimeout(() => {
+                    if (phase3) {
+                        phase3.style.boxShadow = '0 0 30px rgba(229, 62, 62, 0.5)';
+                        setTimeout(() => phase3.style.boxShadow = '', 300);
+                    }
+                }, 200);
+                
+                setTimeout(() => {
+                    [benefits, cta].forEach(el => {
+                        if (el) {
+                            el.style.boxShadow = '0 0 20px rgba(0, 217, 255, 0.3)';
+                            setTimeout(() => el.style.boxShadow = '', 200);
+                        }
+                    });
+                }, 300);
+            }, 12000);
+        });
+
+        // Tracking de clicks para optimización
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            console.log('CTA clicked - Programa Fortaleza Visible');
+        });
+    </script>
+</body>
+</html>
