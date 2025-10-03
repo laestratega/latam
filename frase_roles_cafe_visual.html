@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roles vs Café - LA ESTRATEGA®</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0F1419 0%, #1A2332 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 217, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(95, 39, 205, 0.15) 0%, transparent 50%);
+            animation: gradientShift 10s ease-in-out infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-card {
+            background: rgba(26, 35, 50, 0.5);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: 30px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(0, 217, 255, 0.05),
+                transparent
+            );
+            animation: shimmer 8s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-subtitle {
+            font-size: 0.9rem;
+            color: #00D9FF;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .split-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 40px;
+        }
+
+        .divider {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, 
+                transparent,
+                rgba(0, 217, 255, 0.5) 20%,
+                rgba(0, 217, 255, 0.5) 80%,
+                transparent
+            );
+            transform: translateX(-50%);
+        }
+
+        .section {
+            position: relative;
+            padding: 30px;
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Sección Izquierda - Roles/Empresa */
+        .section-left {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(26, 35, 50, 0.8));
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .section-left:hover {
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.3);
+        }
+
+        /* Sección Derecha - Café/Familia */
+        .section-right {
+            background: linear-gradient(135deg, rgba(229, 62, 62, 0.1), rgba(26, 35, 50, 0.8));
+            border: 1px solid rgba(229, 62, 62, 0.3);
+        }
+
+        .section-right:hover {
+            box-shadow: 0 10px 40px rgba(229, 62, 62, 0.3);
+        }
+
+        .icon-container {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border-radius: 50%;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .icon-left {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(95, 39, 205, 0.2));
+            border: 2px solid rgba(0, 217, 255, 0.5);
+            box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .icon-right {
+            background: linear-gradient(135deg, rgba(229, 62, 62, 0.2), rgba(95, 39, 205, 0.2));
+            border: 2px solid rgba(229, 62, 62, 0.5);
+            box-shadow: 0 0 30px rgba(229, 62, 62, 0.3);
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .label-left {
+            color: #00D9FF;
+        }
+
+        .label-right {
+            color: #E53E3E;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .title-left {
+            background: linear-gradient(135deg, #00D9FF, #5F27CD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title-right {
+            background: linear-gradient(135deg, #E53E3E, #5F27CD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            text-align: center;
+            color: #ffffff;
+            opacity: 0.9;
+        }
+
+        .main-phrase {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(0, 217, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            position: relative;
+            z-index: 2;
+            margin-bottom: 30px;
+        }
+
+        .main-phrase-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+
+        .highlight-cyan {
+            color: #00D9FF;
+        }
+
+        .highlight-red {
+            color: #E53E3E;
+        }
+
+        .footer {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: #5F27CD;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .brand {
+            font-size: 1.1rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00D9FF, #E53E3E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-card {
+                padding: 40px 25px;
+            }
+
+            .split-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .divider {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .main-phrase-text {
+                font-size: 1.4rem;
+            }
+
+            .icon-container {
+                width: 70px;
+                height: 70px;
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Decorative elements */
+        .deco-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.1; }
+            50% { transform: scale(1.1); opacity: 0.2; }
+        }
+
+        .deco-1 {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #00D9FF, transparent);
+            top: -50px;
+            left: -50px;
+        }
+
+        .deco-2 {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #E53E3E, transparent);
+            bottom: -70px;
+            right: -70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-card">
+            <div class="deco-circle deco-1"></div>
+            <div class="deco-circle deco-2"></div>
+
+            <div class="header">
+                <div class="header-subtitle">Mi frase guía para separar contextos</div>
+            </div>
+
+            <div class="split-container">
+                <div class="divider"></div>
+
+                <!-- Sección Izquierda: Roles -->
+                <div class="section section-left">
+                    <div class="icon-container icon-left">💼</div>
+                    <div class="section-label label-left">Para Decisiones</div>
+                    <h2 class="section-title title-left">TOMAR<br>LOS ROLES</h2>
+                    <p class="section-subtitle">Contexto empresarial</p>
+                </div>
+
+                <!-- Sección Derecha: Café -->
+                <div class="section section-right">
+                    <div class="icon-container icon-right">☕</div>
+                    <div class="section-label label-right">Para Familia</div>
+                    <h2 class="section-title title-right">TOMAR<br>CAFÉ</h2>
+                    <p class="section-subtitle">Dinámicas familiares</p>
+                </div>
+            </div>
+
+            <div class="main-phrase">
+                <p class="main-phrase-text">
+                    <span class="highlight-cyan">PARA DECISIONES: TOMAR LOS ROLES.</span><br>
+                    <span class="highlight-red">PARA FAMILIA: TOMAR CAFÉ.</span>
+                </p>
+            </div>
+
+            <div class="footer">
+                <p class="footer-text">Empresas familiares que crecen sin perder su esencia.</p>
+                <p class="brand">LA ESTRATEGA®</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                section.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                section.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+
+            // Animación de entrada
+            const card = document.querySelector('.main-card');
+            setTimeout(() => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.8s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100);
+            }, 0);
+        });
+    </script>
+</body>
+</html>
