@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Juego de la Calabaza - Escapa del Negocio Estancado</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2a2d3a 0%, #3e4456 30%, #4a5568 60%, #2d3748 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .game-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00D9FF 0%, #FF4757 50%, #8B5CF6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            filter: drop-shadow(0 0 10px rgba(0, 217, 255, 0.3));
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .main-area {
+            background: rgba(26, 35, 50, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        .scenario {
+            margin-bottom: 30px;
+        }
+
+        .scenario-title {
+            font-size: 1.5rem;
+            color: #00D9FF;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+        }
+
+        .pumpkin-icon {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #FF4757 0%, #00D9FF 100%);
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            box-shadow: 0 0 15px rgba(255, 71, 87, 0.4);
+        }
+
+        .pumpkin-icon::before {
+            content: '🎃';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+        }
+
+        .scenario-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .symptoms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .symptom-card {
+            background: rgba(45, 55, 72, 0.95);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .symptom-card:hover {
+            transform: translateY(-5px);
+            border-color: #FF4757;
+            box-shadow: 0 10px 25px rgba(255, 71, 87, 0.3);
+        }
+
+        .symptom-card.selected {
+            border-color: #FF4757;
+            background: rgba(255, 71, 87, 0.15);
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 71, 87, 0.4);
+        }
+
+        .symptom-title {
+            font-weight: bold;
+            color: #00D9FF;
+            margin-bottom: 8px;
+            font-size: 1rem;
+            text-shadow: 0 0 5px rgba(0, 217, 255, 0.3);
+        }
+
+        .symptom-description {
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .sidebar {
+            background: rgba(26, 35, 50, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            border: 2px solid rgba(255, 71, 87, 0.3);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .progress-section {
+            margin-bottom: 25px;
+        }
+
+        .progress-title {
+            font-size: 1.2rem;
+            color: #00D9FF;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(0, 217, 255, 0.4);
+        }
+
+        .progress-bar {
+            background: rgba(26, 35, 50, 0.8);
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #FF4757 0%, #00D9FF 50%, #8B5CF6 100%);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            position: relative;
+            box-shadow: 0 0 15px rgba(0, 217, 255, 0.5);
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .insights-section {
+            margin-bottom: 25px;
+        }
+
+        .insights-counter {
+            text-align: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(0, 217, 255, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .counter-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #00D9FF;
+        }
+
+        .counter-text {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .severity-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin: 10px auto;
+            text-align: center;
+            width: 100%;
+        }
+
+        .severity-low {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.4);
+        }
+
+        .severity-medium {
+            background: rgba(251, 191, 36, 0.2);
+            color: #fbbf24;
+            border: 1px solid rgba(251, 191, 36, 0.4);
+        }
+
+        .severity-high {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+        }
+
+        .severity-critical {
+            background: rgba(220, 38, 38, 0.2);
+            color: #dc2626;
+            border: 1px solid rgba(220, 38, 38, 0.4);
+            animation: pulse-severity 2s infinite;
+        }
+
+        @keyframes pulse-severity {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+
+        .insight-item {
+            background: rgba(26, 35, 50, 0.8);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-left: 4px solid #FF4757;
+            font-size: 0.85rem;
+            color: #f1f5f9;
+            transform: translateX(-10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .insight-item.visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .action-section {
+            text-align: center;
+        }
+
+        .main-button {
+            background: linear-gradient(135deg, #FF4757 0%, #00D9FF 50%, #8B5CF6 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .main-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 217, 255, 0.5);
+        }
+
+        .main-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .hamster-wheel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            border: 4px solid #475569;
+            border-radius: 50%;
+            animation: spin 3s linear infinite;
+            opacity: 0.6;
+        }
+
+        .hamster-wheel::before {
+            content: '🐹';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 30px;
+            animation: counter-spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes counter-spin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+
+        .escape-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, rgba(26, 35, 50, 0.98), rgba(45, 55, 72, 0.98));
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid #00D9FF;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            color: #00D9FF;
+            margin-bottom: 20px;
+        }
+
+        .modal-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #e2e8f0;
+            margin-bottom: 30px;
+        }
+
+        .floating-pumpkins {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-pumpkin {
+            position: absolute;
+            font-size: 20px;
+            animation: float 10s infinite ease-in-out;
+            opacity: 0.1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); }
+            50% { transform: translateY(-100px) rotate(180deg); }
+        }
+
+        @media (max-width: 768px) {
+            .game-board {
+                grid-template-columns: 1fr;
+            }
+            
+            .title {
+                font-size: 2rem;
+            }
+            
+            .symptoms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-pumpkins" id="floatingPumpkins"></div>
+    
+    <div class="game-container">
+        <div class="header">
+            <div style="text-align: center; margin-bottom: 15px;">
+                <span style="font-size: 0.9rem; color: #f59e0b; font-weight: bold; letter-spacing: 1px;">
+                    FRAMEWORK DESARROLLADO POR LA ESTRATEGA®
+                </span>
+            </div>
+            <h1 class="title">🎃 El Juego de la Calabaza</h1>
+            <p class="subtitle">Escapa del Negocio Estancado y Cultiva tu Éxito</p>
+        </div>
+
+        <div class="game-board">
+            <div class="main-area">
+                <div class="scenario">
+                    <h2 class="scenario-title">
+                        <span class="pumpkin-icon"></span>
+                        Tu Situación Actual
+                    </h2>
+                    <p class="scenario-text">
+                        Te encuentras atrapado en tu negocio, experimentando la frustración de trabajar intensamente sin ver el crecimiento esperado. 
+                        Identificar honestamente los síntomas que experimentas es el primer paso para escapar de esta situación. 
+                        <strong>Selecciona todos los síntomas que reconoces en tu negocio actual:</strong>
+                    </p>
+                </div>
+
+                <div class="symptoms-grid">
+                    <div class="symptom-card" data-symptom="ingresos">
+                        <div class="symptom-title">💰 Flujo Estancado</div>
+                        <div class="symptom-description">
+                            Generas ingresos constantes mes a mes, pero sin crecimiento real. Los números se mantienen estables pero no hay progreso hacia objetivos mayores.
+                        </div>
+                    </div>
+
+                    <div class="symptom-card" data-symptom="dependencia">
+                        <div class="symptom-title">🔗 Dependencia Total</div>
+                        <div class="symptom-description">
+                            El negocio no puede funcionar sin ti. Cada decisión, cada problema, cada cliente requiere tu intervención personal e inmediata.
+                        </div>
+                    </div>
+
+                    <div class="symptom-card" data-symptom="estres">
+                        <div class="symptom-title">😫 Estrés Constante</div>
+                        <div class="symptom-description">
+                            Trabajas largas horas, sientes agotamiento mental y físico. El negocio consume toda tu energía sin darte satisfacción proporcional.
+                        </div>
+                    </div>
+
+                    <div class="symptom-card" data-symptom="hamster">
+                        <div class="symptom-title">🐹 Rueda de Hámster</div>
+                        <div class="symptom-description">
+                            Corres constantemente pero sientes que no avanzas. Mucho movimiento y actividad, pero poco progreso real hacia tus metas.
+                        </div>
+                    </div>
+
+                    <div class="symptom-card" data-symptom="direccion">
+                        <div class="symptom-title">🧭 Sin Dirección</div>
+                        <div class="symptom-description">
+                            No tienes una estrategia clara de crecimiento. Reaccionas a oportunidades aleatorias sin un plan coherente para el futuro.
+                        </div>
+                    </div>
+
+                    <div class="symptom-card" data-symptom="diferenciacion">
+                        <div class="symptom-title">🎭 Falta de Diferenciación</div>
+                        <div class="symptom-description">
+                            Tu empresa se ve igual que la competencia. Los clientes no pueden explicar por qué deberían elegirte sobre otros proveedores similares.
+                        </div>
+                    </div>
+
+                    <div class="symptom-card" data-symptom="familiar">
+                        <div class="symptom-title">👨‍👩‍👧‍👦 Empresa Familiar No Profesionalizada</div>
+                        <div class="symptom-description">
+                            Mezclas decisiones familiares con empresariales. Falta estructura organizacional clara y procesos profesionales definidos.
+                        </div>
+                    </div>
+
+                    <div class="symptom-card" data-symptom="posicionamiento">
+                        <div class="symptom-title">📊 Sin Estrategia de Posicionamiento</div>
+                        <div class="symptom-description">
+                            No tienes claridad sobre tu lugar en el mercado. Compites por precio porque no has definido tu propuesta de valor única.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="progress-section">
+                    <h3 class="progress-title">Progreso de Escape</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text" id="progressText">0% - Reconociendo el problema</div>
+                </div>
+
+                <div class="insights-section">
+                    <h3 class="progress-title">Diagnóstico Estratégico</h3>
+                    <div class="insights-counter">
+                        <div class="counter-number" id="insightsCounter">0/13</div>
+                        <div class="counter-text">Insights Desbloqueados</div>
+                    </div>
+                    <div id="severityBadge"></div>
+                    <div id="insightsList"></div>
+                </div>
+
+                <div class="action-section">
+                    <button class="main-button" id="escapeButton" disabled>
+                        Iniciar Plan de Transformación
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hamster-wheel"></div>
+
+    <div class="escape-modal" id="escapeModal">
+        <div class="modal-content">
+            <h2 class="modal-title">🎃 ¡Felicitaciones!</h2>
+            <p class="modal-text">
+                Has dado el primer paso crucial: <strong>reconocer que estás atrapado</strong>. 
+                El problema no es la falta de esfuerzo, sino la falta de enfoque estratégico.
+            </p>
+            <p class="modal-text">
+                <strong>Tu próximo paso:</strong> Implementar un plan para <strong>Transformar la incertidumbre en dirección clara con MAPEA™</strong>
+                para convertir tu negocio de "mil actividades dispersas" a "una estrategia enfocada y excepcional" que domine tu mercado.
+            </p>
+            <button class="main-button" onclick="contactWhatsApp()">
+                Comenzar Transformación
+            </button>
+            <div style="margin-top: 20px; text-align: center;">
+                <span style="font-size: 0.8rem; color: #94a3b8; font-weight: bold; letter-spacing: 0.5px;">
+                    FRAMEWORK DESARROLLADO POR LA ESTRATEGA®
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const gameState = {
+            selectedSymptoms: new Set(),
+            insights: [
+                {
+                    symptoms: ['ingresos'],
+                    text: "Los ingresos estancados indican falta de diferenciación en el mercado."
+                },
+                {
+                    symptoms: ['dependencia'],
+                    text: "La dependencia total sugiere falta de sistematización y procesos claros."
+                },
+                {
+                    symptoms: ['estres'],
+                    text: "El estrés constante es síntoma de trabajar EN el negocio, no SOBRE el negocio."
+                },
+                {
+                    symptoms: ['hamster'],
+                    text: "La rueda de hámster indica actividad sin estrategia - esfuerzo mal dirigido."
+                },
+                {
+                    symptoms: ['direccion'],
+                    text: "Sin dirección clara, persigues todas las oportunidades en lugar de las correctas."
+                },
+                {
+                    symptoms: ['diferenciacion'],
+                    text: "Sin diferenciación clara, compites únicamente por precio - una batalla perdida."
+                },
+                {
+                    symptoms: ['familiar'],
+                    text: "Empresas familiares necesitan profesionalización para escalar efectivamente."
+                },
+                {
+                    symptoms: ['posicionamiento'],
+                    text: "Sin posicionamiento estratégico, tu mensaje se diluye en el ruido del mercado."
+                },
+                {
+                    symptoms: ['ingresos', 'direccion'],
+                    text: "Ingresos estancados + falta de dirección = necesitas identificar tu 'Sweet Spot'."
+                },
+                {
+                    symptoms: ['diferenciacion', 'posicionamiento'],
+                    text: "Falta de diferenciación + sin posicionamiento = requiere estrategia MAPEA OCÉANO AZUL."
+                },
+                {
+                    symptoms: ['dependencia', 'estres'],
+                    text: "Dependencia + estrés = falta de sistematización. Requiere procesos documentados y roles claros."
+                },
+                {
+                    symptoms: ['familiar', 'dependencia'],
+                    text: "Empresa familiar dependiente del fundador necesita estructura organizacional clara."
+                },
+                {
+                    symptoms: ['hamster', 'estres', 'dependencia'],
+                    text: "Múltiples síntomas operativos indican necesidad urgente de transformación estructural."
+                }
+            ]
+        };
+
+        function createFloatingPumpkins() {
+            const container = document.getElementById('floatingPumpkins');
+            const pumpkins = ['🎃', '🍂', '🌾'];
+            
+            for (let i = 0; i < 8; i++) {
+                const pumpkin = document.createElement('div');
+                pumpkin.className = 'floating-pumpkin';
+                pumpkin.textContent = pumpkins[Math.floor(Math.random() * pumpkins.length)];
+                pumpkin.style.left = Math.random() * 100 + '%';
+                pumpkin.style.animationDelay = Math.random() * 10 + 's';
+                pumpkin.style.animationDuration = (10 + Math.random() * 5) + 's';
+                container.appendChild(pumpkin);
+            }
+        }
+
+        function setupSymptomCards() {
+            const cards = document.querySelectorAll('.symptom-card');
+            
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const symptom = card.dataset.symptom;
+                    
+                    if (gameState.selectedSymptoms.has(symptom)) {
+                        gameState.selectedSymptoms.delete(symptom);
+                        card.classList.remove('selected');
+                    } else {
+                        gameState.selectedSymptoms.add(symptom);
+                        card.classList.add('selected');
+                    }
+                    
+                    updateProgress();
+                    updateInsights();
+                    updateEscapeButton();
+                });
+            });
+        }
+
+        function updateProgress() {
+            const total = 8;
+            const selected = gameState.selectedSymptoms.size;
+            const percentage = (selected / total) * 100;
+            
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            progressFill.style.width = percentage + '%';
+            
+            if (percentage === 0) {
+                progressText.textContent = '0% - Reconociendo el problema';
+            } else if (percentage <= 25) {
+                progressText.textContent = `${Math.round(percentage)}% - Identificando síntomas iniciales`;
+            } else if (percentage <= 50) {
+                progressText.textContent = `${Math.round(percentage)}% - Comprendiendo la situación`;
+            } else if (percentage <= 75) {
+                progressText.textContent = `${Math.round(percentage)}% - Diagnóstico avanzado`;
+            } else {
+                progressText.textContent = `${Math.round(percentage)}% - Listo para transformación`;
+            }
+        }
+
+        function updateInsights() {
+            const insightsList = document.getElementById('insightsList');
+            const insightsCounter = document.getElementById('insightsCounter');
+            const severityBadge = document.getElementById('severityBadge');
+            insightsList.innerHTML = '';
+            
+            let unlockedCount = 0;
+            
+            gameState.insights.forEach((insight, index) => {
+                const hasAllSymptoms = insight.symptoms.every(symptom => 
+                    gameState.selectedSymptoms.has(symptom)
+                );
+                
+                if (hasAllSymptoms) {
+                    unlockedCount++;
+                    const insightElement = document.createElement('div');
+                    insightElement.className = 'insight-item';
+                    insightElement.textContent = insight.text;
+                    insightsList.appendChild(insightElement);
+                    
+                    setTimeout(() => {
+                        insightElement.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+            
+            insightsCounter.textContent = `${unlockedCount}/13`;
+            
+            const selectedCount = gameState.selectedSymptoms.size;
+            let severity = '';
+            let severityClass = '';
+            
+            if (selectedCount === 0) {
+                severityBadge.innerHTML = '';
+            } else if (selectedCount <= 2) {
+                severity = '⚠️ Situación Controlable';
+                severityClass = 'severity-low';
+            } else if (selectedCount <= 4) {
+                severity = '🔶 Atención Necesaria';
+                severityClass = 'severity-medium';
+            } else if (selectedCount <= 6) {
+                severity = '🔴 Situación Crítica';
+                severityClass = 'severity-high';
+            } else {
+                severity = '🚨 URGENTE: Transformación Inmediata';
+                severityClass = 'severity-critical';
+            }
+            
+            if (selectedCount > 0) {
+                severityBadge.innerHTML = `<div class="severity-badge ${severityClass}">${severity}</div>`;
+            }
+        }
+
+        function updateEscapeButton() {
+            const button = document.getElementById('escapeButton');
+            const minSymptoms = 3;
+            
+            if (gameState.selectedSymptoms.size >= minSymptoms) {
+                button.disabled = false;
+                button.textContent = 'Iniciar Plan de Transformación';
+            } else {
+                button.disabled = true;
+                button.textContent = `Selecciona ${minSymptoms - gameState.selectedSymptoms.size} síntomas más`;
+            }
+        }
+
+        function setupEscapeButton() {
+            const button = document.getElementById('escapeButton');
+            
+            button.addEventListener('click', () => {
+                if (gameState.selectedSymptoms.size >= 3) {
+                    showEscapeModal();
+                }
+            });
+        }
+
+        function showEscapeModal() {
+            const modal = document.getElementById('escapeModal');
+            modal.style.display = 'flex';
+        }
+
+        function contactWhatsApp() {
+            const selectedSymptomsArray = Array.from(gameState.selectedSymptoms);
+            let mapaeType = "MAPEA";
+            let diagnosis = "";
+            let priority = "";
+            
+            if (selectedSymptomsArray.includes('diferenciacion') && selectedSymptomsArray.includes('posicionamiento')) {
+                mapaeType = "MAPEA OCÉANO AZUL";
+                diagnosis = "Crisis de diferenciación - Competencia por precio";
+                priority = "ALTA: Necesitas crear espacio único en mercado";
+            } else if (selectedSymptomsArray.includes('direccion') && selectedSymptomsArray.includes('ingresos')) {
+                mapaeType = "MAPEA OCÉANO AZUL";
+                diagnosis = "Estancamiento estratégico - Sin rumbo claro";
+                priority = "ALTA: Requieres identificar tu Sweet Spot";
+            } else if (selectedSymptomsArray.includes('dependencia') && selectedSymptomsArray.includes('estres')) {
+                mapaeType = "MAPEA SISTEMATIZACIÓN";
+                diagnosis = "Sobrecarga operativa - Negocio no escalable";
+                priority = "CRÍTICA: Riesgo de burnout del fundador";
+            } else if (selectedSymptomsArray.includes('familiar')) {
+                mapaeType = "MAPEA EMPRESA FAMILIAR";
+                diagnosis = "Falta de profesionalización familiar";
+                priority = "MEDIA: Estructura organizacional necesaria";
+            } else if (selectedSymptomsArray.includes('hamster') && selectedSymptomsArray.includes('direccion')) {
+                mapaeType = "MAPEA ESTRATÉGICO";
+                diagnosis = "Activismo sin estrategia - Esfuerzo mal dirigido";
+                priority = "ALTA: Enfoque y priorización urgente";
+            } else {
+                mapaeType = "MAPEA DIAGNÓSTICO COMPLETO";
+                diagnosis = "Múltiples síntomas identificados";
+                priority = "MEDIA: Evaluación integral recomendada";
+            }
+            
+            const severityLevel = selectedSymptomsArray.length <= 2 ? "CONTROLABLE" :
+                                 selectedSymptomsArray.length <= 4 ? "MODERADA" :
+                                 selectedSymptomsArray.length <= 6 ? "CRÍTICA" : "URGENTE";
+            
+            const symptomNames = {
+                'ingresos': '💰 Flujo estancado',
+                'dependencia': '🔗 Dependencia total',
+                'estres': '😫 Estrés constante',
+                'hamster': '🐹 Rueda de hámster',
+                'direccion': '🧭 Sin dirección',
+                'diferenciacion': '🎭 Falta diferenciación',
+                'familiar': '👨‍👩‍👧‍👦 Empresa familiar no profesionalizada',
+                'posicionamiento': '📊 Sin estrategia posicionamiento'
+            };
+            
+            const selectedSymptomNames = selectedSymptomsArray
+                .map(symptom => symptomNames[symptom])
+                .join('\n');
+            
+            const message = `🎃 *DIAGNÓSTICO JUEGO DE LA CALABAZA*
+_Framework LA ESTRATEGA®_
+
+👤 *EVALUACIÓN COMPLETADA*
+
+📊 *NIVEL DE GRAVEDAD:* ${severityLevel}
+🎯 *SÍNTOMAS IDENTIFICADOS:* ${selectedSymptomsArray.length}/8
+
+${selectedSymptomNames}
+
+🔍 *DIAGNÓSTICO ESPECÍFICO:*
+${diagnosis}
+
+⚠️ *PRIORIDAD:* ${priority}
+
+💡 *SOLUCIÓN RECOMENDADA:*
+${mapaeType}
+
+🎯 *PRÓXIMO PASO:*
+Agendar sesión estratégica para elaborar plan de transformación personalizado y convertir incertidumbre en dirección clara.
+
+¿Cuándo podemos revisar mi caso específico?`;
+            
+            const whatsappUrl = `https://wa.me/50376578075?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function initGame() {
+            createFloatingPumpkins();
+            setupSymptomCards();
+            setupEscapeButton();
+            updateProgress();
+            updateInsights();
+            updateEscapeButton();
+        }
+
+        document.addEventListener('DOMContentLoaded', initGame);
+
+        document.addEventListener('mousemove', (e) => {
+            const hamsterWheel = document.querySelector('.hamster-wheel');
+            const rect = hamsterWheel.getBoundingClientRect();
+            const distance = Math.sqrt(
+                Math.pow(e.clientX - (rect.left + rect.width/2), 2) + 
+                Math.pow(e.clientY - (rect.top + rect.height/2), 2)
+            );
+            
+            if (distance < 100) {
+                hamsterWheel.style.animationDuration = '0.5s';
+            } else {
+                hamsterWheel.style.animationDuration = '3s';
+            }
+        });
+    </script>
+</body>
+</html>
