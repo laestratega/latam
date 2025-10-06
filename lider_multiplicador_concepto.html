@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Líder Multiplicador vs Diminuidor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0F1419 0%, #1A2332 50%, #0F1419 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 217, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(95, 39, 205, 0.1) 0%, transparent 50%);
+            animation: gradientShift 15s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00D9FF, #5F27CD);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: white;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            color: #00D9FF;
+            font-weight: bold;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .leader-card {
+            background: rgba(26, 35, 50, 0.6);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .diminuidor-card {
+            border: 2px solid rgba(229, 62, 62, 0.3);
+        }
+
+        .diminuidor-card::before {
+            background: radial-gradient(circle, rgba(229, 62, 62, 0.1) 0%, transparent 70%);
+        }
+
+        .diminuidor-card:hover {
+            border-color: #E53E3E;
+            transform: scale(0.98);
+            box-shadow: 0 10px 40px rgba(229, 62, 62, 0.3);
+        }
+
+        .diminuidor-card:hover::before {
+            opacity: 1;
+        }
+
+        .multiplicador-card {
+            border: 2px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .multiplicador-card::before {
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .multiplicador-card:hover {
+            border-color: #00D9FF;
+            transform: scale(1.02);
+            box-shadow: 0 10px 40px rgba(0, 217, 255, 0.4);
+        }
+
+        .multiplicador-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease;
+        }
+
+        .diminuidor-card:hover .card-icon {
+            transform: scale(0.8);
+            filter: grayscale(0.3);
+        }
+
+        .multiplicador-card:hover .card-icon {
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 20px rgba(0, 217, 255, 0.5));
+        }
+
+        .card-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .diminuidor-title {
+            color: #E53E3E;
+        }
+
+        .multiplicador-title {
+            color: #00D9FF;
+        }
+
+        .card-description {
+            font-size: 1.1rem;
+            color: #e2e8f0;
+            text-align: center;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .characteristics-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .characteristic-item {
+            background: rgba(26, 35, 50, 0.8);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .characteristic-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .diminuidor-card .characteristic-item::before {
+            background: #E53E3E;
+        }
+
+        .multiplicador-card .characteristic-item::before {
+            background: #00D9FF;
+        }
+
+        .characteristic-item:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .characteristic-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .characteristic-text {
+            color: #e2e8f0;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .result-box {
+            background: rgba(26, 35, 50, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .result-label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .diminuidor-card .result-label {
+            color: #E53E3E;
+        }
+
+        .multiplicador-card .result-label {
+            color: #00D9FF;
+        }
+
+        .result-text {
+            color: white;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .capacity-indicator {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .capacity-bar {
+            width: 100%;
+            height: 40px;
+            background: rgba(26, 35, 50, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .capacity-fill {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            transition: width 1s ease;
+        }
+
+        .diminuidor-fill {
+            background: linear-gradient(90deg, #E53E3E, #a12828);
+            width: 50%;
+        }
+
+        .multiplicador-fill {
+            background: linear-gradient(90deg, #00D9FF, #5F27CD);
+            width: 200%;
+            max-width: 100%;
+        }
+
+        .equation-section {
+            background: rgba(26, 35, 50, 0.8);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .equation-title {
+            font-size: 1.8rem;
+            color: #00D9FF;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .equations {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .equation-box {
+            background: rgba(26, 35, 50, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .equation-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .equation-type {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .diminuidor-equation {
+            border: 2px solid rgba(229, 62, 62, 0.3);
+        }
+
+        .diminuidor-equation .equation-type {
+            color: #E53E3E;
+        }
+
+        .multiplicador-equation {
+            border: 2px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .multiplicador-equation .equation-type {
+            color: #00D9FF;
+        }
+
+        .equation-formula {
+            font-size: 1.1rem;
+            color: white;
+            line-height: 1.8;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .footer-quote {
+            font-size: 1.2rem;
+            color: #00D9FF;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00D9FF, #E53E3E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 968px) {
+            .comparison-container,
+            .equations {
+                grid-template-columns: 1fr;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .card-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">¿Qué es un Líder Multiplicador?</h1>
+            <p class="subtitle">
+                Un líder multiplicador es alguien que <span class="highlight">AMPLIFICA la inteligencia y capacidad de su equipo</span>, en lugar de disminuirla.
+            </p>
+        </div>
+
+        <div class="comparison-container">
+            <!-- Líder Diminuidor -->
+            <div class="leader-card diminuidor-card">
+                <div class="card-icon">📉</div>
+                <h2 class="card-title diminuidor-title">LÍDERES DIMINUIDORES</h2>
+                <p class="card-description">Reducen la capacidad de su equipo sin darse cuenta</p>
+
+                <ul class="characteristics-list">
+                    <li class="characteristic-item">
+                        <span class="characteristic-icon">🧠</span>
+                        <span class="characteristic-text">Creen que deben ser los más inteligentes de la sala</span>
+                    </li>
+                    <li class="characteristic-item">
+                        <span class="characteristic-icon">👑</span>
+                        <span class="characteristic-text">Acaparan decisiones y protagonismo</span>
+                    </li>
+                    <li class="characteristic-item">
+                        <span class="characteristic-icon">⏱️</span>
+                        <span class="characteristic-text">Frase típica: "Es más rápido si lo hago yo"</span>
+                    </li>
+                </ul>
+
+                <div class="capacity-indicator">
+                    <strong style="color: #E53E3E;">Capacidad del Equipo:</strong>
+                    <div class="capacity-bar">
+                        <div class="capacity-fill diminuidor-fill">50%</div>
+                    </div>
+                </div>
+
+                <div class="result-box" style="margin-top: 20px;">
+                    <div class="result-label">RESULTADO:</div>
+                    <div class="result-text">Equipos dependientes e inactivos</div>
+                </div>
+            </div>
+
+            <!-- Líder Multiplicador -->
+            <div class="leader-card multiplicador-card">
+                <div class="card-icon">📈</div>
+                <h2 class="card-title multiplicador-title">LÍDERES MULTIPLICADORES</h2>
+                <p class="card-description">Amplifican la capacidad de su equipo exponencialmente</p>
+
+                <ul class="characteristics-list">
+                    <li class="characteristic-item">
+                        <span class="characteristic-icon">✨</span>
+                        <span class="characteristic-text">Sacan lo mejor de cada persona</span>
+                    </li>
+                    <li class="characteristic-item">
+                        <span class="characteristic-icon">💡</span>
+                        <span class="characteristic-text">Hacen que otros piensen y resuelvan</span>
+                    </li>
+                    <li class="characteristic-item">
+                        <span class="characteristic-icon">🤝</span>
+                        <span class="characteristic-text">Frase típica: "¿Qué propones? Yo confío en tu criterio"</span>
+                    </li>
+                </ul>
+
+                <div class="capacity-indicator">
+                    <strong style="color: #00D9FF;">Capacidad del Equipo:</strong>
+                    <div class="capacity-bar">
+                        <div class="capacity-fill multiplicador-fill">200%</div>
+                    </div>
+                </div>
+
+                <div class="result-box" style="margin-top: 20px;">
+                    <div class="result-label">RESULTADO:</div>
+                    <div class="result-text">Equipos autónomos y empoderados</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="equation-section">
+            <h3 class="equation-title">LA ECUACIÓN SIMPLE</h3>
+            <div class="equations">
+                <div class="equation-box diminuidor-equation">
+                    <div class="equation-type">DIMINUIDOR:</div>
+                    <div class="equation-formula">
+                        1 líder inteligente + 10 personas<br>
+                        = <strong>capacidad de 5 personas</strong>
+                    </div>
+                </div>
+
+                <div class="equation-box multiplicador-equation">
+                    <div class="equation-type">MULTIPLICADOR:</div>
+                    <div class="equation-formula">
+                        1 líder multiplicador + 10 personas<br>
+                        = <strong>capacidad de 20 personas</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p class="footer-quote">
+                "El verdadero liderazgo no es cuánto logras tú. Es cuánto logran otros gracias a ti."
+            </p>
+            <h3 class="brand">LA ESTRATEGA®</h3>
+        </div>
+    </div>
+
+    <script>
+        // Animación de las barras de capacidad al cargar
+        document.addEventListener('DOMContentLoaded', function() {
+            const diminuidorBar = document.querySelector('.diminuidor-fill');
+            const multiplicadorBar = document.querySelector('.multiplicador-fill');
+            
+            // Reset inicial
+            diminuidorBar.style.width = '0%';
+            multiplicadorBar.style.width = '0%';
+            
+            // Animar después de un delay
+            setTimeout(() => {
+                diminuidorBar.style.width = '50%';
+                multiplicadorBar.style.width = '100%';
+            }, 500);
+        });
+
+        // Efecto hover en las tarjetas
+        const cards = document.querySelectorAll('.leader-card');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                const icon = this.querySelector('.card-icon');
+                icon.style.transform = this.classList.contains('diminuidor-card') 
+                    ? 'scale(0.8) rotate(-10deg)' 
+                    : 'scale(1.2) rotate(10deg)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                const icon = this.querySelector('.card-icon');
+                icon.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
