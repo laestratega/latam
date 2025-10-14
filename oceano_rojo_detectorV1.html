@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Océano Rojo Detector - LA ESTRATEGA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .star {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #7eb3d6 0%, #a3c9e2 100%);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            margin: 0 auto 20px;
+            filter: drop-shadow(0 4px 8px rgba(126, 179, 214, 0.3));
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .header .red {
+            color: #E31E24;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            color: #b8d4e5;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+        
+        .divider-line {
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #7eb3d6 50%, transparent 100%);
+            margin: 30px auto;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .intro h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: #1e2d3d;
+            margin-bottom: 20px;
+        }
+        
+        .intro p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .question-section {
+            display: none;
+        }
+        
+        .question-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 5px solid #7eb3d6;
+        }
+        
+        .question h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            color: #1e2d3d;
+            margin-bottom: 25px;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .option {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .option:hover {
+            border-color: #7eb3d6;
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(126, 179, 214, 0.2);
+        }
+        
+        .option.selected {
+            border-color: #E31E24;
+            background: #fff5f5;
+        }
+        
+        .option-radio {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #7eb3d6;
+            border-radius: 50%;
+            flex-shrink: 0;
+            position: relative;
+        }
+        
+        .option.selected .option-radio {
+            border-color: #E31E24;
+        }
+        
+        .option.selected .option-radio::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #E31E24;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .option-text {
+            flex: 1;
+            font-size: 1em;
+            color: #333;
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #E31E24 0%, #7eb3d6 100%);
+            transition: width 0.5s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #E31E24;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #B71C4C;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(227, 30, 36, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #7eb3d6;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #1e2d3d;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 45, 61, 0.3);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .results {
+            display: none;
+            text-align: center;
+        }
+        
+        .results.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .result-score {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-family: 'Playfair Display', serif;
+            border: 8px solid;
+        }
+        
+        .score-number {
+            font-size: 4em;
+            font-weight: 700;
+        }
+        
+        .score-label {
+            font-size: 1.2em;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+        }
+        
+        .result-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .result-description {
+            font-size: 1.2em;
+            color: #b8d4e5;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .recommendations {
+            text-align: left;
+            margin-top: 40px;
+        }
+        
+        .recommendations h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: #1e2d3d;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .recommendation-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border-left: 5px solid;
+        }
+        
+        .recommendation-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3em;
+            color: #1e2d3d;
+            margin-bottom: 15px;
+        }
+        
+        .recommendation-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #7eb3d6 0%, #B49DD6 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+        
+        .btn-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+        
+        .btn-whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+        }
+        
+        .footer {
+            background: #1e2d3d;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+            border-top: 3px solid #7eb3d6;
+        }
+        
+        .footer-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .footer-brand .red {
+            color: #E31E24;
+        }
+        
+        .footer-info {
+            font-size: 0.95em;
+            color: #b8d4e5;
+            line-height: 1.8;
+        }
+        
+        .footer-link {
+            color: #7eb3d6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: #E31E24;
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .question {
+                padding: 20px;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="star"></div>
+            <h1>Océano <span class="red">Rojo</span> Detector</h1>
+            <div class="divider-line"></div>
+            <p>Descubre si estás nadando en aguas sangrientas de competencia destructiva<br>o navegando hacia tu océano azul de diferenciación</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro" id="intro">
+                <h2>¿Estás en Océano Rojo?</h2>
+                <p>Esta herramienta de diagnóstico te ayudará a identificar las señales clave que indican si tu negocio está atrapado en la competencia sangrienta del océano rojo, o si estás construyendo un camino de diferenciación sostenible.</p>
+                <p style="margin-top: 20px; font-size: 1em; color: #999;">Responde con honestidad brutal. Solo así podremos excavar la verdad.</p>
+                <button class="btn btn-primary" onclick="startAssessment()" style="margin-top: 30px;">Comenzar Diagnóstico</button>
+            </div>
+            
+            <div id="assessment" style="display: none;">
+                <div class="progress-text" id="progressText">Pregunta 1 de 10</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 10%"></div>
+                </div>
+                
+                <div id="questionsContainer"></div>
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-secondary" onclick="previousQuestion()" id="prevBtn" style="display: none;">Anterior</button>
+                    <button class="btn btn-primary" onclick="nextQuestion()" id="nextBtn" disabled>Siguiente</button>
+                </div>
+            </div>
+            
+            <div class="results" id="results"></div>
+        </div>
+        
+        <div class="footer">
+            <div class="footer-brand">LA ESTR<span class="red">A</span>TEGA™</div>
+            <div class="footer-info">
+                Creadora de Océanos Azules para PYMEs LATAM<br>
+                San Salvador, El Salvador | <a href="https://laestratega.info" class="footer-link" target="_blank">laestratega.info</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "¿Cómo describes tu principal estrategia comercial?",
+                options: [
+                    { text: "Competimos principalmente por precio - somos más baratos", value: 5 },
+                    { text: "Ofrecemos lo mismo que otros, pero con mejor servicio", value: 4 },
+                    { text: "Tenemos algunas diferencias, pero no muy claras", value: 3 },
+                    { text: "Tenemos propuesta única basada en valores claros", value: 1 }
+                ]
+            },
+            {
+                question: "Cuando un prospecto pregunta '¿por qué ustedes?', ¿qué respondes?",
+                options: [
+                    { text: "Tenemos mejor precio o mejores condiciones de pago", value: 5 },
+                    { text: "Somos serios, cumplimos, tenemos experiencia", value: 4 },
+                    { text: "Menciono varios beneficios pero me cuesta ser específico", value: 3 },
+                    { text: "Tengo una respuesta clara que nos diferencia auténticamente", value: 1 }
+                ]
+            },
+            {
+                question: "¿Qué tan seguido haces cambios de precio por presión competitiva?",
+                options: [
+                    { text: "Constantemente - si no bajo, pierdo clientes", value: 5 },
+                    { text: "Frecuentemente - cada mes hay que ajustar", value: 4 },
+                    { text: "Ocasionalmente - solo en temporadas críticas", value: 3 },
+                    { text: "Casi nunca - mis precios reflejan valor diferenciado", value: 1 }
+                ]
+            },
+            {
+                question: "¿Cómo es tu rentabilidad comparada con hace 2-3 años?",
+                options: [
+                    { text: "Ha disminuido significativamente - cada vez gano menos", value: 5 },
+                    { text: "Se mantiene igual pero con mucho más esfuerzo", value: 4 },
+                    { text: "Ha mejorado ligeramente pero no es sostenible", value: 3 },
+                    { text: "Crece consistentemente - mi diferenciación lo permite", value: 1 }
+                ]
+            },
+            {
+                question: "¿Qué tan claro tienes tu cliente ideal y qué lo hace especial?",
+                options: [
+                    { text: "Vendemos a cualquiera que pueda pagar", value: 5 },
+                    { text: "Tenemos un perfil general pero no muy específico", value: 4 },
+                    { text: "Sabemos quién es pero no por qué nos elige", value: 3 },
+                    { text: "Cliente ideal clarísimo - y sé exactamente por qué me busca", value: 1 }
+                ]
+            },
+            {
+                question: "¿Cuánto tiempo dedicas a 'apagar incendios' vs pensar estrategia?",
+                options: [
+                    { text: "90% incendios, 10% estrategia - sobrevivo día a día", value: 5 },
+                    { text: "70% incendios, 30% estrategia - quiero pero no puedo", value: 4 },
+                    { text: "50/50 - hay balance pero me gustaría más estrategia", value: 3 },
+                    { text: "70% estrategia, 30% incendios - trabajo EN el negocio", value: 1 }
+                ]
+            },
+            {
+                question: "¿Cómo te sientes cuando ves lo que hace tu competencia?",
+                options: [
+                    { text: "Pánico - tengo que igualar o bajar precios inmediatamente", value: 5 },
+                    { text: "Preocupación - estoy muy pendiente de sus movimientos", value: 4 },
+                    { text: "Curiosidad moderada - los monitoreo pero no me obsesiona", value: 3 },
+                    { text: "Indiferencia estratégica - juego un juego diferente", value: 1 }
+                ]
+            },
+            {
+                question: "¿Cuántos de tus clientes te ven como commodity vs solución única?",
+                options: [
+                    { text: "Casi todos preguntan por precio primero y último", value: 5 },
+                    { text: "La mayoría nos compara con 3-5 opciones similares", value: 4 },
+                    { text: "Algunos nos ven únicos, otros no tanto", value: 3 },
+                    { text: "La mayoría viene porque saben que somos diferentes", value: 1 }
+                ]
+            },
+            {
+                question: "¿Tu propuesta de valor se basa en...?",
+                options: [
+                    { text: "Lo que hace todo el mundo en mi industria", value: 5 },
+                    { text: "Mejores versiones de lo estándar del mercado", value: 4 },
+                    { text: "Algunas cosas diferentes mezcladas con lo estándar", value: 3 },
+                    { text: "Autenticidad profunda del líder + necesidad real del cliente", value: 1 }
+                ]
+            },
+            {
+                question: "¿Cómo describirías tu estado emocional como empresario?",
+                options: [
+                    { text: "Exhausto, frustrado, considerando tirar la toalla", value: 5 },
+                    { text: "Estresado, peleando todo el tiempo, poco satisfecho", value: 4 },
+                    { text: "Altibajos constantes - buenos y malos días", value: 3 },
+                    { text: "Con propósito, retado pero satisfecho, construyendo algo significativo", value: 1 }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let answers = [];
+
+        function startAssessment() {
+            document.getElementById('intro').style.display = 'none';
+            document.getElementById('assessment').style.display = 'block';
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const container = document.getElementById('questionsContainer');
+            const q = questions[currentQuestion];
+            
+            let optionsHTML = '';
+            q.options.forEach((option, index) => {
+                const selected = answers[currentQuestion] === option.value ? 'selected' : '';
+                optionsHTML += `
+                    <div class="option ${selected}" onclick="selectOption(${option.value})">
+                        <div class="option-radio"></div>
+                        <div class="option-text">${option.text}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = `
+                <div class="question-section active">
+                    <div class="question">
+                        <h3>${currentQuestion + 1}. ${q.question}</h3>
+                        <div class="options">
+                            ${optionsHTML}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            updateProgress();
+            updateButtons();
+        }
+
+        function selectOption(value) {
+            answers[currentQuestion] = value;
+            renderQuestion();
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
+        }
+
+        function updateButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.style.display = currentQuestion > 0 ? 'block' : 'none';
+            nextBtn.disabled = answers[currentQuestion] === undefined;
+            
+            if (currentQuestion === questions.length - 1) {
+                nextBtn.textContent = 'Ver Resultados';
+                nextBtn.className = 'btn btn-primary';
+            } else {
+                nextBtn.textContent = 'Siguiente';
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            const totalScore = answers.reduce((sum, val) => sum + val, 0);
+            const avgScore = totalScore / questions.length;
+            
+            document.getElementById('assessment').style.display = 'none';
+            
+            let level, color, borderColor, title, description, recommendations;
+            
+            if (avgScore >= 4) {
+                level = "OCÉANO ROJO CRÍTICO";
+                color = "#E31E24";
+                borderColor = "#E31E24";
+                title = "Estás en Aguas Sangrientas";
+                description = "Tu negocio está en la zona más peligrosa del océano rojo. La competencia por precio está destruyendo tu rentabilidad y sostenibilidad. Es momento de una transformación radical.";
+                recommendations = [
+                    {
+                        title: "URGENTE: Detén la hemorragia",
+                        text: "Deja de competir por precio inmediatamente. Cada descuento te aleja más de la rentabilidad. Identifica los 20% de clientes que SÍ valoran algo más que el precio.",
+                        color: "#E31E24"
+                    },
+                    {
+                        title: "Excava en tu autenticidad",
+                        text: "La diferenciación no está 'ahí afuera' - está dentro de ti como líder. ¿Qué te hace genuinamente único? ¿Qué problema resuelves que nadie más puede resolver como tú?",
+                        color: "#B71C4C"
+                    },
+                    {
+                        title: "Redefine tu cliente ideal",
+                        text: "No puedes ser para todos. Define con brutalidad honesta quién es tu cliente ideal y por qué debería elegirte por algo DISTINTO al precio.",
+                        color: "#7eb3d6"
+                    }
+                ];
+            } else if (avgScore >= 3) {
+                level = "OCÉANO ROJO MODERADO";
+                color = "#B71C4C";
+                borderColor = "#B71C4C";
+                title = "Estás en la Zona de Peligro";
+                description = "Tienes un pie en océano rojo y otro intentando salir. La competencia te presiona pero aún tienes oportunidad de diferenciarte antes de que sea tarde.";
+                recommendations = [
+                    {
+                        title: "Clarifica tu propuesta única",
+                        text: "Tienes diferenciación pero no está clara. Articula en una frase poderosa POR QUÉ alguien debería elegirte que no tenga nada que ver con precio.",
+                        color: "#B71C4C"
+                    },
+                    {
+                        title: "Fortalece tu posicionamiento",
+                        text: "Define tu terreno único en el mercado. ¿En qué eres indiscutiblemente el mejor? ¿Qué puedes prometer que otros no pueden?",
+                        color: "#7eb3d6"
+                    },
+                    {
+                        title: "Educa a tu mercado",
+                        text: "Si compites por precio es porque no has educado a tu mercado sobre tu valor diferencial. Comunica consistentemente tu diferenciación.",
+                        color: "#B49DD6"
+                    }
+                ];
+            } else if (avgScore >= 2) {
+                level = "AGUAS MIXTAS";
+                color = "#7eb3d6";
+                borderColor = "#7eb3d6";
+                title = "Vas por Buen Camino";
+                description = "Tienes diferenciación emergente pero necesitas profundizarla y hacerla más sostenible. Estás en transición - no te detengas ahora.";
+                recommendations = [
+                    {
+                        title: "Profundiza tu diferenciación",
+                        text: "Lo que tienes es bueno, pero puede ser más profundo. Conecta tu propuesta con el propósito auténtico del líder para hacerla inimitable.",
+                        color: "#7eb3d6"
+                    },
+                    {
+                        title: "Construye barreras sostenibles",
+                        text: "Tu diferenciación debe ser difícil de copiar. Basa tu estrategia en tu autenticidad única, no en tácticas que otros puedan replicar.",
+                        color: "#B49DD6"
+                    },
+                    {
+                        title: "Atrae tu tribu perfecta",
+                        text: "Ya no compites por todos. Enfócate en atraer a los clientes que verdaderamente valoran lo que te hace único.",
+                        color: "#2a3d4f"
+                    }
+                ];
+            } else {
+                level = "OCÉANO AZUL";
+                color = "#7eb3d6";
+                borderColor = "#7eb3d6";
+                title = "¡Felicidades! Navegas en Aguas Claras";
+                description = "Has creado diferenciación auténtica y sostenible. Tu negocio se basa en valor único, no en competencia por precio. Mantén este camino y profundiza continuamente.";
+                recommendations = [
+                    {
+                        title: "Protege tu diferenciación",
+                        text: "Lo que has construido es valioso. Mantén tu diferenciación anclada en tu autenticidad - es lo único imposible de copiar.",
+                        color: "#7eb3d6"
+                    },
+                    {
+                        title: "Escala tu impacto",
+                        text: "Con diferenciación clara, puedes crecer sin destruir rentabilidad. Busca más clientes ideales que valoren tu propuesta única.",
+                        color: "#B49DD6"
+                    },
+                    {
+                        title: "Sigue excavando",
+                        text: "La diferenciación no es destino, es journey. Sigue profundizando en tu autenticidad y mantente relevante para tu tribu.",
+                        color: "#2a3d4f"
+                    }
+                ];
+            }
+            
+            let recsHTML = '';
+            recommendations.forEach(rec => {
+                recsHTML += `
+                    <div class="recommendation-card" style="border-color: ${rec.color}">
+                        <h4>${rec.title}</h4>
+                        <p>${rec.text}</p>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('results').innerHTML = `
+                <div class="result-score">
+                    <div class="score-circle" style="border-color: ${borderColor}; background: rgba(255,255,255,0.1);">
+                        <div class="score-number" style="color: ${color}">${avgScore.toFixed(1)}</div>
+                        <div class="score-label">${level}</div>
+                    </div>
+                    <h2 class="result-title">${title}</h2>
+                    <p class="result-description">${description}</p>
+                </div>
+                
+                <div class="recommendations">
+                    <h3>Tus Próximos Pasos Estratégicos</h3>
+                    ${recsHTML}
+                </div>
+                
+                <div class="cta-section">
+                    <h3>¿Listo para Navegar hacia tu Océano Azul?</h3>
+                    <p>La diferenciación auténtica no se diseña - se descubre excavando en el líder.<br>Primero excavamos. Luego diferenciamos.</p>
+                    <button class="btn-whatsapp" onclick="sendToWhatsApp('${level}', ${avgScore.toFixed(1)})">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        Envía tu respuesta para una sesión de coaching GRATIS
+                    </button>
+                    <p style="font-size: 0.95em; margin-top: 20px; opacity: 0.9;">Recibe una sesión personalizada y navega hacia tu océano azul ideal</p>
+                </div>
+            `;
+            
+            document.getElementById('results').classList.add('active');
+        }
+        
+        function sendToWhatsApp(level, score) {
+            const message = encodeURIComponent(
+                `🌊 *Océano Rojo Detector - Mis Resultados*\n\n` +
+                `📊 *Nivel:* ${level}\n` +
+                `🎯 *Score:* ${score}/5.0\n\n` +
+                `Hola, acabo de completar el diagnóstico de Océano Rojo y me gustaría recibir mi sesión de coaching GRATIS para navegar hacia mi océano azul ideal. 🚀\n\n` +
+                `¿Podemos agendar una conversación?`
+            );
+            
+            window.open(`https://wa.me/50376578075?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
