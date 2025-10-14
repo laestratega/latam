@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rutas de Navegación hacia tu Océano Azul | LA ESTRATEGA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: white;
+            padding: 100px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(126, 179, 214, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(180, 157, 214, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .star {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #7eb3d6 0%, #a3c9e2 100%);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            margin: 0 auto 30px;
+            filter: drop-shadow(0 4px 8px rgba(126, 179, 214, 0.3));
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .divider-line {
+            width: 300px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #7eb3d6 50%, transparent 100%);
+            margin: 30px auto;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+        
+        .hero .red {
+            color: #E31E24;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3em;
+            color: #b8d4e5;
+            margin-bottom: 20px;
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            font-style: italic;
+            color: #7eb3d6;
+            margin-top: 30px;
+        }
+        
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+        
+        .section-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #1e2d3d;
+            margin-bottom: 20px;
+        }
+        
+        .section-description {
+            font-size: 1.15em;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        /* RUTAS GRID */
+        .rutas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .ruta-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+        
+        .ruta-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border-color: #7eb3d6;
+        }
+        
+        .ruta-header {
+            padding: 40px 30px 30px;
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .ruta-number {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #7eb3d6 0%, #B49DD6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 0 auto 25px;
+            box-shadow: 0 5px 20px rgba(126, 179, 214, 0.4);
+        }
+        
+        .ruta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .ruta-subtitle {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #7eb3d6;
+            margin-bottom: 10px;
+        }
+        
+        .ruta-duration {
+            font-size: 0.95em;
+            color: #b8d4e5;
+            font-weight: 300;
+        }
+        
+        .ruta-body {
+            padding: 35px 30px;
+        }
+        
+        .ruta-description {
+            font-size: 1.05em;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .ruta-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .ruta-features li {
+            padding: 12px 0;
+            color: #666;
+            display: flex;
+            align-items: start;
+            gap: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .ruta-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .ruta-features li svg {
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .ruta-cta {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 2px solid #f8f9fa;
+        }
+        
+        .btn-ruta {
+            background: linear-gradient(135deg, #E31E24 0%, #B71C4C 100%);
+            color: white;
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn-ruta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(227, 30, 36, 0.4);
+        }
+        
+        /* OTRAS RUTAS */
+        .otras-rutas {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .otras-rutas h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            margin-bottom: 25px;
+        }
+        
+        .otras-rutas .subtitle-white {
+            font-size: 1.2em;
+            color: #b8d4e5;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+        
+        .necesidades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 0 auto 50px;
+        }
+        
+        .necesidad-card {
+            background: rgba(255,255,255,0.05);
+            padding: 30px 25px;
+            border-radius: 15px;
+            border-left: 4px solid #7eb3d6;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+        
+        .necesidad-card:hover {
+            background: rgba(255,255,255,0.1);
+            border-left-color: #E31E24;
+            transform: translateX(5px);
+        }
+        
+        .necesidad-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #7eb3d6 0%, #B49DD6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .necesidad-title {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .necesidad-description {
+            font-size: 0.95em;
+            color: #b8d4e5;
+            line-height: 1.6;
+        }
+        
+        .btn-whatsapp-big {
+            background: #25D366;
+            color: white;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+        }
+        
+        .btn-whatsapp-big:hover {
+            background: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+        }
+        
+        /* PROCESO */
+        .proceso-section {
+            background: white;
+            padding: 80px 20px;
+        }
+        
+        .proceso-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1100px;
+            margin: 50px auto 0;
+        }
+        
+        .proceso-step {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .proceso-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #E31E24 0%, #B71C4C 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 20px rgba(227, 30, 36, 0.3);
+        }
+        
+        .proceso-step h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            color: #1e2d3d;
+            margin-bottom: 15px;
+        }
+        
+        .proceso-step p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: #1e2d3d;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 3px solid #7eb3d6;
+        }
+        
+        .footer-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .footer-brand .red {
+            color: #E31E24;
+        }
+        
+        .footer-info {
+            font-size: 1em;
+            color: #b8d4e5;
+            line-height: 1.8;
+        }
+        
+        .footer-link {
+            color: #7eb3d6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: #E31E24;
+        }
+        
+        .footer-tagline {
+            margin-top: 20px;
+            font-style: italic;
+            font-size: 1.1em;
+            color: #7eb3d6;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1em;
+            }
+            
+            .rutas-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .necesidades-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .proceso-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 50px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="star"></div>
+            <h1>Rutas de Navegación<br>hacia tu <span class="red">Océano Azul</span></h1>
+            <div class="divider-line"></div>
+            <p class="subtitle">No son consultorías genéricas. Son procesos de excavación profunda donde descubrimos tu diferenciación auténtica y construimos la estrategia para que navegues de océano rojo a océano azul.</p>
+            <p class="tagline">"Primero excavamos. Luego diferenciamos."</p>
+        </div>
+    </section>
+    
+    <!-- RUTAS PRINCIPALES -->
+    <section class="container">
+        <div class="section-intro">
+            <h2 class="section-title">Tres Rutas Fundamentales</h2>
+            <p class="section-description">Cada ruta está diseñada para una etapa específica de tu transformación. Puedes empezar por cualquiera, según tu necesidad más urgente.</p>
+        </div>
+        
+        <div class="rutas-grid">
+            <!-- RUTA 1 -->
+            <div class="ruta-card">
+                <div class="ruta-header">
+                    <div class="ruta-number">1</div>
+                    <h3 class="ruta-title">Transformación<br>del Líder</h3>
+                    <p class="ruta-subtitle">Coaching Ejecutivo</p>
+                    <p class="ruta-duration">Duración: 3-6 meses</p>
+                </div>
+                <div class="ruta-body">
+                    <p class="ruta-description">Excavación profunda de tu autenticidad, valores no negociables, y propósito genuino. Pre-requisito para diferenciación sostenible.</p>
+                    
+                    <ul class="ruta-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Sesiones 1-a-1 de excavación estratégica</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Identificación de valores no negociables</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Claridad de propósito auténtico</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Fundamentos de liderazgo diferenciado</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="ruta-cta">
+                        <a href="https://wa.me/50376578075?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Transformaci%C3%B3n%20del%20L%C3%ADder%20-%20Coaching%20Ejecutivo" class="btn-ruta" target="_blank">Explorar esta ruta</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RUTA 2 -->
+            <div class="ruta-card">
+                <div class="ruta-header">
+                    <div class="ruta-number">2</div>
+                    <h3 class="ruta-title">Creación de<br>Océano Azul</h3>
+                    <p class="ruta-subtitle">Estrategia de Diferenciación Radical</p>
+                    <p class="ruta-duration">Duración: Variable según proyecto</p>
+                </div>
+                <div class="ruta-body">
+                    <p class="ruta-description">Metodología adaptada a LATAM. Creamos tu espacio de mercado único desde tu autenticidad. No copiamos, descubrimos.</p>
+                    
+                    <ul class="ruta-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Diagnóstico de Océano Rojo actual</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Metodología MAPEA exclusiva</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Definición de propuesta de valor única</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Roadmap de navegación estratégica</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="ruta-cta">
+                        <a href="https://wa.me/50376578075?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Creaci%C3%B3n%20de%20Oc%C3%A9ano%20Azul%20-%20Estrategia%20de%20Diferenciaci%C3%B3n" class="btn-ruta" target="_blank">Explorar esta ruta</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RUTA 3 -->
+            <div class="ruta-card">
+                <div class="ruta-header">
+                    <div class="ruta-number">3</div>
+                    <h3 class="ruta-title">Ejecución<br>Sostenible</h3>
+                    <p class="ruta-subtitle">Plan de Marketing Integral</p>
+                    <p class="ruta-duration">Duración: Proyecto completo</p>
+                </div>
+                <div class="ruta-body">
+                    <p class="ruta-description">Implementación de tu diferenciación en cada punto de contacto. Sostenible, coherente, imposible de copiar.</p>
+                    
+                    <ul class="ruta-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Estrategia de marketing alineada</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Implementación en todos los canales</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Coherencia en puntos de contacto</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Medición y optimización continua</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="ruta-cta">
+                        <a href="https://wa.me/50376578075?text=Hola%2C%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Ejecuci%C3%B3n%20Sostenible%20-%20Plan%20de%20Marketing%20Integral" class="btn-ruta" target="_blank">Explorar esta ruta</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- OTRAS RUTAS -->
+    <section class="otras-rutas">
+        <div class="container">
+            <div class="star"></div>
+            <h2>Rutas Personalizadas</h2>
+            <div class="divider-line"></div>
+            <p class="subtitle-white">Cada negocio tiene necesidades únicas. Creamos rutas específicas para diferentes contextos y desafíos estratégicos.</p>
+            
+            <div class="necesidades-grid">
+                <div class="necesidad-card">
+                    <div class="necesidad-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                    </div>
+                    <h4 class="necesidad-title">Diferenciación en Mercados Saturados</h4>
+                    <p class="necesidad-description">Para PYMEs que sienten que "todos hacen lo mismo" y necesitan destacar radicalmente.</p>
+                </div>
+                
+                <div class="necesidad-card">
+                    <div class="necesidad-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h4 class="necesidad-title">Escape de Competencia por Precio</h4>
+                    <p class="necesidad-description">Para empresas que compiten por precio y quieren elevar márgenes con valor único.</p>
+                </div>
+                
+                <div class="necesidad-card">
+                    <div class="necesidad-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </div>
+                    <h4 class="necesidad-title">Crecimiento Acelerado Sostenible</h4>
+                    <p class="necesidad-description">Para PYMEs en fase de expansión que necesitan escalar sin perder diferenciación.</p>
+                </div>
+                
+                <div class="necesidad-card">
+                    <div class="necesidad-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                            <line x1="9" y1="21" x2="9" y2="9"></line>
+                        </svg>
+                    </div>
+                    <h4 class="necesidad-title">Transformación Digital Diferenciada</h4>
+                    <p class="necesidad-description">Para empresas que necesitan digitalizarse manteniendo su esencia única.</p>
+                </div>
+                
+                <div class="necesidad-card">
+                    <div class="necesidad-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </div>
+                    <h4 class="necesidad-title">Empresas Familiares Premium</h4>
+                    <p class="necesidad-description">Para 2da-3ra generación que busca modernizarse sin perder esencia familiar.</p>
+                </div>
+                
+                <div class="necesidad-card">
+                    <div class="necesidad-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h4 class="necesidad-title">Reinvención Estratégica Completa</h4>
+                    <p class="necesidad-description">Para empresas que necesitan transformación radical y ventaja competitiva sostenible.</p>
+                </div>
+            </div>
+            
+            <a href="https://wa.me/50376578075?text=Hola%2C%20tengo%20una%20necesidad%20espec%C3%ADfica%20y%20quiero%20explorar%20una%20ruta%20personalizada%20hacia%20mi%20oc%C3%A9ano%20azul" class="btn-whatsapp-big" target="_blank">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Conversemos sobre tu ruta personalizada
+            </a>
+        </div>
+    </section>
+    
+    <!-- PROCESO -->
+    <section class="proceso-section">
+        <div class="container">
+            <div class="section-intro">
+                <h2 class="section-title">¿Cómo trabajamos juntos?</h2>
+                <p class="section-description">Proceso simple y profundo en 4 etapas para cualquier ruta de navegación</p>
+            </div>
+            
+            <div class="proceso-steps">
+                <div class="proceso-step">
+                    <div class="proceso-number">1</div>
+                    <h3>Diagnóstico</h3>
+                    <p>Conversación estratégica para entender tu océano rojo actual y tu potencial de diferenciación.</p>
+                </div>
+                
+                <div class="proceso-step">
+                    <div class="proceso-number">2</div>
+                    <h3>Excavación</h3>
+                    <p>Profundizamos en tu autenticidad, valores y propósito para encontrar tu diferenciación real.</p>
+                </div>
+                
+                <div class="proceso-step">
+                    <div class="proceso-number">3</div>
+                    <h3>Estrategia</h3>
+                    <p>Diseñamos tu ruta específica hacia océano azul con pasos concretos y medibles.</p>
+                </div>
+                
+                <div class="proceso-step">
+                    <div class="proceso-number">4</div>
+                    <h3>Navegación</h3>
+                    <p>Acompañamiento continuo en la implementación hasta que navegues en aguas azules.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-brand">LA ESTR<span class="red">A</span>TEGA™</div>
+        <div class="footer-info">
+            Creadora de Océanos Azules para PYMEs LATAM<br>
+            San Salvador, El Salvador | <a href="https://laestratega.info" class="footer-link" target="_blank">laestratega.info</a>
+        </div>
+        <p class="footer-tagline">"Primero excavamos. Luego diferenciamos."</p>
+    </footer>
+</body>
+</html>
