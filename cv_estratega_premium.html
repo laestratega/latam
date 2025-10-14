@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil Profesional - LA ESTRATEGA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: white;
+            padding: 80px 40px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(126, 179, 214, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(180, 157, 214, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .star {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #7eb3d6 0%, #a3c9e2 100%);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            margin: 0 auto 25px;
+            filter: drop-shadow(0 4px 8px rgba(126, 179, 214, 0.3));
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .brand-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        
+        .brand-name .red {
+            color: #E31E24;
+        }
+        
+        .divider-line {
+            width: 250px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #7eb3d6 50%, transparent 100%);
+            margin: 25px auto;
+        }
+        
+        .tagline {
+            font-size: 1.3em;
+            color: #7eb3d6;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
+        
+        .subtitle {
+            font-size: 1.1em;
+            color: #b8d4e5;
+            line-height: 1.7;
+        }
+        
+        /* CONTAINER */
+        .container {
+            max-width: 1100px;
+            margin: -40px auto 0;
+            padding: 0 20px 80px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* STATS CARDS */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 35px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border-top: 4px solid #7eb3d6;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+            border-top-color: #E31E24;
+        }
+        
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            font-weight: 700;
+            color: #E31E24;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 1em;
+            color: #1e2d3d;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .stat-description {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* SECTION */
+        .section {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f8f9fa;
+        }
+        
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #7eb3d6 0%, #B49DD6 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 5px 15px rgba(126, 179, 214, 0.3);
+        }
+        
+        .section-icon svg {
+            width: 30px;
+            height: 30px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            color: #1e2d3d;
+        }
+        
+        /* ITEMS GRID */
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .item-card {
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #7eb3d6;
+            transition: all 0.3s ease;
+        }
+        
+        .item-card:hover {
+            background: white;
+            border-left-color: #E31E24;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transform: translateX(5px);
+        }
+        
+        .item-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            color: #1e2d3d;
+            margin-bottom: 8px;
+        }
+        
+        .item-institution {
+            font-weight: 600;
+            color: #7eb3d6;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        
+        .item-description {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95em;
+        }
+        
+        /* METODOLOGIAS */
+        .metodologias-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .metodologia-card {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: white;
+            padding: 35px 30px;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .metodologia-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(126, 179, 214, 0.2) 0%, transparent 70%);
+        }
+        
+        .metodologia-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        
+        .metodologia-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(126, 179, 214, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .metodologia-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            margin-bottom: 12px;
+            color: #7eb3d6;
+        }
+        
+        .metodologia-description {
+            color: #b8d4e5;
+            line-height: 1.7;
+            font-size: 0.95em;
+        }
+        
+        /* METODO MAPEA DESTACADO */
+        .mapea-destacado {
+            background: linear-gradient(135deg, #E31E24 0%, #B71C4C 100%);
+            padding: 50px 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 50px rgba(227, 30, 36, 0.3);
+        }
+        
+        .mapea-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+        
+        .mapea-destacado h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .mapea-destacado p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+        
+        /* CTA SECTION */
+        .cta-section {
+            background: linear-gradient(135deg, #7eb3d6 0%, #B49DD6 100%);
+            padding: 60px 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .cta-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3em;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.15em;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            opacity: 0.95;
+        }
+        
+        .btn-whatsapp {
+            background: white;
+            color: #1e2d3d;
+            padding: 18px 45px;
+            border: none;
+            border-radius: 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            text-decoration: none;
+        }
+        
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: #1e2d3d;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 3px solid #7eb3d6;
+        }
+        
+        .footer-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .footer-brand .red {
+            color: #E31E24;
+        }
+        
+        .footer-info {
+            font-size: 1em;
+            color: #b8d4e5;
+            line-height: 1.8;
+        }
+        
+        .footer-link {
+            color: #7eb3d6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: #E31E24;
+        }
+        
+        .footer-tagline {
+            margin-top: 20px;
+            font-style: italic;
+            font-size: 1.1em;
+            color: #7eb3d6;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header {
+                padding: 60px 20px 40px;
+            }
+            
+            .brand-name {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 35px 25px;
+            }
+            
+            .section-title {
+                font-size: 1.8em;
+            }
+            
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .metodologias-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                margin: 0;
+            }
+            
+            .cta-section, .footer {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <div class="star"></div>
+            <h1 class="brand-name">Perfil Profesional</h1>
+            <div style="font-size: 0.7em; margin-top: 10px; opacity: 0.8;">LA ESTR<span class="red">A</span>TEGA™</div>
+            <div class="divider-line"></div>
+            <p class="tagline">Creadora de Océanos Azules para PYMEs LATAM</p>
+            <p class="subtitle">Especialista en diferenciación estratégica basada en autenticidad del líder</p>
+        </div>
+    </header>
+    
+    <!-- STATS -->
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">6+</div>
+                <div class="stat-label">Años Especializados</div>
+                <p class="stat-description">Exclusivamente en diferenciación estratégica para PYMEs</p>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Países LATAM</div>
+                <p class="stat-description">El Salvador, Honduras, Guatemala, Costa Rica, República Dominicana</p>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Enfoque Autenticidad</div>
+                <p class="stat-description">Diferenciación imposible de copiar desde el líder</p>
+            </div>
+        </div>
+        
+        <!-- METODO MAPEA -->
+        <div class="mapea-destacado">
+            <div class="mapea-badge">METODOLOGÍA PROPIETARIA</div>
+            <h3>Método MAPEA™</h3>
+            <p>Framework registrado desarrollado en 6 años de práctica real con PYMEs latinoamericanas. Proceso de excavación y diferenciación que integra autenticidad del líder con necesidades reales del mercado.</p>
+        </div>
+        
+        <!-- FORMACION -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                    </svg>
+                </div>
+                <h2 class="section-title">Formación Académica</h2>
+            </div>
+            
+            <div class="items-grid">
+                <div class="item-card">
+                    <h3 class="item-title">MBA + Especialidad</h3>
+                    <p class="item-institution">ENEB - Marketing Analytics</p>
+                    <p class="item-description">Enfoque en toma de decisiones estratégicas basadas en análisis de datos.</p>
+                </div>
+                
+                <div class="item-card">
+                    <h3 class="item-title">Licenciatura</h3>
+                    <p class="item-institution">Mercadotecnia</p>
+                    <p class="item-description">Base sólida en fundamentos de marketing estratégico y comportamiento del consumidor.</p>
+                </div>
+                
+                <div class="item-card">
+                    <h3 class="item-title">Postgrado</h3>
+                    <p class="item-institution">Design Thinking</p>
+                    <p class="item-description">Metodología para innovación centrada en el usuario y solución de problemas creativos.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CERTIFICACIONES -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <h2 class="section-title">Certificaciones Profesionales</h2>
+            </div>
+            
+            <div class="items-grid">
+                <div class="item-card">
+                    <h3 class="item-title">Coaching Estratégico</h3>
+                    <p class="item-institution">Instituto Canario de Coaching - ICC</p>
+                    <p class="item-description">Certificación oficial en coaching ejecutivo con enfoque en transformación de líderes.</p>
+                </div>
+                
+                <div class="item-card">
+                    <h3 class="item-title">PNL Business Coach</h3>
+                    <p class="item-institution">Practitioner Certificado</p>
+                    <p class="item-description">Especialidad en programación neurolingüística aplicada al liderazgo empresarial.</p>
+                </div>
+                
+                <div class="item-card">
+                    <h3 class="item-title">Marketing Analytics</h3>
+                    <p class="item-institution">Advanced Certification</p>
+                    <p class="item-description">Toma de decisiones basada en datos y análisis estratégico basado en métricas.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- METODOLOGIAS -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                </div>
+                <h2 class="section-title">Metodologías Especializadas</h2>
+            </div>
+            
+            <div class="metodologias-list">
+                <div class="metodologia-card">
+                    <div class="metodologia-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="metodologia-title">Estrategia Océano Azul</h3>
+                    <p class="metodologia-description">Creación de espacios de mercado no disputados donde la competencia se vuelve irrelevante. Adaptada a la realidad de PYMEs LATAM.</p>
+                </div>
+                
+                <div class="metodologia-card">
+                    <div class="metodologia-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6m6-12h-6m6 0h6m-12 6h6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="metodologia-title">Design Thinking Empresarial</h3>
+                    <p class="metodologia-description">Innovación centrada en el usuario y solución de problemas creativos aplicada a estrategia de negocio y diferenciación.</p>
+                </div>
+                
+                <div class="metodologia-card">
+                    <div class="metodologia-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                    </div>
+                    <h3 class="metodologia-title">Data-Driven Strategy</h3>
+                    <p class="metodologia-description">Toma de decisiones basada en datos reales, métricas clave y análisis estratégico del comportamiento del mercado.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA -->
+        <div class="cta-section">
+            <h3>¿Listo para navegar hacia tu Océano Azul?</h3>
+            <p>Conversemos sobre cómo mi experiencia y metodologías pueden ayudarte a crear diferenciación auténtica e imposible de copiar.</p>
+            <a href="https://wa.me/50376578075?text=Hola%2C%20quiero%20conversar%20sobre%20c%C3%B3mo%20trabajar%20juntos%20en%20mi%20diferenciaci%C3%B3n%20estrat%C3%A9gica" class="btn-whatsapp" target="_blank">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Conversemos por WhatsApp
+            </a>
+        </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-brand">LA ESTR<span class="red">A</span>TEGA™</div>
+        <div class="footer-info">
+            Creadora de Océanos Azules para PYMEs LATAM<br>
+            San Salvador, El Salvador | <a href="https://laestratega.info" class="footer-link" target="_blank">laestratega.info</a>
+        </div>
+        <p class="footer-tagline">"Primero excavamos. Luego diferenciamos."</p>
+    </footer>
+</body>
+</html>
