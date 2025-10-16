@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - LA ESTRATEGA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+            color: #333;
+            padding: 40px 20px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(126, 179, 214, 0.1) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8em;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-text .highlight {
+            color: #E31E24;
+        }
+        
+        .header-subtitle {
+            font-size: 1.3em;
+            color: #7EB3D6;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-description {
+            font-size: 0.95em;
+            color: #b8d4e5;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .content {
+            padding: 60px 40px;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .intro h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: #1e2d3d;
+            margin-bottom: 15px;
+        }
+
+        .intro p {
+            color: #666;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+        
+        .faq-item {
+            margin: 30px 0;
+            border-radius: 12px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transform: translateY(-3px);
+        }
+
+        .faq-header {
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 5px solid #7EB3D6;
+        }
+
+        .faq-item.active .faq-header {
+            border-left-color: #E31E24;
+            background: linear-gradient(90deg, rgba(126, 179, 214, 0.05) 0%, transparent 100%);
+        }
+        
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.15em;
+            color: #1e2d3d;
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .faq-icon {
+            font-size: 1.5em;
+            color: #7EB3D6;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            color: #E31E24;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            color: #555;
+            line-height: 1.9;
+            font-size: 1em;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 30px 25px 30px;
+        }
+
+        .category-divider {
+            margin: 50px 0 30px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .category-divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #e0e0e0 50%, transparent 100%);
+        }
+
+        .category-label {
+            display: inline-block;
+            background: white;
+            padding: 10px 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            color: #7EB3D6;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-cta {
+            margin-top: 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(126, 179, 214, 0.1) 0%, rgba(227, 30, 36, 0.05) 100%);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .contact-cta h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #1e2d3d;
+            margin-bottom: 15px;
+        }
+
+        .contact-cta p {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1.05em;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #1e2d3d;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 40px 25px;
+            }
+
+            .logo-text {
+                font-size: 2em;
+            }
+
+            .header-subtitle {
+                font-size: 1.1em;
+            }
+
+            .faq-header {
+                padding: 20px;
+            }
+
+            .faq-question {
+                font-size: 1.05em;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-text">LA ESTR<span class="highlight">A</span>TEGA<sup style="font-size: 0.4em;">™</sup></div>
+            <p class="header-subtitle">Preguntas Frecuentes</p>
+            <p class="header-description">Todo lo que necesitas saber antes de trabajar conmigo</p>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>¿Tienes preguntas?</h2>
+                <p>Aquí encontrarás respuestas honestas y directas sobre mi metodología, procesos y forma de trabajar. Haz clic en cada pregunta para ver la respuesta completa.</p>
+            </div>
+
+            <div class="category-divider">
+                <span class="category-label">Inversión y Procesos</span>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <div class="faq-question">¿Cuánto cuestan tus servicios?</div>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    La inversión varía según tu situación específica y los servicios que necesites. Después de una llamada de descubrimiento (sin costo), te preparo una propuesta personalizada. Como referencia, tenemos programas completos para coaching ejecutivo individual y programas de transformación integral con implementación.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <div class="faq-question">¿Por qué debo hacer coaching ejecutivo antes de estrategia?</div>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    Porque he visto que el 73% de las estrategias de diferenciación fracasan cuando el líder no tiene claridad sobre quién es. Sin trabajo interno previo, terminarás saboteando tu propia diferenciación, volviendo a competir por precio, o agotándote defendiendo algo que no sientes genuinamente tuyo. El coaching es el cimiento sobre el cual construimos estrategia sostenible.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <div class="faq-question">¿Cuánto tiempo toma ver resultados?</div>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    El coaching ejecutivo toma 3-6 meses. La estrategia de diferenciación otros 2-3 meses. La implementación completa puede tomar 6-12 meses. No ofrezco resultados en 2 semanas porque la transformación real requiere tiempo. Si buscas consultoría de marketing para un problema distinto, podemos ayudarte. Solo escríbenos para saber qué necesita tu empresa en este momento.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <div class="faq-question">¿Garantizas resultados específicos?</div>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    No garantizo resultados específicos porque la transformación depende en gran medida de tu compromiso. Lo que SÍ garantizo: mi experiencia de 25 años aplicada a tu situación, honestidad brutal sobre lo que veo, frameworks probados, y mi compromiso total durante el programa. Si haces el trabajo interno necesario, los resultados llegan.
+                </div>
+            </div>
+
+            <div class="category-divider">
+                <span class="category-label">Alcance y Servicios</span>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <div class="faq-question">¿Trabajas con empresas fuera de Centroamérica?</div>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    Sí, trabajo con PYMEs en todo LATAM. Las sesiones son virtuales vía Zoom, lo que permite trabajar sin importar la ubicación. Lo importante es que tu PYME opere en mercados latinoamericanos, ya que mi metodología está específicamente adaptada a nuestra realidad regional.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <div class="faq-question">¿Haces ejecución de marketing digital?</div>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    No. No manejo redes sociales, no corro ads, no hago diseño gráfico. Mi enfoque es estratégico: coaching ejecutivo + estrategia de diferenciación + plan de marketing integral. Sin embargo, dentro del plan de implementación va incluida la nueva estrategia de marca y comunicación, plantillas, etc., para que tu equipo interno o externo lo pueda implementar.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <div class="faq-question">¿Trabajas con startups o solo con PYMEs establecidas?</div>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    Mi cliente ideal tiene 10+ años en el mercado y facturación mínima desde $100K anuales. Startups pre-revenue o muy tempranas generalmente no son buen fit porque no tienen los fundamentos ni recursos para el tipo de transformación que ofrezco. Necesito que ya tengas un negocio funcionando que necesita diferenciarse, no construir desde cero.
+                </div>
+            </div>
+
+            <div class="category-divider">
+                <span class="category-label">Metodología y Enfoque</span>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <div class="faq-question">¿Puedo solo contratar estrategia sin coaching?</div>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    No. El coaching ejecutivo es pre-requisito no negociable si no has recibido ninguna formación de esta área. Si no estás dispuesto a hacer el trabajo interno primero, no soy la consultora correcta para ti. Te recomiendo buscar una agencia de marketing o consultor que ofrezca solo estrategia. Sin juicio, solo claridad sobre mi proceso. Si has recibido coaching anteriormente, sí podemos pasar a la siguiente fase de la estrategia.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <div class="faq-question">¿Qué pasa si no funciona para mí?</div>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    Durante los primeros 3 meses de coaching, si cualquiera de los dos siente que no estamos avanzando, podemos terminar el contrato. Yo reembolso el 50% del monto restante si determino que no estás comprometido. Tú puedes cancelar sin reembolso si decides que no es para ti. Después de coaching, una vez iniciada la estrategia, no hay cancelaciones parciales.
+                </div>
+            </div>
+
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-header">
+                    <div class="faq-question">¿Cómo sé si soy tu cliente ideal?</div>
+                    <div class="faq-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    Eres mi cliente ideal si: (1) PYME desde $100K+ al año y 10+ años en mercado, (2) cansado de competir por precio sin ninguna diferenciación sobre la competencia, (3) has intentado agencias/consultores sin éxito sostenible, (4) dispuesto a hacer coaching ejecutivo primero, (5) buscas transformación profunda, no recetas rápidas, (6) listo para decisiones difíciles. Si cumples esto, agendemos una llamada de descubrimiento.
+                </div>
+            </div>
+
+            <div class="contact-cta">
+                <h3>¿No encontraste tu respuesta?</h3>
+                <p>Contáctame directamente y con gusto resolveré tus dudas</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <span>laestratega.latam@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📱</span>
+                        <span>+503 7657-8075</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>🌐</span>
+                        <span>laestratega.info</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            
+            // Cerrar todos los FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Si no estaba activo, abrirlo
+            if (!isActive) {
+                element.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
