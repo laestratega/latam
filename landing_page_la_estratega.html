@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>La Estratega — Océanos Azules para PYMEs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    @page {
+      size: letter;
+      margin: 0;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .page {
+      max-width: 8.5in;
+      margin: 20px auto;
+      background: white;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+      padding: 40px 40px 35px;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(126, 179, 214, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .star {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #7eb3d6 0%, #a3c9e2 100%);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      margin: 0 auto 15px;
+      filter: drop-shadow(0 4px 8px rgba(126, 179, 214, 0.3));
+    }
+    
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2em;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    
+    .divider-line {
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, #7eb3d6 50%, transparent 100%);
+      margin: 15px auto;
+    }
+    
+    .header .red {
+      color: #E31E24;
+    }
+    
+    .tagline {
+      font-size: 0.95em;
+      color: #7eb3d6;
+      font-weight: 300;
+      margin-top: 10px;
+    }
+    
+    .label-tag {
+      font-size: 0.75em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7eb3d6;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    
+    /* CONTENT */
+    .content {
+      padding: 40px 40px 40px;
+    }
+    
+    /* LEAD BOX */
+    .lead-box {
+      background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+      padding: 30px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .lead-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(126, 179, 214, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .lead-box-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .lead-box p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2em;
+      color: white;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    /* SECTION TITLE */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8em;
+      color: #1e2d3d;
+      margin: 45px 0 25px;
+      position: relative;
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: #E31E24;
+    }
+    
+    .section-title svg {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    
+    /* TWO COLUMN GRID */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 25px 0;
+    }
+    
+    /* INFO BOX */
+    .info-box {
+      background: linear-gradient(135deg, rgba(126, 179, 214, 0.05) 0%, rgba(180, 157, 214, 0.05) 100%);
+      padding: 25px;
+      border-left: 4px solid #7eb3d6;
+      border-radius: 8px;
+    }
+    
+    .info-box h3 {
+      font-size: 1.1em;
+      color: #1e2d3d;
+      margin-bottom: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .info-box h3 svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .info-box p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95em;
+      margin: 0;
+    }
+    
+    /* PROBLEM BOX */
+    .problem-box {
+      background: linear-gradient(135deg, rgba(227, 30, 36, 0.08) 0%, rgba(183, 28, 76, 0.08) 100%);
+      padding: 25px;
+      border-left: 4px solid #E31E24;
+      border-radius: 8px;
+    }
+    
+    .problem-box h3 {
+      font-size: 1.1em;
+      color: #1e2d3d;
+      margin-bottom: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .problem-box h3 svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .problem-box p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95em;
+      margin: 0;
+    }
+    
+    /* SOLUTION BOX */
+    .solution-box {
+      background: linear-gradient(135deg, rgba(126, 179, 214, 0.1) 0%, rgba(180, 157, 214, 0.1) 100%);
+      padding: 25px;
+      border-left: 4px solid #7eb3d6;
+      border-radius: 8px;
+      margin: 25px 0;
+    }
+    
+    .solution-box p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95em;
+      margin: 0;
+    }
+    
+    /* BULLET LIST */
+    .benefit-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    
+    .benefit-list li {
+      padding: 12px 0 12px 35px;
+      position: relative;
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95em;
+    }
+    
+    .benefit-list li:before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #7eb3d6;
+      font-weight: 700;
+      font-size: 1.2em;
+    }
+    
+    /* PILLARS GRID */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin: 25px 0;
+    }
+    
+    .pillar-card {
+      background: white;
+      border: 2px solid #e0e0e0;
+      padding: 25px;
+      border-radius: 8px;
+      border-left: 4px solid #7eb3d6;
+    }
+    
+    .pillar-icon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 15px;
+    }
+    
+    .pillar-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .pillar-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1em;
+      color: #1e2d3d;
+      margin-bottom: 12px;
+    }
+    
+    .pillar-card p {
+      color: #666;
+      font-size: 0.9em;
+      line-height: 1.7;
+      margin: 0;
+    }
+    
+    /* QUOTE BOX */
+    .quote-box {
+      background: linear-gradient(135deg, rgba(227, 30, 36, 0.08) 0%, rgba(183, 28, 76, 0.08) 100%);
+      padding: 25px 30px;
+      border-left: 4px solid #E31E24;
+      border-radius: 8px;
+      margin: 25px 0;
+    }
+    
+    .quote-box p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15em;
+      color: #1e2d3d;
+      font-style: italic;
+      margin: 0;
+      line-height: 1.6;
+    }
+    
+    /* TOOLS LIST */
+    .tools-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    
+    .tools-list li {
+      background: linear-gradient(135deg, rgba(126, 179, 214, 0.05) 0%, rgba(180, 157, 214, 0.05) 100%);
+      padding: 15px 20px;
+      margin-bottom: 12px;
+      border-left: 4px solid #7eb3d6;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .tools-list li svg {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+    
+    .tools-list li strong {
+      color: #1e2d3d;
+      font-size: 1em;
+    }
+    
+    .tools-list li span {
+      color: #666;
+      font-size: 0.95em;
+    }
+    
+    /* CTA SECTION */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(126, 179, 214, 0.1) 0%, rgba(180, 157, 214, 0.1) 100%);
+      padding: 40px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 40px 0;
+      border: 2px solid #7eb3d6;
+    }
+    
+    .cta-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8em;
+      color: #1e2d3d;
+      margin-bottom: 15px;
+    }
+    
+    .cta-section p {
+      color: #666;
+      font-size: 1em;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .btn-primary {
+      background: #E31E24;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary:hover {
+      background: #c71a1f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(227, 30, 36, 0.3);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: #1e2d3d;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      border: 2px solid #1e2d3d;
+      transition: all 0.3s;
+    }
+    
+    .btn-secondary:hover {
+      background: #1e2d3d;
+      color: white;
+    }
+    
+    /* FOOTER */
+    .footer {
+      background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+      padding: 30px 40px;
+      text-align: center;
+      color: white;
+      font-size: 0.85em;
+    }
+    
+    .footer .brand {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4em;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    
+    .footer .quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: #7eb3d6;
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+    
+    .footer-links {
+      margin-top: 15px;
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .footer-links a {
+      color: #7eb3d6;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .small-text {
+      font-size: 0.85em;
+      color: #999;
+      margin-top: 15px;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .page {
+        margin: 10px;
+      }
+      
+      .header {
+        padding: 30px 20px 25px;
+      }
+      
+      .header h1 {
+        font-size: 1.8em;
+      }
+      
+      .content {
+        padding: 30px 20px;
+      }
+      
+      .section-title {
+        font-size: 1.5em;
+      }
+      
+      .two-col {
+        grid-template-columns: 1fr;
+      }
+      
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .cta-section {
+        padding: 30px 20px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+      }
+      
+      .footer {
+        padding: 25px 20px;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+    
+    @media print {
+      .page {
+        margin: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-content">
+        <div class="star"></div>
+        <div class="label-tag">Océanos Azules para PYMEs Latinoamericanas</div>
+        <h1>LA ESTR<span class="red">A</span>TEGA™</h1>
+        <div class="divider-line"></div>
+        <div class="tagline">Transformo líderes confundidos en estrategas auténticos que crean mercados únicos</div>
+      </div>
+    </div>
+    
+    <!-- CONTENT -->
+    <div class="content">
+      <!-- LEAD -->
+      <div class="lead-box">
+        <div class="lead-box-content">
+          <p><strong>Primero excavamos, luego diferenciamos.</strong> La nueva forma de pensar la estrategia: descubrimos tu claridad interior para convertirla en una ventaja competitiva real y sostenible.</p>
+        </div>
+      </div>
+      
+      <!-- PARA QUIEN + PROBLEMA -->
+      <div class="two-col">
+        <div class="info-box">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            ¿Para quién es esto?
+          </h3>
+          <p>Dueños/as y directores/as de PYMEs Latinoamericanas que desean dejar de competir por precio y comenzar a crear su propio mercado desde su autenticidad. Empresas con facturación en crecimiento (+USD 150.000) que buscan una estrategia con dirección y propósito.</p>
+        </div>
+        
+        <div class="problem-box">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="#E31E24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Problema que resolvemos
+          </h3>
+          <p>Has probado agencias, cursos y tácticas que no se sostienen. El trabajo se dispersa, las reuniones se cancelan, y la ejecución no llega a buen puerto. El verdadero bloqueo no es externo: es la falta de <strong>claridad y gobernanza en el líder</strong>.</p>
+        </div>
+      </div>
+      
+      <!-- PROPUESTA -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="#7eb3d6">
+          <circle cx="12" cy="12" r="10"/>
+        </svg>
+        Nuestra propuesta
+      </h2>
+      
+      <div class="solution-box">
+        <p>Ofrecemos un <strong>proceso integral</strong> que parte por tu interior: te ayudamos a descubrir tu ventaja única como líder (excavación), a diseñar tu espacio de mercado (diferenciación) y a implementar esa dirección con gobernanza estratégica (dirección consciente).</p>
+      </div>
+      
+      <!-- LOGROS -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E31E24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="19" x2="12" y2="5"/>
+          <polyline points="5 12 12 5 19 12"/>
+        </svg>
+        ¿Qué logramos juntos?
+      </h2>
+      
+      <ul class="benefit-list">
+        <li>Claridad de dirección: decisiones más precisas y veloces.</li>
+        <li>Diferenciación sostenible: una propuesta difícil de replicar.</li>
+        <li>Implementación ordenada: gobernanza que facilita la ejecución.</li>
+      </ul>
+      
+      <!-- METODOLOGIA -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="#1e2d3d">
+          <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z"/>
+        </svg>
+        Metodología — 3 pilares
+      </h2>
+      
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1e2d3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon fill="#1e2d3d" points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+            </svg>
+          </div>
+          <h4>Excavación del Líder™</h4>
+          <p>Trabajo profundo de autoconocimiento, postureo estratégico y gobernanza personal. Aquí nace la claridad que sostiene toda estrategia.</p>
+        </div>
+        
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="#7eb3d6">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+          </div>
+          <h4>Diseño del Espacio Único™</h4>
+          <p>Construcción de la propuesta de valor y mapa de diferenciación para crear un mercado propio —tu océano azul.</p>
+        </div>
+        
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#E31E24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"/>
+              <polyline points="5 12 12 5 19 12"/>
+            </svg>
+          </div>
+          <h4>Dirección Estratégica Consciente™</h4>
+          <p>Roadmap de implementación, roles claros y sistema de gobernanza para que la estrategia no quede en buenas intenciones.</p>
+        </div>
+      </div>
+      
+      <!-- PROCESO -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        Proceso y formato
+      </h2>
+      
+      <p style="color: #666; font-size: 0.95em; line-height: 1.7;">Trabajamos en ciclos de 8–12 semanas por proyecto (diagnóstico → excavación → diseño → pilotaje → gobernanza). Ofrecemos programas 1:1 y cohortes grupales para dueños que desean acompañamiento intenso y mano a mano.</p>
+      
+      <div class="quote-box">
+        <p>"No trabajo con tu negocio hasta que trabajemos contigo." — principio fundacional</p>
+      </div>
+      
+      <!-- ES PARA TI -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E31E24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        ¿Es para ti?
+      </h2>
+      
+      <ul class="benefit-list">
+        <li>Si estás cansado/a de tácticas que no funcionan a largo plazo.</li>
+        <li>Si quieres que tu negocio refleje quién eres y lo que quieres construir.</li>
+        <li>Si buscas una estrategia aplicable y sostenible, no otro curso más.</li>
+      </ul>
+      
+      <!-- HERRAMIENTAS -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1e2d3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M12 1v6m0 6v6M4.22 4.22l4.24 4.24m5.08 5.08l4.24 4.24M1 12h6m6 0h6M4.22 19.78l4.24-4.24m5.08-5.08l4.24-4.24"/>
+        </svg>
+        Elementos de soporte
+      </h2>
+      
+      <p style="color: #666; font-size: 0.95em; line-height: 1.7; margin-bottom: 15px;">Contamos con herramientas propias para diagnosticar y acompañar:</p>
+      
+      <ul class="tools-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="#E31E24">
+            <circle cx="12" cy="12" r="10"/>
+            <path fill="#fff" d="M12 6v6l4 2"/>
+          </svg>
+          <div><strong>Océano Rojo Detector™</strong> — <span>diagnóstico rápido (2–5 minutos).</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon fill="#7eb3d6" points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
+          <div><strong>Brújula Estratégica™</strong> — <span>sesión de 90 minutos para trazar dirección con valor real.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#1e2d3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+          <div><strong>Bitácora La Estratega™</strong> — <span>seguimiento y gobernanza mensual.</span></div>
+        </li>
+      </ul>
+      
+      <p class="small-text">Experiencia: +25 años en marketing estratégico, formación en liderazgo y coaching, con casos reales de PYMEs en LATAM.</p>
+      
+      <!-- CTA -->
+      <div class="cta-section">
+        <h3>¿Listo/a para liderar distinto?</h3>
+        <p>Si estás preparado/a para encontrar claridad, crear una ventaja imposible de copiar y dirigir con propósito, conversemos. Tengo <strong>espacios limitados</strong> para acompañamiento individual.</p>
+        
+        <div class="cta-buttons">
+          <a class="btn-primary" href="https://wa.me/50376578075?text=Hola%20Glenda,%20quiero%20agendar%20una%20conversaci%C3%B3n%20estrat%C3%A9gica">Agendar conversación</a>
+          <a class="btn-secondary" href="mailto:laestratega.latam@gmail.com">Escríbeme por email</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="brand">LA ESTR<span style="color: #E31E24;">A</span>TEGA™</div>
+      <div class="quote">"Primero excavamos, luego diferenciamos."</div>
+      <div style="margin-top: 8px;">Consultora en Estrategia y Diferenciación para PYMEs LATAM | San Salvador, El Salvador</div>
+      
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/laestrategalatam/" target="_blank">LinkedIn</a>
+        <span style="color: #7eb3d6;">•</span>
+        <a href="https://www.facebook.com/laestratega.latam/" target="_blank">Facebook</a>
+        <span style="color: #7eb3d6;">•</span>
+        <a href="https://www.linkedin.com/newsletters/estrategias-desde-adentro-7269547187825528833/" target="_blank">Newsletter</a>
+      </div>
+      
+      <div class="small-text">© 2025 La Estratega™ • Todos los derechos reservados</div>
+    </div>
+  </div>
+</body>
+</html>
