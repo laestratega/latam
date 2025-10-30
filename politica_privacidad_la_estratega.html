@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad — La Estratega</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            padding: 60px 40px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(126, 179, 214, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #7eb3d6 0%, #a3c9e2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            filter: drop-shadow(0 4px 12px rgba(126, 179, 214, 0.3));
+        }
+        
+        .logo-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+        
+        .brand-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .brand-name .red {
+            color: #E31E24;
+        }
+        
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .divider-line {
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, #7eb3d6 50%, transparent 100%);
+            margin: 20px auto;
+        }
+        
+        .header-intro {
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* CONTAINER */
+        .container {
+            max-width: 900px;
+            margin: -40px auto 60px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            padding: 50px 60px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* SECCIONES */
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #7eb3d6 0%, #a3c9e2 100%);
+            color: white;
+            font-weight: 700;
+            border-radius: 50%;
+            margin-right: 15px;
+            font-size: 1.1em;
+            flex-shrink: 0;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #1e2d3d;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-content {
+            color: #666;
+            font-size: 1em;
+            line-height: 1.8;
+            margin-left: 55px;
+        }
+        
+        .section-content p {
+            margin-bottom: 15px;
+        }
+        
+        .section-content ul {
+            list-style: none;
+            margin: 15px 0;
+            padding: 0;
+        }
+        
+        .section-content ul li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+        }
+        
+        .section-content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: #7eb3d6;
+            border-radius: 50%;
+        }
+        
+        .section-content strong {
+            color: #1e2d3d;
+            font-weight: 600;
+        }
+        
+        /* HIGHLIGHT BOX */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(126, 179, 214, 0.1) 0%, rgba(180, 157, 214, 0.1) 100%);
+            padding: 25px 30px;
+            border-left: 4px solid #7eb3d6;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            color: #1e2d3d;
+            font-weight: 500;
+        }
+        
+        /* COMMITMENT BOX */
+        .commitment-box {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .commitment-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(126, 179, 214, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .commitment-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .commitment-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .commitment-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: white;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .commitment-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        /* CONTACT INFO */
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 2px solid #e0e0e0;
+        }
+        
+        .contact-info svg {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        
+        .contact-info a {
+            color: #7eb3d6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .contact-info a:hover {
+            color: #1e2d3d;
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            padding: 40px;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+        
+        .footer-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        
+        .footer-brand .red {
+            color: #E31E24;
+        }
+        
+        .footer-quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #7eb3d6;
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+        
+        .footer-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #7eb3d6;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.95em;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-small {
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 20px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                margin: -30px 20px 40px;
+                padding: 30px 25px;
+            }
+            
+            .section-title {
+                font-size: 1.4em;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .section-number {
+                margin-bottom: 10px;
+            }
+            
+            .section-content {
+                margin-left: 0;
+            }
+            
+            .logo-section {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#1e2d3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polygon fill="#1e2d3d" points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                    </svg>
+                </div>
+                <div class="brand-name">LA ESTR<span class="red">A</span>TEGA</div>
+            </div>
+            
+            <h1>Política de Privacidad</h1>
+            
+            <div class="divider-line"></div>
+            
+            <p class="header-intro">
+                En La Estratega, valoramos la confianza de nuestra comunidad y nos comprometemos a proteger la privacidad de toda la información que compartes con nosotros.
+            </p>
+        </div>
+    </div>
+    
+    <!-- CONTAINER -->
+    <div class="container">
+        <!-- SECCIÓN 1 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-number">1</span>
+                Datos que recopilamos
+            </h2>
+            <div class="section-content">
+                <p>Podemos recopilar información básica de contacto como <strong>nombre, correo electrónico y país de residencia</strong>, únicamente cuando:</p>
+                <ul>
+                    <li>Te suscribes a nuestro newsletter <strong>Estrategia desde Adentro</strong></li>
+                    <li>Descargas materiales o guías estratégicas</li>
+                    <li>Solicitas una sesión o diagnóstico</li>
+                    <li>Te comunicas a través de formularios o redes sociales oficiales</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- SECCIÓN 2 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-number">2</span>
+                Uso de la información
+            </h2>
+            <div class="section-content">
+                <p>Utilizamos tus datos con el propósito de:</p>
+                <ul>
+                    <li>Enviarte contenido educativo y estratégico alineado a tus intereses</li>
+                    <li>Gestionar comunicaciones personalizadas o recordatorios de sesiones</li>
+                    <li>Mejorar nuestros servicios y experiencias digitales</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><strong>Nunca compartimos, vendemos ni cedemos tus datos a terceros ajenos a nuestras operaciones.</strong></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SECCIÓN 3 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-number">3</span>
+                Protección de la información
+            </h2>
+            <div class="section-content">
+                <p>Tus datos personales se almacenan de manera segura y solo son accesibles para el equipo autorizado de La Estratega, con el objetivo exclusivo de cumplir las finalidades descritas.</p>
+            </div>
+        </div>
+        
+        <!-- SECCIÓN 4 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-number">4</span>
+                Derechos del usuario
+            </h2>
+            <div class="section-content">
+                <p>En cualquier momento puedes:</p>
+                <ul>
+                    <li>Solicitar acceso, actualización o eliminación de tus datos</li>
+                    <li>Cancelar tu suscripción a cualquier comunicación con un solo clic</li>
+                </ul>
+                <p style="margin-top: 20px;"><strong>Para ejercer tus derechos, escríbenos a:</strong></p>
+                <div class="contact-info">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <a href="mailto:laestratega.latam@gmail.com">laestratega.latam@gmail.com</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SECCIÓN 5 -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="section-number">5</span>
+                Actualizaciones
+            </h2>
+            <div class="section-content">
+                <p>Esta política puede actualizarse periódicamente para reflejar mejoras en nuestros procesos de protección de datos. La versión vigente siempre estará disponible en nuestro sitio oficial:</p>
+                <div class="contact-info">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                    </svg>
+                    <a href="https://laestratega.github.io/latam/" target="_blank">https://laestratega.github.io/latam/</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- COMMITMENT BOX -->
+        <div class="commitment-box">
+            <div class="commitment-content">
+                <h3 class="commitment-title">
+                    <svg class="commitment-icon" viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polygon fill="#7eb3d6" points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+                    </svg>
+                    Compromiso de la marca
+                </h3>
+                <p class="commitment-text">
+                    En La Estratega creemos que la confianza también se construye con claridad. Así como trabajamos la estrategia desde adentro, también cuidamos tu información con responsabilidad y transparencia.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <div class="footer">
+        <div class="footer-brand">LA ESTR<span class="red">A</span>TEGA</div>
+        <div class="footer-quote">"Primero excavamos, luego diferenciamos."</div>
+        <div style="margin-top: 8px; font-size: 0.95em;">Consultora en Estrategia y Diferenciación para PYMEs LATAM</div>
+        
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/laestrategalatam/" target="_blank">LinkedIn</a>
+            <span style="color: #7eb3d6;">•</span>
+            <a href="https://www.facebook.com/laestratega.latam/" target="_blank">Facebook</a>
+            <span style="color: #7eb3d6;">•</span>
+            <a href="https://www.linkedin.com/newsletters/estrategias-desde-adentro-7269547187825528833/" target="_blank">Newsletter</a>
+            <span style="color: #7eb3d6;">•</span>
+            <a href="https://laestratega.github.io/latam/" target="_blank">Sitio Web</a>
+        </div>
+        
+        <div class="footer-small">
+            © 2025 La Estratega™ • Todos los derechos reservados
+        </div>
+    </div>
+</body>
+</html>
