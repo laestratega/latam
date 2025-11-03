@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Foco Estratégico Personal™ — La Estratega</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    @page {
+      size: letter;
+      margin: 0;
+    }
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    .page {
+      max-width: 8.5in;
+      margin: 20px auto;
+      background: white;
+      position: relative;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+      padding: 40px 40px 35px;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 50%, rgba(126, 179, 214, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .star {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #7eb3d6 0%, #a3c9e2 100%);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      margin: 0 auto 15px;
+      filter: drop-shadow(0 4px 8px rgba(126, 179, 214, 0.3));
+    }
+    
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2em;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    
+    .divider-line {
+      width: 200px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, #7eb3d6 50%, transparent 100%);
+      margin: 15px auto;
+    }
+    
+    .header .red {
+      color: #E31E24;
+    }
+    
+    .tagline {
+      font-size: 0.95em;
+      color: #7eb3d6;
+      font-weight: 300;
+      margin-top: 10px;
+    }
+    
+    .label-tag {
+      font-size: 0.75em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #7eb3d6;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    
+    /* CONTENT */
+    .content {
+      padding: 40px 40px 40px;
+    }
+    
+    /* LEAD BOX */
+    .lead-box {
+      background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+      padding: 30px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .lead-box::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 80% 20%, rgba(126, 179, 214, 0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    
+    .lead-box-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .lead-box p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2em;
+      color: white;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    /* SECTION TITLE */
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8em;
+      color: #1e2d3d;
+      margin: 45px 0 25px;
+      position: relative;
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: #E31E24;
+    }
+    
+    .section-title svg {
+      width: 28px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    
+    /* TWO COLUMN GRID */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin: 25px 0;
+    }
+    
+    /* INFO BOX */
+    .info-box {
+      background: linear-gradient(135deg, rgba(126, 179, 214, 0.05) 0%, rgba(180, 157, 214, 0.05) 100%);
+      padding: 25px;
+      border-left: 4px solid #7eb3d6;
+      border-radius: 8px;
+    }
+    
+    .info-box h3 {
+      font-size: 1.1em;
+      color: #1e2d3d;
+      margin-bottom: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .info-box h3 svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .info-box p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95em;
+      margin: 0;
+    }
+    
+    /* PROBLEM BOX */
+    .problem-box {
+      background: linear-gradient(135deg, rgba(227, 30, 36, 0.08) 0%, rgba(183, 28, 76, 0.08) 100%);
+      padding: 25px;
+      border-left: 4px solid #E31E24;
+      border-radius: 8px;
+    }
+    
+    .problem-box h3 {
+      font-size: 1.1em;
+      color: #1e2d3d;
+      margin-bottom: 12px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .problem-box h3 svg {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .problem-box p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95em;
+      margin: 0;
+    }
+    
+    /* SOLUTION BOX */
+    .solution-box {
+      background: linear-gradient(135deg, rgba(126, 179, 214, 0.1) 0%, rgba(180, 157, 214, 0.1) 100%);
+      padding: 25px;
+      border-left: 4px solid #7eb3d6;
+      border-radius: 8px;
+      margin: 25px 0;
+    }
+    
+    .solution-box p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95em;
+      margin: 0;
+    }
+    
+    /* QUOTE BOX */
+    .quote-box {
+      background: linear-gradient(135deg, rgba(227, 30, 36, 0.05) 0%, rgba(183, 28, 76, 0.05) 100%);
+      padding: 25px;
+      border-left: 4px solid #E31E24;
+      border-radius: 8px;
+      margin: 25px 0;
+    }
+    
+    .quote-box p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15em;
+      color: #1e2d3d;
+      font-style: italic;
+      margin: 0;
+      line-height: 1.6;
+    }
+    
+    /* BENEFIT LIST */
+    .benefit-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    
+    .benefit-list li {
+      padding: 12px 0 12px 35px;
+      position: relative;
+      color: #666;
+      line-height: 1.6;
+      font-size: 0.95em;
+    }
+    
+    .benefit-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 12px;
+      color: #7eb3d6;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    
+    /* PILLARS GRID */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin: 25px 0 40px;
+    }
+    
+    .pillar-card {
+      background: linear-gradient(135deg, rgba(126, 179, 214, 0.03) 0%, rgba(180, 157, 214, 0.03) 100%);
+      padding: 25px;
+      border-radius: 8px;
+      border: 1px solid rgba(126, 179, 214, 0.2);
+      text-align: center;
+    }
+    
+    .pillar-icon {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .pillar-icon svg {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .pillar-card h4 {
+      font-size: 1.1em;
+      color: #1e2d3d;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+    
+    .pillar-card p {
+      color: #666;
+      font-size: 0.9em;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    /* TABLE */
+    .process-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+      font-size: 0.9em;
+    }
+    
+    .process-table th {
+      background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    
+    .process-table td {
+      padding: 15px 12px;
+      border-bottom: 1px solid rgba(126, 179, 214, 0.2);
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .process-table tr:hover {
+      background: rgba(126, 179, 214, 0.03);
+    }
+    
+    .process-table strong {
+      color: #1e2d3d;
+    }
+    
+    /* DELIVERABLES */
+    .deliverables-list {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+    
+    .deliverables-list li {
+      padding: 15px 20px;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, rgba(126, 179, 214, 0.05) 0%, rgba(180, 157, 214, 0.05) 100%);
+      border-left: 4px solid #7eb3d6;
+      border-radius: 8px;
+      color: #666;
+      font-size: 0.95em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .deliverables-list li::before {
+      content: '📘';
+      font-size: 1.3em;
+      flex-shrink: 0;
+    }
+    
+    /* PRICING */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin: 25px 0;
+    }
+    
+    .pricing-card {
+      background: linear-gradient(135deg, rgba(126, 179, 214, 0.05) 0%, rgba(180, 157, 214, 0.05) 100%);
+      padding: 30px;
+      border-radius: 8px;
+      border: 2px solid #7eb3d6;
+      text-align: center;
+    }
+    
+    .pricing-card.featured {
+      border: 2px solid #E31E24;
+      background: linear-gradient(135deg, rgba(227, 30, 36, 0.03) 0%, rgba(183, 28, 76, 0.03) 100%);
+    }
+    
+    .pricing-card h4 {
+      font-size: 1.3em;
+      color: #1e2d3d;
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    
+    .pricing-card .duration {
+      font-size: 0.9em;
+      color: #7eb3d6;
+      margin-bottom: 15px;
+    }
+    
+    .pricing-card .price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5em;
+      color: #E31E24;
+      font-weight: 700;
+      margin: 15px 0;
+    }
+    
+    .pricing-card .features {
+      text-align: left;
+      margin-top: 20px;
+      font-size: 0.85em;
+      color: #666;
+      line-height: 1.8;
+    }
+    
+    /* CTA SECTION */
+    .cta-section {
+      background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+      padding: 40px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(126, 179, 214, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    
+    .cta-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8em;
+      color: white;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .cta-section p {
+      color: #7eb3d6;
+      font-size: 1em;
+      margin-bottom: 25px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .btn-primary {
+      background: #E31E24;
+      color: white;
+      padding: 15px 35px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95em;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .btn-primary:hover {
+      background: #c41a1f;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(227, 30, 36, 0.3);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      padding: 15px 35px;
+      border: 2px solid #7eb3d6;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95em;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .btn-secondary:hover {
+      background: #7eb3d6;
+      color: #1e2d3d;
+      transform: translateY(-2px);
+    }
+    
+    /* FOOTER */
+    .footer {
+      background: #1e2d3d;
+      color: #7eb3d6;
+      padding: 30px 40px;
+      text-align: center;
+      font-size: 0.85em;
+    }
+    
+    .footer .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4em;
+      color: white;
+      margin-bottom: 8px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    
+    .footer .quote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: #7eb3d6;
+      margin: 10px 0;
+      font-size: 0.95em;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      align-items: center;
+      margin: 15px 0;
+    }
+    
+    .footer-links a {
+      color: #7eb3d6;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .small-text {
+      font-size: 0.8em;
+      color: #999;
+      margin-top: 15px;
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .page {
+        margin: 0;
+      }
+      
+      .header,
+      .content {
+        padding: 30px 20px;
+      }
+      
+      .two-col,
+      .pillars-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .process-table {
+        font-size: 0.75em;
+      }
+      
+      .process-table th,
+      .process-table td {
+        padding: 8px;
+      }
+      
+      .cta-section {
+        padding: 30px 20px;
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+      }
+      
+      .footer {
+        padding: 25px 20px;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+    
+    @media print {
+      .page {
+        margin: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-content">
+        <div class="star"></div>
+        <div class="label-tag">Mentoría de Autenticidad Estratégica™</div>
+        <h1>FOCO ESTR<span class="red">A</span>TÉGICO PERSONAL™</h1>
+        <div class="divider-line"></div>
+        <div class="tagline">No es un programa de marketing. Es una excavación breve, precisa y reveladora del líder detrás de la marca</div>
+      </div>
+    </div>
+    
+    <!-- CONTENT -->
+    <div class="content">
+      <!-- LEAD -->
+      <div class="lead-box">
+        <div class="lead-box-content">
+          <p><strong>Tu claridad interna es tu estrategia externa.</strong> Una mentoría individual intensiva para profesionales senior que sienten que su marca personal ya no refleja la profundidad de lo que realmente son.</p>
+        </div>
+      </div>
+      
+      <!-- PARA QUIEN + PROBLEMA -->
+      <div class="two-col">
+        <div class="info-box">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+            ¿Para quién es este programa?
+          </h3>
+          <p>Consultores, coaches, conferencistas y formadores senior con 10+ años de experiencia que desean rediseñar su posicionamiento y narrativa profesional desde la autenticidad, fusionando propósito, claridad y estrategia de diferenciación.</p>
+        </div>
+        
+        <div class="problem-box">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="#E31E24">
+              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+            </svg>
+            Problema que resolvemos
+          </h3>
+          <p>Tu discurso ya no te representa. Tus servicios se perciben genéricos o confusos. Has acumulado experiencia, pero careces de una narrativa coherente y diferenciadora. <strong>Te ayudamos a reencontrarte con tu propósito y comunicar desde tu verdad excavada.</strong></p>
+        </div>
+      </div>
+      
+      <!-- PROPUESTA -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="#7eb3d6">
+          <circle cx="12" cy="12" r="10"/>
+        </svg>
+        Nuestra propuesta única
+      </h2>
+      
+      <div class="solution-box">
+        <p>FOCO ESTRATÉGICO PERSONAL™ no enseña a venderse mejor, sino a <strong>reconocerse con precisión</strong>. Combina herramientas de introspección estratégica (EXCAVA™) con frameworks de diferenciación (MAPEA™), en un formato ágil y profundo. Es el único programa que integra coaching estratégico, branding personal y narrativa identitaria bajo un mismo proceso de excavación.</p>
+      </div>
+      
+      <!-- METODOLOGIA -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="#1e2d3d">
+          <path d="M12 2l2.4 7.4h7.6l-6 4.6 2.3 7-6.3-4.6-6.3 4.6 2.3-7-6-4.6h7.6z"/>
+        </svg>
+        Modelo E3™ — Explora · Enfoca · Encadena
+      </h2>
+      
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#1e2d3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon fill="#1e2d3d" points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+            </svg>
+          </div>
+          <h4>Explora</h4>
+          <p><strong>Excavación interior.</strong> Descubrimiento de rareza, propósito y esencia profunda que sostiene tu diferenciación.</p>
+        </div>
+        
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="#7eb3d6">
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+          </div>
+          <h4>Enfoca</h4>
+          <p><strong>Claridad estructural.</strong> Redefinición de posicionamiento, narrativa de valor y arquitectura de marca personal coherente.</p>
+        </div>
+        
+        <div class="pillar-card">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#E31E24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="19" x2="12" y2="5"/>
+              <polyline points="5 12 12 5 19 12"/>
+            </svg>
+          </div>
+          <h4>Encadena</h4>
+          <p><strong>Activación visible.</strong> Plan coherente de comunicación y presencia que convierte claridad en visibilidad sostenible.</p>
+        </div>
+      </div>
+      
+      <!-- PROCESO -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        Estructura del proceso — 5 semanas
+      </h2>
+      
+      <table class="process-table">
+        <thead>
+          <tr>
+            <th>Sesión</th>
+            <th>Tema</th>
+            <th>Propósito</th>
+            <th>Entregable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1</strong></td>
+            <td><strong>Excavación Personal</strong></td>
+            <td>Descubrir esencia, propósito y rarezas únicas</td>
+            <td>Mapa de Rareza Personal™</td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td><strong>Claridad de Diferenciación</strong></td>
+            <td>Definir eje único y narrativa de valor</td>
+            <td>Manifiesto Personal de Valor™</td>
+          </tr>
+          <tr>
+            <td><strong>3</strong></td>
+            <td><strong>Arquitectura de Marca</strong></td>
+            <td>Estructurar narrativa profesional y tagline</td>
+            <td>Blueprint de Marca Personal™</td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td><strong>Discurso Estratégico</strong></td>
+            <td>Diseñar bio, storytelling y pitch coherente</td>
+            <td>Guía de Mensaje Estratégico™</td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td><strong>Activación y Visibilidad</strong></td>
+            <td>Convertir claridad en presencia coherente</td>
+            <td>Plan de Comunicación 30 días™</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <p style="color: #666; font-size: 0.95em; line-height: 1.7; margin-top: 20px;"><strong>Formato:</strong> Mentoría 1:1 (virtual o híbrida) • 1 sesión semanal (60–90 min) • Materiales personalizados + acompañamiento entre sesiones</p>
+      
+      <!-- ENTREGABLES -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1e2d3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+        Entregables con sello La Estratega™
+      </h2>
+      
+      <ul class="deliverables-list">
+        <li>Mapa de Rareza Personal™</li>
+        <li>Manifiesto de Valor Profesional™</li>
+        <li>Blueprint de Marca Personal™</li>
+        <li>Guía de Mensaje Estratégico™</li>
+        <li>Plan de Comunicación Coherente 30 días™</li>
+      </ul>
+      
+      <p class="small-text">Todos los entregables en formato editable con identidad institucional La Estratega™</p>
+      
+      <!-- RESULTADOS -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E31E24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="19" x2="12" y2="5"/>
+          <polyline points="5 12 12 5 19 12"/>
+        </svg>
+        Resultados esperados
+      </h2>
+      
+      <ul class="benefit-list">
+        <li>Habrás redescubierto tu propósito profesional con claridad estratégica</li>
+        <li>Tendrás una narrativa de marca personal coherente y diferenciada</li>
+        <li>Podrás comunicar con confianza y elegancia tu valor único</li>
+        <li>Habrás diseñado un plan de comunicación alineado con tu autenticidad</li>
+      </ul>
+      
+      <div class="quote-box">
+        <p>"Una marca personal con alma, estrategia y coherencia."</p>
+      </div>
+      
+      <!-- ES PARA TI -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E31E24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        ¿Es para ti?
+      </h2>
+      
+      <div class="two-col">
+        <div class="info-box">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            SÍ, si tú eres:
+          </h3>
+          <p>• Líder independiente con experiencia sólida<br>
+          • Profesional que ya no se reconoce en su discurso actual<br>
+          • Experto que desea posicionarse desde su autenticidad<br>
+          • Persona dispuesta a hacer trabajo introspectivo profundo</p>
+        </div>
+        
+        <div class="problem-box">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="#E31E24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+            NO está diseñado para:
+          </h3>
+          <p>• Emprendedores en etapa inicial sin claridad profesional<br>
+          • Quienes buscan un programa de marketing o visibilidad rápida<br>
+          • Personas que no están dispuestas a confrontar verdades incómodas</p>
+        </div>
+      </div>
+      
+      <!-- INVERSIÓN -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#7eb3d6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="1" x2="12" y2="23"/>
+          <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        </svg>
+        Inversión y modalidades
+      </h2>
+      
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h4>Versión Concentrada</h4>
+          <div class="duration">3 semanas intensivas</div>
+          <div class="price">$650</div>
+          <div class="features">
+            ✓ 3 sesiones 1:1 de 90 minutos<br>
+            ✓ Materiales personalizados<br>
+            ✓ Acompañamiento entre sesiones<br>
+            ✓ Entregables editables
+          </div>
+        </div>
+        
+        <div class="pricing-card featured">
+          <h4>Programa Completo</h4>
+          <div class="duration">5 semanas</div>
+          <div class="price">$950</div>
+          <div class="features">
+            ✓ 5 sesiones 1:1 de 60–90 minutos<br>
+            ✓ Todos los entregables™<br>
+            ✓ Acompañamiento personalizado<br>
+            ✓ Seguimiento post-programa<br>
+            <strong style="color: #E31E24;">+ Sesión de revisión opcional (+$150)</strong>
+          </div>
+        </div>
+      </div>
+      
+      <p style="color: #666; font-size: 0.9em; line-height: 1.7; text-align: center; margin-top: 20px;">
+        <strong>Posicionamiento:</strong> Mentoría premium de rediseño de marca personal para profesionales senior que valoran la profundidad sobre la velocidad.
+      </p>
+      
+      <!-- FRASES CLAVE -->
+      <h2 class="section-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#1e2d3d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        Lo que dicen nuestros participantes
+      </h2>
+      
+      <div class="quote-box">
+        <p>"No es marketing. Es claridad estratégica aplicada a tu identidad."</p>
+      </div>
+      
+      <div class="quote-box">
+        <p>"El siguiente paso en tu carrera no es crecer. Es reenfocarte."</p>
+      </div>
+      
+      <div class="quote-box">
+        <p>"Cuando descubres tu rareza, desaparece la competencia."</p>
+      </div>
+      
+      <!-- CTA -->
+      <div class="cta-section">
+        <h3>¿Listo/a para redescubrirte?</h3>
+        <p>Si estás preparado/a para reencontrarte con tu propósito, diseñar una narrativa coherente y comunicar desde tu autenticidad, conversemos. Tengo <strong>espacios limitados</strong> para mentoría individual.</p>
+        
+        <div class="cta-buttons">
+          <a class="btn-primary" href="https://wa.me/50376578075?text=Hola%20Glenda,%20quiero%20conocer%20m%C3%A1s%20sobre%20Foco%20Estrat%C3%A9gico%20Personal">Agendar conversación exploratoria</a>
+          <a class="btn-secondary" href="mailto:laestratega.latam@gmail.com">Escríbeme por email</a>
+        </div>
+      </div>
+      
+      <!-- CIERRE FILOSOFICO -->
+      <div style="text-align: center; margin: 40px 0;">
+        <p style="font-family: 'Playfair Display', serif; font-size: 1.3em; color: #1e2d3d; font-style: italic; line-height: 1.6;">
+          FOCO ESTRATÉGICO PERSONAL™ existe para profesionales<br>que ya saben hacer, pero ahora quieren ser<br><strong>recordados por quiénes son.</strong>
+        </p>
+      </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="brand">LA ESTR<span style="color: #E31E24;">A</span>TEGA™</div>
+      <div class="quote">"Primero excavamos, luego diferenciamos."</div>
+      <div style="margin-top: 8px;">Mentoría de Autenticidad Estratégica™ | San Salvador, El Salvador</div>
+      
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/laestrategalatam/" target="_blank">LinkedIn</a>
+        <span style="color: #7eb3d6;">•</span>
+        <a href="https://www.facebook.com/laestratega.latam/" target="_blank">Facebook</a>
+        <span style="color: #7eb3d6;">•</span>
+        <a href="https://www.linkedin.com/newsletters/estrategias-desde-adentro-7269547187825528833/" target="_blank">Newsletter</a>
+      </div>
+      
+      <div class="small-text">© 2025 La Estratega™ • Todos los derechos reservados • Foco Estratégico Personal™</div>
+    </div>
+  </div>
+</body>
+</html>
