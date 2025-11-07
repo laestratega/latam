@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quién está detrás de LA ESTRATEGA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to bottom, #f8f9fa 0%, white 100%);
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        }
+
+        /* HEADER */
+        .hero {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: white;
+            padding: 100px 60px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="rgba(126,179,214,0.1)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .star-accent {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #7eb3d6 0%, #7eb3d6 100%);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            margin: 0 auto 30px;
+            filter: drop-shadow(0 4px 8px rgba(126, 179, 214, 0.3));
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3em;
+            color: #7eb3d6;
+            font-weight: 300;
+            margin-top: 20px;
+        }
+
+        .divider-line {
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, #7eb3d6 50%, transparent 100%);
+            margin: 30px auto;
+        }
+
+        /* CONTENT */
+        .content {
+            padding: 80px 60px;
+        }
+
+        .name-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            color: #1e2d3d;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .titles {
+            font-size: 1.2em;
+            color: #7eb3d6;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .intro-box {
+            background: linear-gradient(135deg, #7eb3d6 0%, #5a9bbf 100%);
+            color: white;
+            padding: 50px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .intro-box p {
+            font-size: 1.5em;
+            line-height: 1.8;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .intro-box .quote-mark {
+            font-size: 4em;
+            color: rgba(255,255,255,0.3);
+            line-height: 0;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .text-block {
+            margin-bottom: 30px;
+        }
+
+        .text-block p {
+            font-size: 1.15em;
+            line-height: 2;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        .text-block strong {
+            color: #1e2d3d;
+            font-weight: 600;
+        }
+
+        /* HIGHLIGHT BOX */
+        .highlight-box {
+            background: linear-gradient(to right, #fff5f5 0%, #f8f9fa 100%);
+            border-left: 5px solid #E31E24;
+            padding: 40px;
+            margin: 50px 0;
+            border-radius: 8px;
+        }
+
+        .highlight-box p {
+            font-size: 1.3em;
+            line-height: 1.9;
+            color: #1e2d3d;
+            font-style: italic;
+        }
+
+        /* METHODOLOGIES SECTION */
+        .methodologies {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            color: #1e2d3d;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #7eb3d6;
+        }
+
+        .methodology-card {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border-top: 5px solid #7eb3d6;
+        }
+
+        .methodology-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #7eb3d6;
+            margin-bottom: 15px;
+        }
+
+        .methodology-card p {
+            font-size: 1.1em;
+            line-height: 1.9;
+            color: white;
+        }
+
+        /* FORMATION SECTION */
+        .formation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .formation-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #7eb3d6;
+        }
+
+        .formation-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: #1e2d3d;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .formation-card p {
+            font-size: 0.95em;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* PHILOSOPHY SECTION */
+        .philosophy-box {
+            background: linear-gradient(135deg, #B49DD6 0%, #9b7ec4 100%);
+            color: white;
+            padding: 60px 50px;
+            border-radius: 12px;
+            margin: 60px 0;
+            text-align: center;
+        }
+
+        .philosophy-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            margin-bottom: 30px;
+        }
+
+        .philosophy-box p {
+            font-size: 1.4em;
+            line-height: 1.9;
+            font-weight: 300;
+        }
+
+        .philosophy-box .emphasis {
+            font-size: 1.8em;
+            font-weight: 600;
+            display: block;
+            margin-top: 30px;
+            color: #1e2d3d;
+        }
+
+        /* CLOSING STATEMENT */
+        .closing {
+            background: linear-gradient(to right, #f0f8ff 0%, white 100%);
+            padding: 50px;
+            border-radius: 12px;
+            border-left: 5px solid #7eb3d6;
+            margin: 60px 0 40px;
+        }
+
+        .closing p {
+            font-size: 1.25em;
+            line-height: 2;
+            color: #1e2d3d;
+        }
+
+        .closing .final-word {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #E31E24;
+            margin-top: 30px;
+            font-style: italic;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: white;
+            padding: 60px;
+            text-align: center;
+        }
+
+        .footer .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .footer .highlight {
+            color: #E31E24;
+        }
+
+        .footer .tagline {
+            font-size: 1.3em;
+            color: #7eb3d6;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        .footer .info {
+            font-size: 0.95em;
+            color: white;
+            margin-top: 40px;
+            line-height: 2;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 30px 50px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            
+            .content {
+                padding: 50px 30px;
+            }
+            
+            .name {
+                font-size: 2em;
+            }
+            
+            .intro-box {
+                padding: 30px;
+            }
+            
+            .intro-box p {
+                font-size: 1.2em;
+            }
+            
+            .methodology-card {
+                padding: 25px;
+            }
+            
+            .formation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* PRINT */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            .hero {
+                background: #1e2d3d;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- HERO SECTION -->
+        <div class="hero">
+            <div class="hero-content">
+                <div class="star-accent"></div>
+                <h1>QUIÉN ESTÁ DETRÁS<br>DE LA ESTR<span style="color: #E31E24;">A</span>TEGA</h1>
+                <div class="divider-line"></div>
+                <p class="subtitle">La mujer que excavó su rareza para transformar<br>la manera en que las PYMEs se diferencian</p>
+            </div>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+            
+            <!-- NAME -->
+            <div class="name-section">
+                <h2 class="name">GLENDA XIOMARA<br>FABIAN ECHEGOYEN</h2>
+                <p class="titles">CEO de Grupo Crece+ | Fundadora de LA ESTRATEGA LATAM</p>
+            </div>
+
+            <!-- INTRO BOX -->
+            <div class="intro-box">
+                <span class="quote-mark">"</span>
+                <p>
+                    La verdadera diferenciación no nace del producto,<br>
+                    sino de la autenticidad del líder que lo construye.
+                </p>
+            </div>
+
+            <!-- MAIN TEXT -->
+            <div class="text-block">
+                <p>
+                    <strong>Glenda Xiomara Fabian Echegoyen</strong> es CEO de Grupo Crece+ y fundadora de LA ESTRATEGA LATAM, firma especializada en crear diferenciación estratégica imposible de copiar para PYMEs latinoamericanas.
+                </p>
+
+                <p>
+                    Basada en El Salvador, ha dedicado más de 25 años a transformar empresas desde una premisa radical que desafía todo lo que el mercado tradicional predica sobre diferenciación.
+                </p>
+
+                <p>
+                    Su trayectoria abarca múltiples industrias —farmacéutica, financiera, venta directa, retail, tecnología, ingeniería, bienes raíces, automotriz y distribución— habiendo trabajado con más de 25 empresas regionales en El Salvador, Honduras, Guatemala, Costa Rica y República Dominicana.
+                </p>
+            </div>
+
+            <div class="highlight-box">
+                <p>
+                    Esta diversidad de experiencia le ha permitido detectar patrones que otros consultores, limitados a un solo sector, no ven.
+                </p>
+            </div>
+
+            <!-- METHODOLOGIES -->
+            <div class="methodologies">
+                <h2 class="section-title">Las Tres Metodologías Propietarias</h2>
+                
+                <div class="methodology-card">
+                    <h3>🔹 EXCAVA™</h3>
+                    <p>
+                        Un proceso de excavación estratégica que conecta la autenticidad del líder con las necesidades reales del mercado. No es coaching motivacional ni análisis superficial — es arqueología empresarial profunda.
+                    </p>
+                </div>
+
+                <div class="methodology-card">
+                    <h3>🔹 La Estrategia de la Rareza™</h3>
+                    <p>
+                        Un framework de seis dimensiones que estructura la diferenciación desde el núcleo del liderazgo. Define proceso, criterio, combinación, postura, obsesión y urgencia como las coordenadas de la autenticidad estratégica.
+                    </p>
+                </div>
+
+                <div class="methodology-card">
+                    <h3>🔹 MAPEA™</h3>
+                    <p>
+                        Permite visualizar y navegar el recorrido estratégico con claridad y foco. Transforma la abstracción en acción concreta, convirtiendo insights en rutas ejecutables.
+                    </p>
+                </div>
+
+                <div class="text-block" style="margin-top: 40px;">
+                    <p>
+                        Estas metodologías fueron desarrolladas durante <strong>seis años de práctica real con PYMEs latinoamericanas</strong>, no en un aula académica — y hoy constituyen una base inédita de conocimiento estratégico adaptado a la realidad empresarial de la región.
+                    </p>
+                </div>
+            </div>
+
+            <!-- FORMATION -->
+            <div class="methodologies">
+                <h2 class="section-title">Formación y Expertise</h2>
+                
+                <div class="formation-grid">
+                    <div class="formation-card">
+                        <h4>Marketing Analytics (ENEB)</h4>
+                        <p>Especializada en toma de decisiones estratégicas basadas en datos y análisis de comportamiento del mercado.</p>
+                    </div>
+
+                    <div class="formation-card">
+                        <h4>Design Thinking</h4>
+                        <p>Metodología centrada en innovación, experiencia de usuario y solución de problemas creativos aplicada a estrategia.</p>
+                    </div>
+
+                    <div class="formation-card">
+                        <h4>Coaching Ejecutivo (ICC)</h4>
+                        <p>Certificación oficial del Instituto Canario de Coaching en transformación de líderes y desarrollo ejecutivo.</p>
+                    </div>
+
+                    <div class="formation-card">
+                        <h4>Programación Neurolingüística</h4>
+                        <p>Practitioner certificado en PNL, permitiendo trabajar la transformación del líder a nivel profundo y neurológico.</p>
+                    </div>
+
+                    <div class="formation-card">
+                        <h4>Advanced Certification</h4>
+                        <p>Análisis estratégico basado en métricas y rendimiento empresarial para toma de decisiones con fundamento cuantitativo.</p>
+                    </div>
+
+                    <div class="formation-card">
+                        <h4>Estrategia de Océanos Azules</h4>
+                        <p>Creación de espacios de mercado no disputados, adaptado específicamente a la realidad de PYMEs LATAM.</p>
+                    </div>
+                </div>
+
+                <div class="text-block" style="margin-top: 40px;">
+                    <p>
+                        Glenda combina la <strong>Estrategia de Océanos Azules</strong> con coaching ejecutivo y análisis de datos, creando una metodología híbrida única en la región que integra autenticidad, estrategia y métricas en un solo proceso coherente.
+                    </p>
+                </div>
+            </div>
+
+            <!-- PHILOSOPHY -->
+            <div class="philosophy-box">
+                <h3>Su Pensamiento Desafía la Narrativa Dominante</h3>
+                <p>
+                    "Mientras la mayoría de consultores se enfoca en marketing y branding, yo sostengo que el liderazgo del dueño de PYME es tan importante como su negocio, porque el orden inicia en la mente."
+                </p>
+                <span class="emphasis">No busca que las empresas brillen.<br>Busca que iluminen.</span>
+            </div>
+
+            <!-- CLOSING -->
+            <div class="closing">
+                <p>
+                    Su filosofía es clara y contundente:
+                </p>
+                <p class="final-word">
+                    "Primero excavamos. Luego diferenciamos."
+                </p>
+                <p style="margin-top: 30px;">
+                    Porque la diferenciación sin autoconocimiento es solo decoración superficial.<br>
+                    Y la decoración se copia.<br>
+                    <strong style="color: #E31E24;">La rareza auténtica, no.</strong>
+                </p>
+            </div>
+
+            <!-- ADDITIONAL INFO -->
+            <div class="text-block" style="margin-top: 60px; text-align: center;">
+                <p style="font-size: 1.1em; color: #7eb3d6;">
+                    <strong>Glenda Xiomara Fabian Echegoyen</strong> no es una consultora más.<br>
+                    Es una arqueóloga de liderazgo que excava verdades incómodas<br>
+                    para construir diferenciación imposible de replicar.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="star-accent" style="margin: 0 auto 30px;"></div>
+            <div class="logo">
+                LA ESTR<span class="highlight">A</span>TEGA
+            </div>
+            <div class="divider-line"></div>
+            <p class="tagline">
+                "Primero excavamos. Luego diferenciamos."
+            </p>
+            <div class="info">
+                <p>
+                    <strong>Glenda Xiomara Fabian Echegoyen</strong><br>
+                    CEO Grupo Crece+ | Fundadora LA ESTRATEGA LATAM<br>
+                    El Salvador | Cobertura Regional LATAM
+                </p>
+                <p style="margin-top: 30px; font-size: 0.85em;">
+                    Creadora de Océanos Azules para PYMEs Latinoamericanas<br>
+                    Especialista en Diferenciación Estratégica Basada en Autenticidad del Líder
+                </p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
