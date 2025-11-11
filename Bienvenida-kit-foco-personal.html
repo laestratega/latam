@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOCO Estratégico Personal™ — LA ESTRATEGA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --azul-oscuro: #1E2D3D;
+            --lavanda: #B49DD6;
+            --gris-claro: #F4F4F4;
+            --rojo-estratega: #E31E24;
+            --blanco: #ffffff;
+            --azul-claridad: #7eb3d6;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--azul-oscuro);
+            background: var(--blanco);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--blanco);
+        }
+        
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, #2b3a49 100%);
+            padding: 80px 60px;
+            text-align: center;
+            color: var(--blanco);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(126, 179, 214, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 400;
+            position: relative;
+        }
+        
+        .header .program-name {
+            color: var(--lavanda);
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .divider-line {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--azul-claridad), transparent);
+            margin: 30px auto;
+        }
+        
+        .header .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2em;
+            font-style: italic;
+            color: var(--azul-claridad);
+            margin-bottom: 25px;
+        }
+        
+        .header .location {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 20px;
+        }
+        
+        /* CONTENT */
+        .content {
+            padding: 60px;
+        }
+        
+        .section {
+            margin-bottom: 70px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            color: var(--azul-oscuro);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1em;
+            color: var(--lavanda);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .section-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .section-text strong {
+            color: var(--rojo-estratega);
+            font-weight: 600;
+        }
+        
+        /* QUOTE BOX */
+        .quote-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, var(--gris-claro) 100%);
+            padding: 35px 40px;
+            border-radius: 12px;
+            border-left: 5px solid var(--lavanda);
+            margin: 30px 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3em;
+            font-style: italic;
+            color: var(--azul-oscuro);
+            text-align: center;
+        }
+        
+        /* WELCOME BOX */
+        .welcome-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, var(--gris-claro) 100%);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid var(--rojo-estratega);
+            margin-top: 25px;
+        }
+        
+        /* PHILOSOPHY BOX */
+        .philosophy-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid var(--rojo-estratega);
+            margin: 30px 0;
+        }
+        
+        .philosophy-box .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            font-style: italic;
+            color: var(--rojo-estratega);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .philosophy-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .philosophy-list li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            font-size: 1.05em;
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        .philosophy-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--rojo-estratega);
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+        
+        /* TABLE STYLES */
+        .sessions-table,
+        .methodology-table,
+        .deliverables-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: var(--blanco);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .sessions-table thead,
+        .methodology-table thead,
+        .deliverables-table thead {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, #2b3a49 100%);
+            color: var(--blanco);
+        }
+        
+        .sessions-table th,
+        .methodology-table th,
+        .deliverables-table th {
+            padding: 18px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.9em;
+            letter-spacing: 0.3px;
+        }
+        
+        .sessions-table td,
+        .methodology-table td,
+        .deliverables-table td {
+            padding: 20px 18px;
+            border-bottom: 1px solid #e8e8e8;
+            vertical-align: top;
+        }
+        
+        .sessions-table tr:last-child td,
+        .methodology-table tr:last-child td,
+        .deliverables-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .sessions-table td:first-child {
+            font-weight: 700;
+            color: var(--rojo-estratega);
+            font-size: 1em;
+            width: 25%;
+        }
+        
+        .methodology-table td:first-child,
+        .deliverables-table td:first-child {
+            font-weight: 700;
+            color: var(--azul-oscuro);
+            width: 35%;
+        }
+        
+        /* DURATION BOX */
+        .duration-box {
+            background: var(--gris-claro);
+            padding: 35px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        
+        .duration-item {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .duration-item:last-child {
+            border-bottom: none;
+        }
+        
+        .duration-label {
+            font-weight: 700;
+            color: var(--azul-oscuro);
+            min-width: 180px;
+        }
+        
+        .duration-value {
+            color: #555;
+            flex: 1;
+        }
+        
+        /* COMMITMENT BOX */
+        .commitment-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid var(--rojo-estratega);
+            margin: 30px 0;
+        }
+        
+        .commitment-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: var(--azul-oscuro);
+            margin-bottom: 20px;
+        }
+        
+        .commitment-box .intro {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--rojo-estratega);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .commitment-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .commitment-list li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            font-size: 1em;
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        .commitment-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--rojo-estratega);
+            font-size: 1.3em;
+        }
+        
+        /* CHECKLIST */
+        .checklist {
+            background: var(--gris-claro);
+            padding: 35px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        
+        .checklist h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6em;
+            color: var(--azul-oscuro);
+            margin-bottom: 25px;
+        }
+        
+        .checklist-item {
+            padding: 15px;
+            margin-bottom: 12px;
+            background: var(--blanco);
+            border-radius: 8px;
+            display: flex;
+            align-items: start;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            cursor: pointer;
+        }
+        
+        .checklist-item:hover {
+            border-color: var(--lavanda);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .checklist-checkbox {
+            min-width: 24px;
+            height: 24px;
+            border: 2px solid var(--lavanda);
+            border-radius: 5px;
+            margin-right: 15px;
+            margin-top: 2px;
+            transition: all 0.3s;
+        }
+        
+        .checklist-item:hover .checklist-checkbox {
+            background: rgba(180, 157, 214, 0.1);
+        }
+        
+        .checklist-item.checked .checklist-checkbox {
+            background: var(--lavanda);
+            border-color: var(--lavanda);
+            position: relative;
+        }
+        
+        .checklist-item.checked .checklist-checkbox::after {
+            content: '✓';
+            position: absolute;
+            color: var(--blanco);
+            font-weight: 700;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .checklist-item.checked .checklist-text {
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .checklist-text {
+            flex: 1;
+            font-size: 1em;
+            line-height: 1.7;
+            color: #333;
+        }
+        
+        /* CLOSING SECTION */
+        .closing-box {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, #2b3a49 100%);
+            padding: 50px;
+            border-radius: 15px;
+            text-align: center;
+            color: var(--blanco);
+            margin: 50px 0;
+        }
+        
+        .closing-box .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6em;
+            font-style: italic;
+            color: var(--azul-claridad);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        .closing-box .text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .closing-box .highlight {
+            font-weight: 700;
+            color: var(--lavanda);
+            font-size: 1.15em;
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, #2d3e4f 0%, var(--azul-oscuro) 100%);
+            padding: 50px 60px;
+            text-align: center;
+            color: var(--blanco);
+        }
+        
+        .footer-star {
+            width: 40px;
+            height: 40px;
+            background: var(--azul-claridad);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            margin: 0 auto 25px;
+            opacity: 0.9;
+        }
+        
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 25px 0;
+        }
+        
+        .footer-logo .a-roja {
+            color: var(--rojo-estratega);
+        }
+        
+        .footer-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1em;
+            font-style: italic;
+            color: var(--azul-claridad);
+            margin-top: 25px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header, .content, .footer {
+                padding: 40px 30px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section-title {
+                font-size: 1.8em;
+            }
+            
+            .sessions-table,
+            .methodology-table,
+            .deliverables-table {
+                font-size: 0.9em;
+            }
+            
+            .sessions-table td,
+            .methodology-table td,
+            .deliverables-table td {
+                display: block;
+                width: 100%;
+            }
+            
+            .sessions-table td:first-child,
+            .methodology-table td:first-child,
+            .deliverables-table td:first-child {
+                width: 100%;
+                padding-bottom: 8px;
+            }
+        }
+        
+        /* PRINT STYLES */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .page {
+                max-width: 100%;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .checklist-item:hover,
+            .checklist-item.checked {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- HEADER -->
+        <div class="header">
+            <p class="program-name">Welcome Kit Digital</p>
+            <h1>FOCO ESTRATÉGICO<br>PERSONAL™</h1>
+            <div class="divider-line"></div>
+            <p class="tagline">"Primero excavamos. Luego diferenciamos."</p>
+            <p class="location">La Estratega™</p>
+        </div>
+        
+        <!-- CONTENT -->
+        <div class="content">
+            <!-- BIENVENIDA -->
+            <section class="section">
+                <h2 class="section-title">Bienvenido al proceso donde tu voz y tu dirección se encuentran.</h2>
+                
+                <div class="welcome-box">
+                    <p class="section-text">
+                        Has decidido detener la inercia, mirar hacia adentro y construir una marca personal con propósito.
+                    </p>
+                    <p class="section-text">
+                        Este programa no busca hacerte visible, sino <strong>hacerte coherente</strong>.
+                    </p>
+                    <p class="section-text">
+                        Aquí, no trabajamos con fórmulas de marketing ni discursos genéricos: excavamos tu autenticidad, la ordenamos estratégicamente y la convertimos en una presencia sólida y diferenciada.
+                    </p>
+                </div>
+                
+                <div class="quote-box">
+                    "Tu estrategia será tan valiente como tu autoconocimiento."
+                </div>
+            </section>
+            
+            <!-- PROPÓSITO -->
+            <section class="section">
+                <h2 class="section-title">Propósito del Programa</h2>
+                
+                <p class="section-text">
+                    <strong>FOCO ESTRATÉGICO PERSONAL™</strong> es un proceso diseñado para profesionales y líderes que desean rediseñar su posicionamiento personal desde su verdad, no desde la tendencia.
+                </p>
+                <p class="section-text">
+                    El objetivo es ayudarte a encontrar y expresar con claridad tu propuesta de valor única, construyendo una narrativa profesional auténtica, estratégica y coherente con tu evolución.
+                </p>
+            </section>
+            
+            <!-- LAS 5 SESIONES -->
+            <section class="section">
+                <h2 class="section-title">Lo que harás durante este proceso</h2>
+                
+                <p class="section-text">
+                    Durante las próximas semanas, trabajaremos contigo en <strong>cinco sesiones individuales</strong> que combinan introspección, estrategia y comunicación aplicada.
+                </p>
+                
+                <table class="sessions-table">
+                    <thead>
+                        <tr>
+                            <th>Sesión</th>
+                            <th>Enfoque</th>
+                            <th>Herramienta principal</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1. Excavación Personal</td>
+                            <td>Identificar tu esencia, propósito y rarezas.</td>
+                            <td>Cuestionario de Excavación Personal™</td>
+                            <td>Mapa de Rareza Profesional™</td>
+                        </tr>
+                        <tr>
+                            <td>2. Claridad de Diferenciación</td>
+                            <td>Descubrir tu valor único y tu mensaje central.</td>
+                            <td>Manifiesto de Valor Profesional™</td>
+                            <td>Propuesta de Valor Única (PVU™)</td>
+                        </tr>
+                        <tr>
+                            <td>3. Arquitectura de Marca</td>
+                            <td>Diseñar el esqueleto de tu identidad profesional.</td>
+                            <td>Blueprint de Marca Personal™</td>
+                            <td>Estructura visual y conceptual de tu marca.</td>
+                        </tr>
+                        <tr>
+                            <td>4. Guía de Mensaje Estratégico</td>
+                            <td>Crear tu discurso, storytelling y bio ejecutiva.</td>
+                            <td>Guía de Mensaje Estratégico™</td>
+                            <td>Mensaje coherente y aplicable a todos tus canales.</td>
+                        </tr>
+                        <tr>
+                            <td>5. Activación y Visibilidad</td>
+                            <td>Traducir tu claridad en acción comunicativa.</td>
+                            <td>Plan de Comunicación Coherente 30 días™</td>
+                            <td>Hoja de ruta inicial de visibilidad y posicionamiento.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- FILOSOFÍA -->
+            <section class="section">
+                <h2 class="section-title">Filosofía del Programa</h2>
+                
+                <div class="philosophy-box">
+                    <p class="quote">"La marca personal no se diseña. Se revela cuando dejas de editar quién eres."</p>
+                    
+                    <p class="section-text" style="margin-bottom: 20px;">En este proceso:</p>
+                    
+                    <ul class="philosophy-list">
+                        <li>Excavamos tu historia y tus valores, no tus títulos.</li>
+                        <li>Identificamos tu rareza, no tu competencia.</li>
+                        <li>Construimos una presencia estratégica que refleje coherencia, no esfuerzo.</li>
+                        <li>Te ayudamos a alinear quién eres con lo que comunicas.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- METODOLOGÍA -->
+            <section class="section">
+                <h2 class="section-title">Metodología Base</h2>
+                
+                <p class="section-text">
+                    El programa se apoya en los principios del sistema de La Estratega™, combinando introspección, estrategia y acción:
+                </p>
+                
+                <table class="methodology-table">
+                    <thead>
+                        <tr>
+                            <th>Pilar</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>EXCAVA™</td>
+                            <td>Excavación profunda de tu autenticidad y propósito profesional.</td>
+                        </tr>
+                        <tr>
+                            <td>MAPEA™ Lite (Marca Personal)</td>
+                            <td>Construcción de tu estrategia de diferenciación individual.</td>
+                        </tr>
+                        <tr>
+                            <td>VISIBLE™</td>
+                            <td>Creación de tu voz, estilo y presencia coherente.</td>
+                        </tr>
+                        <tr>
+                            <td>COHERE™</td>
+                            <td>Mantenimiento de tu claridad y consistencia a largo plazo.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- QUÉ RECIBIRÁS -->
+            <section class="section">
+                <h2 class="section-title">Qué recibirás durante el programa</h2>
+                
+                <table class="deliverables-table">
+                    <thead>
+                        <tr>
+                            <th>Elemento</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cuaderno de Excavación Personal™</td>
+                            <td>Documento interactivo con preguntas de autodescubrimiento.</td>
+                        </tr>
+                        <tr>
+                            <td>Mapa de Rareza Profesional™</td>
+                            <td>Síntesis visual de tus dimensiones de diferenciación.</td>
+                        </tr>
+                        <tr>
+                            <td>Manifiesto de Valor Profesional™</td>
+                            <td>Documento narrativo que resume tu propósito, impacto y contribución.</td>
+                        </tr>
+                        <tr>
+                            <td>Blueprint de Marca Personal™</td>
+                            <td>Estructura visual y conceptual de tu posicionamiento.</td>
+                        </tr>
+                        <tr>
+                            <td>Guía de Mensaje Estratégico™</td>
+                            <td>Tu nueva voz escrita: tagline, bio y discurso estratégico.</td>
+                        </tr>
+                        <tr>
+                            <td>Plan de Comunicación Coherente 30 días™</td>
+                            <td>Plan táctico inicial para visibilidad orgánica y coherente.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- DURACIÓN -->
+            <section class="section">
+                <h2 class="section-title">Duración y ritmo de trabajo</h2>
+                
+                <div class="duration-box">
+                    <div class="duration-item">
+                        <div class="duration-label">Duración total:</div>
+                        <div class="duration-value">5 semanas (1 sesión semanal de 90 minutos).</div>
+                    </div>
+                    <div class="duration-item">
+                        <div class="duration-label">Modalidad:</div>
+                        <div class="duration-value">Virtual o presencial.</div>
+                    </div>
+                    <div class="duration-item">
+                        <div class="duration-label">Acompañamiento:</div>
+                        <div class="duration-value">Comunicación directa vía WhatsApp y seguimiento entre sesiones.</div>
+                    </div>
+                    <div class="duration-item">
+                        <div class="duration-label">Entrega final:</div>
+                        <div class="duration-value">Kit FOCO™ con todos tus documentos en carpeta digital organizada.</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- TU COMPROMISO -->
+            <section class="section">
+                <div class="commitment-box">
+                    <h3>Tu Compromiso</h3>
+                    <p class="intro">Este proceso no requiere que trabajes más.<br>Requiere que te conozcas más.</p>
+                    <p class="section-text" style="margin-bottom: 20px;">Para aprovecharlo al máximo:</p>
+                    
+                    <ul class="commitment-list">
+                        <li>Responde con honestidad a cada herramienta.</li>
+                        <li>Permítete sentir incomodidad: la claridad es incómoda antes de ser liberadora.</li>
+                        <li>Mantén el enfoque entre sesiones.</li>
+                        <li>Recuerda: no se trata de perfección, sino de autenticidad estructurada.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- CHECKLIST -->
+            <section class="section">
+                <h2 class="section-title">Checklist antes de comenzar</h2>
+                
+                <div class="checklist">
+                    <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">Haber completado el Cuestionario de Excavación Personal™</div>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">Disponer de 90 minutos por sesión sin interrupciones</div>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">Tener claridad sobre tu meta profesional o evolución deseada</div>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">Revisar tu presencia actual (LinkedIn, bio, materiales)</div>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">Crear una carpeta digital exclusiva para tu proceso FOCO™</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CIERRE -->
+            <section class="section">
+                <div class="closing-box">
+                    <p class="quote">"No trabajamos con tu imagen hasta que descubrimos tu verdad."</p>
+                    
+                    <p class="text">En este proceso, no te ofreceremos visibilidad sin dirección ni marketing sin propósito.</p>
+                    <p class="text">Te ayudaremos a alinear tu identidad con tu impacto y a construir una narrativa que inspire confianza y autenticidad.</p>
+                    
+                    <div style="margin: 35px 0;">
+                        <div class="divider-line"></div>
+                    </div>
+                    
+                    <p class="text"><strong>Bienvenido a FOCO ESTRATÉGICO PERSONAL™.</strong></p>
+                    <p class="text">Aquí comienza el proceso donde tu claridad se vuelve dirección.</p>
+                </div>
+            </section>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-star"></div>
+            <div class="footer-logo">LA ESTR<span class="a-roja">A</span>TEGA™</div>
+            <p class="footer-quote">"Tu autenticidad no necesita volumen, necesita dirección."</p>
+        </div>
+    </div>
+</body>
+</html>
