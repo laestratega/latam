@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Kit Digital — LA ESTRATEGA™</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --azul-oscuro: #1E2D3D;
+            --lavanda: #B49DD6;
+            --gris-claro: #F4F4F4;
+            --rojo-estratega: #E31E24;
+            --blanco: #ffffff;
+            --azul-claridad: #7eb3d6;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--azul-oscuro);
+            background: var(--blanco);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--blanco);
+        }
+        
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, #2b3a49 100%);
+            padding: 80px 60px;
+            text-align: center;
+            color: var(--blanco);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(126, 179, 214, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .star {
+            width: 60px;
+            height: 60px;
+            background: var(--azul-claridad);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            margin: 0 auto 35px;
+            opacity: 0.95;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.95; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 400;
+            position: relative;
+        }
+        
+        .header .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 25px;
+            color: var(--lavanda);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .divider-line {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--azul-claridad), transparent);
+            margin: 30px auto;
+        }
+        
+        .header .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3em;
+            font-style: italic;
+            color: var(--azul-claridad);
+            margin-bottom: 25px;
+        }
+        
+        .header .location {
+            font-size: 0.95em;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 20px;
+        }
+        
+        .header .location a {
+            color: var(--azul-claridad);
+            text-decoration: none;
+            border-bottom: 1px solid var(--azul-claridad);
+        }
+        
+        /* CONTENT */
+        .content {
+            padding: 60px;
+        }
+        
+        .section {
+            margin-bottom: 70px;
+            page-break-inside: avoid;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            color: var(--azul-oscuro);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+        
+        .section-subtitle {
+            font-size: 1.1em;
+            color: var(--lavanda);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .section-text {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .section-text strong {
+            color: var(--rojo-estratega);
+            font-weight: 600;
+        }
+        
+        /* WELCOME SECTION */
+        .welcome-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, var(--gris-claro) 100%);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid var(--rojo-estratega);
+            margin-top: 25px;
+        }
+        
+        /* TABLE STYLES */
+        .philosophy-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: var(--blanco);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .philosophy-table thead {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, #2b3a49 100%);
+            color: var(--blanco);
+        }
+        
+        .philosophy-table th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        
+        .philosophy-table td {
+            padding: 22px 20px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .philosophy-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .philosophy-table td:first-child {
+            font-weight: 700;
+            color: var(--rojo-estratega);
+            font-size: 1.05em;
+        }
+        
+        .philosophy-table td:nth-child(2) {
+            color: #555;
+        }
+        
+        .philosophy-table td:last-child {
+            color: var(--lavanda);
+            font-weight: 600;
+            font-style: italic;
+        }
+        
+        /* PROCESS CARDS */
+        .process-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 35px 0;
+        }
+        
+        .process-card {
+            background: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid var(--gris-claro);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .process-card:hover {
+            border-color: var(--lavanda);
+            box-shadow: 0 8px 25px rgba(180, 157, 214, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .process-number {
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            background: var(--rojo-estratega);
+            color: var(--blanco);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+        
+        .process-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            color: var(--azul-oscuro);
+            margin-bottom: 15px;
+            margin-top: 10px;
+        }
+        
+        .process-card p {
+            color: #666;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+        
+        /* TIMELINE */
+        .timeline {
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--rojo-estratega) 0%, var(--lavanda) 100%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 35px;
+        }
+        
+        .timeline-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: var(--azul-oscuro);
+            color: var(--blanco);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.3em;
+            border: 4px solid var(--blanco);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .timeline-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            color: var(--azul-oscuro);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item p {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+        
+        /* COMMITMENT BOX */
+        .commitment-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            padding: 40px;
+            border-radius: 15px;
+            border-left: 5px solid var(--rojo-estratega);
+            margin: 30px 0;
+        }
+        
+        .commitment-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: var(--azul-oscuro);
+            margin-bottom: 20px;
+        }
+        
+        .commitment-box .intro {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--rojo-estratega);
+            margin-bottom: 25px;
+        }
+        
+        .commitment-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .commitment-list li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            font-size: 1em;
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        .commitment-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--rojo-estratega);
+            font-size: 1.3em;
+        }
+        
+        /* RESOURCES TABLE */
+        .resources-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: var(--blanco);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .resources-table thead {
+            background: linear-gradient(135deg, var(--lavanda) 0%, #9f89c4 100%);
+            color: var(--blanco);
+        }
+        
+        .resources-table th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 0.95em;
+        }
+        
+        .resources-table td {
+            padding: 22px 20px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .resources-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .resources-table td:first-child {
+            font-weight: 700;
+            color: var(--azul-oscuro);
+            width: 35%;
+        }
+        
+        .resources-table td:last-child {
+            color: #555;
+        }
+        
+        /* CHECKLIST */
+        .checklist {
+            background: var(--gris-claro);
+            padding: 35px;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+        
+        .checklist h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6em;
+            color: var(--azul-oscuro);
+            margin-bottom: 25px;
+        }
+        
+        .checklist-item {
+            padding: 15px;
+            margin-bottom: 12px;
+            background: var(--blanco);
+            border-radius: 8px;
+            display: flex;
+            align-items: start;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .checklist-item:hover {
+            border-color: var(--lavanda);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        
+        .checklist-checkbox {
+            min-width: 24px;
+            height: 24px;
+            border: 2px solid var(--lavanda);
+            border-radius: 5px;
+            margin-right: 15px;
+            margin-top: 2px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checklist-checkbox:hover {
+            background: var(--lavanda);
+        }
+        
+        .checklist-item.checked .checklist-checkbox {
+            background: var(--lavanda);
+            border-color: var(--lavanda);
+            position: relative;
+        }
+        
+        .checklist-item.checked .checklist-checkbox::after {
+            content: '✓';
+            position: absolute;
+            color: var(--blanco);
+            font-weight: 700;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .checklist-item.checked .checklist-text {
+            color: #999;
+            text-decoration: line-through;
+        }
+        
+        .checklist-text {
+            flex: 1;
+            font-size: 1em;
+            line-height: 1.7;
+            color: #333;
+        }
+        
+        /* CLOSING SECTION */
+        .closing-box {
+            background: linear-gradient(135deg, var(--azul-oscuro) 0%, #2b3a49 100%);
+            padding: 50px;
+            border-radius: 15px;
+            text-align: center;
+            color: var(--blanco);
+            margin: 50px 0;
+        }
+        
+        .closing-box .quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6em;
+            font-style: italic;
+            color: var(--azul-claridad);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        
+        .closing-box .text {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .closing-box .highlight {
+            font-weight: 700;
+            color: var(--lavanda);
+            font-size: 1.15em;
+        }
+        
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, #2d3e4f 0%, var(--azul-oscuro) 100%);
+            padding: 50px 60px;
+            text-align: center;
+            color: var(--blanco);
+        }
+        
+        .footer-star {
+            width: 40px;
+            height: 40px;
+            background: var(--azul-claridad);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            margin: 0 auto 25px;
+            opacity: 0.9;
+        }
+        
+        .footer-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo .a-roja {
+            color: var(--rojo-estratega);
+        }
+        
+        .footer-tagline {
+            font-size: 1em;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 15px;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header, .content, .footer {
+                padding: 40px 30px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section-title {
+                font-size: 1.8em;
+            }
+            
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                left: 15px;
+            }
+            
+            .timeline-item {
+                padding-left: 65px;
+            }
+            
+            .timeline-number {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1em;
+            }
+        }
+        
+        /* PRINT STYLES */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .page {
+                max-width: 100%;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .checklist-item:hover,
+            .process-card:hover {
+                box-shadow: none;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="star"></div>
+            <h1>¡Bienvenido a La Estrategia<br>que No se Copia!</h1>
+            <p class="subtitle">Welcome Kit Digital — La Estratega™</p>
+            <div class="divider-line"></div>
+            <p class="tagline">"Primero excavamos. Luego diferenciamos."</p>
+            <p class="location">San Salvador, El Salvador | <a href="https://laestratega.info" target="_blank">laestratega.info</a></p>
+        </div>
+        
+        <!-- CONTENT -->
+        <div class="content">
+            <!-- BIENVENIDA -->
+            <section class="section">
+                <h2 class="section-title">Has decidido salir del ruido y entrar en la claridad.</h2>
+                
+                <div class="welcome-box">
+                    <p class="section-text">
+                        Bienvenido a <strong>La Estratega™</strong>, donde las PYMEs dejan de competir y comienzan a crear su propio espacio.
+                    </p>
+                    <p class="section-text">
+                        Este kit digital marca el inicio de tu transformación: no trabajaremos en más marketing, sino en la raíz de tu diferenciación — esa que no se diseña, se descubre.
+                    </p>
+                    <p class="section-text">
+                        A partir de hoy, dejamos de correr detrás del mercado para empezar a liderarlo desde tu rareza auténtica.
+                    </p>
+                </div>
+            </section>
+            
+            <!-- FILOSOFÍA -->
+            <section class="section">
+                <h2 class="section-title">Nuestro trabajo no es hacerte visible,<br>sino hacerte coherente.</h2>
+                
+                <p class="section-text">
+                    En La Estratega™ no aplicamos plantillas. <strong>Excavamos.</strong>
+                </p>
+                <p class="section-text">
+                    Nuestro método se construye sobre cuatro principios:
+                </p>
+                
+                <table class="philosophy-table">
+                    <thead>
+                        <tr>
+                            <th>Pilar</th>
+                            <th>Significado</th>
+                            <th>Impacto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Autenticidad</td>
+                            <td>Excavamos quién eres antes de definir qué haces.</td>
+                            <td>Liderazgo claro.</td>
+                        </tr>
+                        <tr>
+                            <td>Diferenciación Radical</td>
+                            <td>Transformamos tu rareza en ventaja competitiva.</td>
+                            <td>Estrategia inimitable.</td>
+                        </tr>
+                        <tr>
+                            <td>Coherencia</td>
+                            <td>Alineamos tu liderazgo, marca y comunicación.</td>
+                            <td>Sostenibilidad real.</td>
+                        </tr>
+                        <tr>
+                            <td>Evolución</td>
+                            <td>Acompañamos el crecimiento consciente del líder.</td>
+                            <td>Expansión sostenida.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- PROCESO -->
+            <section class="section">
+                <h2 class="section-title">Lo que puedes esperar de este proceso</h2>
+                
+                <div class="process-grid">
+                    <div class="process-card">
+                        <div class="process-number">1</div>
+                        <h3>Excavación Profunda<br>(EXCAVA™)</h3>
+                        <p>No se trata de tu negocio, sino de ti. Descubriremos la rareza que hace única tu forma de liderar.</p>
+                    </div>
+                    
+                    <div class="process-card">
+                        <div class="process-number">2</div>
+                        <h3>Estrategia de Diferenciación Radical<br>(MAPEA™)</h3>
+                        <p>Traduciremos tu autenticidad excavada en un modelo de negocio y propuesta imposible de copiar.</p>
+                    </div>
+                    
+                    <div class="process-card">
+                        <div class="process-number">3</div>
+                        <h3>Fortaleza Visible<br>(VISIBLE™)</h3>
+                        <p>Convertiremos tu claridad en presencia coherente: narrativa, voz, marca y contenido alineados.</p>
+                    </div>
+                    
+                    <div class="process-card">
+                        <div class="process-number">4</div>
+                        <h3>Mentoría de Coherencia<br>(COHERE™)</h3>
+                        <p>Donde se sostiene el océano azul con conciencia. Acompañamiento trimestral para mantener viva la dirección estratégica.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- TIMELINE -->
+            <section class="section">
+                <h2 class="section-title">Tu Journey de Transformación</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-number">1</div>
+                        <h3>Sesión Diagnóstico de Rareza™</h3>
+                        <p>Evaluamos tu punto de partida y descubrimos señales de océano rojo.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">2</div>
+                        <h3>Excavación Estratégica™</h3>
+                        <p>Identificamos tus dimensiones de rareza y tu ventaja inimitable.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">3</div>
+                        <h3>Diseño de Océano Azul (MAPEA™)</h3>
+                        <p>Construimos un modelo de diferenciación radical.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">4</div>
+                        <h3>Fortaleza Visible™</h3>
+                        <p>Implementamos coherencia visual, verbal y estratégica.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">5</div>
+                        <h3>Mentoría de Coherencia™</h3>
+                        <p>Seguimiento y evolución consciente.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- COMPROMISO -->
+            <section class="section">
+                <div class="commitment-box">
+                    <h3>Tu Compromiso</h3>
+                    <p class="intro">Este no es un proceso de marketing.<br>Es un trabajo de transformación estratégica.</p>
+                    <p class="section-text" style="margin-bottom: 20px;">Para aprovecharlo al máximo:</p>
+                    
+                    <ul class="commitment-list">
+                        <li>Llega a cada sesión con apertura y curiosidad.</li>
+                        <li>Cuestiona lo que siempre has dado por hecho.</li>
+                        <li>Completa tus ejercicios entre sesiones.</li>
+                        <li>Toma notas, reflexiona y permite la incomodidad: la claridad duele antes de liberar.</li>
+                        <li>Comunica con transparencia lo que sientes o descubres.</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- RECURSOS -->
+            <section class="section">
+                <h2 class="section-title">Recursos del Ecosistema La Estratega™</h2>
+                
+                <table class="resources-table">
+                    <thead>
+                        <tr>
+                            <th>Recurso</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Portal del Cliente (Drive)</td>
+                            <td>Tu espacio personalizado para materiales y entregables.</td>
+                        </tr>
+                        <tr>
+                            <td>Diagnóstico de Océano Azul Express™</td>
+                            <td>Herramienta de descubrimiento previo a la primera sesión.</td>
+                        </tr>
+                        <tr>
+                            <td>Sesiones en vivo (Zoom / Presencial)</td>
+                            <td>Encuentros estratégicos de 90 min guiados personalmente.</td>
+                        </tr>
+                        <tr>
+                            <td>Canal directo (WhatsApp)</td>
+                            <td>Para consultas rápidas o compartir reflexiones entre sesiones.</td>
+                        </tr>
+                        <tr>
+                            <td>Mini Biblioteca de Rareza™</td>
+                            <td>Recursos curados sobre autenticidad, liderazgo y diferenciación.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <!-- CHECKLIST -->
+            <section class="section">
+                <h2 class="section-title">Antes de nuestro Kick-off</h2>
+                
+                <div class="checklist">
+                    <h3>Checklist de preparación:</h3>
+                    
+                    <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">Revisa la historia evolutiva de tu negocio (momentos que lo marcaron).</div>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">Define qué parte de ti aún no está visible en tu marca.</div>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">Ten a mano tus métricas actuales (ventas, clientes, márgenes).</div>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">Prepara tres palabras que definan cómo quieres que se perciba tu marca.</div>
+                    </div>
+                    
+                    <div class="checklist-item" onclick="this.classList.toggle('checked')">
+                        <div class="checklist-checkbox"></div>
+                        <div class="checklist-text">Crea un espacio sin interrupciones para nuestra sesión inicial.</div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- CIERRE -->
+            <section class="section">
+                <div class="closing-box">
+                    <p class="quote">"No trabajamos con tu negocio hasta que trabajemos contigo como líder."</p>
+                    
+                    <p class="text">Te acompañaremos con excelencia, profundidad y humanidad.</p>
+                    <p class="text">Desafiarás lo que sabías, y descubrirás lo que te distingue.</p>
+                    
+                    <div style="margin: 35px 0;">
+                        <div class="divider-line"></div>
+                    </div>
+                    
+                    <p class="text"><strong>Este proceso no termina con una estrategia.<br>Comienza con un nuevo orden.</strong></p>
+                </div>
+            </section>
+        </div>
+        
+        <!-- FOOTER -->
+        <div class="footer">
+            <div class="footer-star"></div>
+            <p class="footer-title">Bienvenido a tu Océano Azul.</p>
+            <div class="footer-logo">LA ESTR<span class="a-roja">A</span>TEGA™</div>
+            <p class="footer-tagline">Creadora de Océanos Azules para PYMEs LATAM</p>
+        </div>
+    </div>
+</body>
+</html>
