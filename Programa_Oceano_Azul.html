@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrategia de Océano Azul™ | LA ESTRATEGA</title>
+    <meta name="description" content="Proceso estratégico integral para PYMEs LATAM que desean dejar de competir por precio y construir un modelo de negocio diferenciado basado en la rareza del líder.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Estrategia de Océano Azul™ | LA ESTRATEGA">
+    <meta property="og:description" content="Crea mercados donde tu competencia deje de existir. Primero excavamos. Luego diferenciamos.">
+    <meta property="og:image" content="https://laestratega.lat/og-oceano-azul.jpg">
+    <meta property="og:url" content="https://laestratega.lat/oceano-azul">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Estrategia de Océano Azul™ | LA ESTRATEGA">
+    <meta name="twitter:description" content="Crea mercados donde tu competencia deje de existir. Primero excavamos. Luego diferenciamos.">
+    <meta name="twitter:image" content="https://laestratega.lat/twitter-oceano-azul.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1E2D3D;
+            --celeste: #7EB3D6;
+            --red: #E31E24;
+            --white: #ffffff;
+            --bg-light: #f8f9fa;
+            --text-dark: #333333;
+            --text-muted: #666666;
+            --border-light: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--white);
+            color: var(--text-dark);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--white);
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--navy) 0%, #2a3d4f 100%);
+            padding: 30px 60px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .brand-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: var(--white);
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .brand-text .a-red {
+            color: var(--red);
+        }
+
+        .brand-text .tagline {
+            color: var(--celeste);
+            font-size: 0.9em;
+            margin-top: 5px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, #2a3d4f 100%);
+            color: var(--white);
+            padding: 100px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(126, 179, 214, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .program-badge {
+            display: inline-block;
+            background: rgba(227, 30, 36, 0.2);
+            color: var(--red);
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            border: 2px solid var(--red);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.2em;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5em;
+            color: var(--celeste);
+            font-weight: 300;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .hero .description {
+            font-size: 1.15em;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            padding: 16px 35px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-cta {
+            background: var(--red);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(227, 30, 36, 0.3);
+        }
+
+        .btn-cta:hover {
+            background: #c91a1f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(227, 30, 36, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--celeste);
+            color: var(--celeste);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(126, 179, 214, 0.1);
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 80px 60px;
+        }
+
+        .section-alt {
+            background: var(--bg-light);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            color: var(--navy);
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--red);
+        }
+
+        .section-intro {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.15em;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            line-height: 1.8;
+        }
+
+        /* TARGET AUDIENCE */
+        .audience-box {
+            background: linear-gradient(135deg, var(--celeste) 0%, #5a9bbf 100%);
+            color: var(--white);
+            padding: 50px;
+            border-radius: 16px;
+            margin: 40px 0;
+            box-shadow: 0 8px 30px rgba(126, 179, 214, 0.3);
+        }
+
+        .audience-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .audience-box p {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        /* RESULTS GRID */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .result-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(30, 45, 61, 0.08);
+            border-left: 5px solid var(--celeste);
+            transition: all 0.3s ease;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+            border-left-color: var(--red);
+            box-shadow: 0 6px 30px rgba(30, 45, 61, 0.12);
+        }
+
+        .result-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .result-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* WHY IT WORKS */
+        .why-box {
+            background: linear-gradient(135deg, var(--navy) 0%, #2a3d4f 100%);
+            color: var(--white);
+            padding: 60px;
+            border-radius: 16px;
+            margin: 60px 0;
+            box-shadow: 0 8px 30px rgba(30, 45, 61, 0.3);
+            text-align: center;
+        }
+
+        .why-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            color: var(--celeste);
+        }
+
+        .why-box p {
+            font-size: 1.15em;
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+
+        .quote-highlight {
+            background: rgba(227, 30, 36, 0.1);
+            border-left: 4px solid var(--red);
+            padding: 30px 40px;
+            margin-top: 40px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .quote-highlight p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* PHASES */
+        .phases-container {
+            display: grid;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .phase-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(30, 45, 61, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(30, 45, 61, 0.15);
+        }
+
+        .phase-header {
+            background: linear-gradient(135deg, var(--navy) 0%, #2a3d4f 100%);
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .phase-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            color: var(--celeste);
+            font-weight: 700;
+        }
+
+        .phase-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .phase-duration {
+            color: var(--celeste);
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        .phase-body {
+            padding: 35px 40px;
+        }
+
+        .phase-detail {
+            margin-bottom: 15px;
+        }
+
+        .phase-detail strong {
+            color: var(--navy);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .phase-detail p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .phase-deliverable {
+            background: linear-gradient(to right, rgba(227, 30, 36, 0.05), rgba(126, 179, 214, 0.05));
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--red);
+            margin-top: 20px;
+        }
+
+        .phase-deliverable strong {
+            color: var(--red);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* DELIVERABLES LIST */
+        .deliverables-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .deliverable-item {
+            background: var(--white);
+            padding: 25px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(30, 45, 61, 0.08);
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .deliverable-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 6px 20px rgba(30, 45, 61, 0.12);
+        }
+
+        .deliverable-icon {
+            font-size: 1.8em;
+            color: var(--celeste);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+        }
+
+        .deliverable-text {
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-weight: 600;
+        }
+
+        /* TIMELINE */
+        .timeline-box {
+            background: var(--bg-light);
+            padding: 50px;
+            border-radius: 16px;
+            margin: 40px 0;
+            border: 2px solid var(--celeste);
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .timeline-item {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(30, 45, 61, 0.08);
+            border-top: 4px solid var(--celeste);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-5px);
+            border-top-color: var(--red);
+        }
+
+        .timeline-item strong {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3em;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .timeline-item p {
+            color: var(--text-muted);
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        /* PACKAGES */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .package-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(30, 45, 61, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--celeste);
+        }
+
+        .package-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(30, 45, 61, 0.15);
+        }
+
+        .package-card.featured {
+            border-top-color: var(--red);
+            background: linear-gradient(to bottom, var(--white), var(--bg-light));
+        }
+
+        .package-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .package-description {
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .package-badge {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* ADMISSION */
+        .admission-box {
+            background: linear-gradient(to right, rgba(227, 30, 36, 0.05), rgba(126, 179, 214, 0.05));
+            padding: 50px;
+            border-radius: 16px;
+            margin: 40px 0;
+            border-left: 5px solid var(--red);
+        }
+
+        .admission-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .admission-box p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            background: linear-gradient(135deg, var(--celeste) 0%, #5a9bbf 100%);
+            padding: 80px 60px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin-bottom: 25px;
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        .btn-white:hover {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        /* QUOTE SECTION */
+        .quote-section {
+            background: linear-gradient(135deg, var(--navy) 0%, #2a3d4f 100%);
+            color: var(--white);
+            padding: 80px 60px;
+            text-align: center;
+        }
+
+        .quote-section p {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            font-style: italic;
+            line-height: 1.5;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, var(--navy) 0%, #2a3d4f 100%);
+            color: var(--white);
+            padding: 60px;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .footer-brand .a-red {
+            color: var(--red);
+        }
+
+        .footer-tagline {
+            color: var(--celeste);
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        .footer-divider {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--celeste), transparent);
+            margin: 30px auto;
+        }
+
+        .footer-info {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9em;
+            line-height: 1.8;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .hero h1 {
+                font-size: 2.8em;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2em;
+            }
+
+            .results-grid,
+            .deliverables-list,
+            .timeline-grid,
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section,
+            .hero,
+            .cta-section,
+            .quote-section,
+            .footer {
+                padding: 50px 30px;
+            }
+
+            .header {
+                padding: 25px 30px;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .audience-box,
+            .why-box,
+            .timeline-box,
+            .admission-box {
+                padding: 30px;
+            }
+
+            .phase-header {
+                flex-direction: column;
+                align-items: start;
+                gap: 15px;
+            }
+
+            .quote-section p {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header" role="banner">
+            <div class="brand-text">
+                <h1>LA ESTR<span class="a-red">A</span>TEGA™</h1>
+                <div class="tagline">Primero excavamos. Luego diferenciamos.</div>
+            </div>
+        </header>
+
+        <!-- HERO -->
+        <section class="hero" role="region" aria-label="Sección principal del programa">
+            <div class="hero-content">
+                <div class="program-badge">Programa Estratégico</div>
+                <h1>ESTRATEGIA DE<br>OCÉANO AZUL™</h1>
+                <p class="subtitle">
+                    Crea mercados donde tu competencia deje de existir
+                </p>
+                <p class="description">
+                    Primero excavamos. Luego diferenciamos. Crea un espacio de mercado propio, sostenible e imposible de copiar.
+                </p>
+
+                <div style="display: flex; gap: 15px; justify-content: center; margin-top: 40px;">
+                    <a href="https://wa.me/50376578075?text=Hola%20Glenda,%20quiero%20solicitar%20mi%20Diagn%C3%B3stico%20de%20Rareza%E2%84%A2%20para%20iniciar%20el%20programa%20Estrategia%20de%20Oc%C3%A9ano%20Azul.%20Mi%20empresa%20est%C3%A1%20lista%20para%20dejar%20de%20competir%20por%20precio.%0A%0ANombre%20de%20la%20empresa:%20%0AFacturaci%C3%B3n%20anual:%20%0AA%C3%B1os%20en%20el%20mercado:%20" target="_blank" rel="noopener noreferrer" class="btn btn-cta" aria-label="Solicitar Diagnóstico de Rareza vía WhatsApp">
+                        Solicitar Diagnóstico de Rareza™
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOR WHO -->
+        <section class="section">
+            <h2 class="section-title">¿Para Quién Es Este Programa?</h2>
+            
+            <div class="audience-box">
+                <h3>PYMEs LATAM con visión diferenciadora</h3>
+                <p>
+                    Este programa es para PYMEs latinoamericanas con facturación $100K+, 10+ años en el mercado, lideradas por propietarios dispuestos a trabajar con profundidad; empresas que están cansadas de competir por precio y buscan crear un mercado propio con diferenciación auténtica.
+                </p>
+            </div>
+        </section>
+
+        <!-- RESULTS -->
+        <section class="section section-alt">
+            <h2 class="section-title">Lo Que Obtendrás</h2>
+            <p class="section-intro">
+                Al finalizar el proceso, tu empresa tendrá las herramientas estratégicas para crear su océano azul
+            </p>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <h4>Propuesta de Valor Única (PVU™)</h4>
+                    <p>Emocional y racional, imposible de copiar porque nace de tu rareza auténtica.</p>
+                </div>
+
+                <div class="result-card">
+                    <h4>Modelo de Negocio Diferenciado</h4>
+                    <p>Canvas Océano Azul™ completo, listo para operar y monetizar tu diferenciación.</p>
+                </div>
+
+                <div class="result-card">
+                    <h4>Blueprint de Posicionamiento™</h4>
+                    <p>La ruta estratégica completa para conquistar tu nuevo espacio de mercado.</p>
+                </div>
+
+                <div class="result-card">
+                    <h4>Plan de Acción Comercial Coherente™</h4>
+                    <p>90 días estructurados que convierten la estrategia en ingresos reales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY IT WORKS -->
+        <section class="section">
+            <div class="why-box">
+                <h3>Por Qué Funciona</h3>
+                <p>
+                    La mayoría de estrategias fracasan porque parten de lo visible (producto, precio, competencia). Nosotros excavamos la rareza: esa combinación única de creencias, procesos y obsesiones del líder que nadie más puede replicar. Traducimos esa rareza en modelo de negocio + mercado objetivo.
+                </p>
+                
+                <div class="quote-highlight">
+                    <p>"La diferenciación sostenible no se diseña. Se excava."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- STRUCTURE -->
+        <section class="section section-alt" id="estructura">
+            <h2 class="section-title">Estructura del Programa</h2>
+            <p class="section-intro">
+                6 fases integradas que transforman rareza en océano azul (6–12 semanas recomendado)
+            </p>
+
+            <div class="phases-container">
+                <!-- PHASE 0 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">00</div>
+                        <div class="phase-info">
+                            <h3>Diagnóstico de Rareza (Preliminar)</h3>
+                            <div class="phase-duration">⏱ Duración: 1–2 semanas</div>
+                        </div>
+                    </div>
+                    <div class="phase-body">
+                        <div class="phase-detail">
+                            <strong>Contenido:</strong>
+                            <p>Cuestionario Pre-Excavación™, Test Índice de Rareza Estratégica™, Entrevista de Claridad 1:1.</p>
+                        </div>
+                        <div class="phase-deliverable">
+                            <strong>📋 Entregable:</strong>
+                            Mini Informe de Claridad™ (3–5 páginas)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 1 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">01</div>
+                        <div class="phase-info">
+                            <h3>Canvas de Océano Azul™ — M (MODELO)</h3>
+                            <div class="phase-duration">⏱ Duración: Workshop 1 día + trabajo 1 semana</div>
+                        </div>
+                    </div>
+                    <div class="phase-body">
+                        <div class="phase-detail">
+                            <strong>Actividad Clave:</strong>
+                            <p>Co-crear el Canvas que traduce tu rareza en modelo de monetización.</p>
+                        </div>
+                        <div class="phase-deliverable">
+                            <strong>📋 Entregable:</strong>
+                            Modelo de Negocio Diferenciado (Canvas visual)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 2 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">02</div>
+                        <div class="phase-info">
+                            <h3>Diagnóstico de Coherencia Comercial™ — A (AUDIENCIA)</h3>
+                            <div class="phase-duration">⏱ Duración: 1 semana</div>
+                        </div>
+                    </div>
+                    <div class="phase-body">
+                        <div class="phase-detail">
+                            <strong>Actividad Clave:</strong>
+                            <p>Análisis de clientes actuales y potenciales; perfil del cliente ideal de alto valor.</p>
+                        </div>
+                        <div class="phase-deliverable">
+                            <strong>📋 Entregable:</strong>
+                            Ficha Cliente Ideal + Matriz de Compatibilidad Valor–Cliente
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 3 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">03</div>
+                        <div class="phase-info">
+                            <h3>Workshop de Posicionamiento Herético™ — P (PROPUESTA)</h3>
+                            <div class="phase-duration">⏱ Duración: 1 workshop intensivo (medio día) + 1 semana de refinamiento</div>
+                        </div>
+                    </div>
+                    <div class="phase-body">
+                        <div class="phase-detail">
+                            <strong>Actividad Clave:</strong>
+                            <p>Definir la PVU™, postura de marca y mensaje central.</p>
+                        </div>
+                        <div class="phase-deliverable">
+                            <strong>📋 Entregable:</strong>
+                            Propuesta de Valor Única (PVU™) y statement de posicionamiento
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 4 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">04</div>
+                        <div class="phase-info">
+                            <h3>Blueprint de Posicionamiento™ — E (ESTRATEGIA)</h3>
+                            <div class="phase-duration">⏱ Duración: 1–2 semanas</div>
+                        </div>
+                    </div>
+                    <div class="phase-body">
+                        <div class="phase-detail">
+                            <strong>Actividad Clave:</strong>
+                            <p>Diseñar la hoja de ruta estratégica — territorios de mercado, palancas comerciales y narrativas.</p>
+                        </div>
+                        <div class="phase-deliverable">
+                            <strong>📋 Entregable:</strong>
+                            Blueprint de Posicionamiento™ (documento ejecutivo 10–15 págs)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 5 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">05</div>
+                        <div class="phase-info">
+                            <h3>Plan de Acción Comercial Coherente™ — A (ACCIÓN)</h3>
+                            <div class="phase-duration">⏱ Duración: 2–4 semanas (plan + arranque de 90 días)</div>
+                        </div>
+                    </div>
+                    <div class="phase-body">
+                        <div class="phase-detail">
+                            <strong>Actividad Clave:</strong>
+                            <p>Priorizar tácticas, crear calendario de lanzamiento, playbook de ventas y contenido.</p>
+                        </div>
+                        <div class="phase-deliverable">
+                            <strong>📋 Entregable:</strong>
+                            Plan operativo 90 días + kit de activación (mensajes, lead magnets, funnel)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OPTIONAL PHASE -->
+                <div class="phase-card" style="border: 2px solid var(--celeste);">
+                    <div class="phase-header" style="background: linear-gradient(135deg, var(--celeste) 0%, #5a9bbf 100%);">
+                        <div class="phase-number" style="color: var(--white);">★</div>
+                        <div class="phase-info">
+                            <h3>Implementación Guiada / Fortaleza Visible™ (Opcional)</h3>
+                            <div class="phase-duration" style="color: var(--white);">⏱ Duración: 3 meses adicionales</div>
+                        </div>
+                    </div>
+                    <div class="phase-body">
+                        <div class="phase-detail">
+                            <p>Si se desea, ofrecemos implementación guiada de 3 meses con ejecución directa y mentoría continua para sostener el océano azul.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DELIVERABLES -->
+        <section class="section">
+            <h2 class="section-title">Entregables Finales</h2>
+            <p class="section-intro">
+                Todo lo que necesitas para activar tu océano azul
+            </p>
+
+            <div class="deliverables-list">
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="#7EB3D6" stroke-width="2"/>
+                            <rect x="7" y="14" width="3" height="6" fill="#1E2D3D"/>
+                            <rect x="11" y="10" width="3" height="10" fill="#E31E24"/>
+                            <rect x="15" y="7" width="3" height="13" fill="#7EB3D6"/>
+                        </svg>
+                    </div>
+                    <div class="deliverable-text">Canvas de Océano Azul™ (visual)</div>
+                </div>
+
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="9" cy="7" r="3" stroke="#7EB3D6" stroke-width="2"/>
+                            <path d="M3 18C3 15.7909 4.79086 14 7 14H11C13.2091 14 15 15.7909 15 18V21H3V18Z" stroke="#1E2D3D" stroke-width="2"/>
+                            <circle cx="17" cy="8" r="2.5" stroke="#E31E24" stroke-width="2"/>
+                            <path d="M13 18C13 16.3431 14.3431 15 16 15H18C19.6569 15 21 16.3431 21 18V21H13V18Z" stroke="#E31E24" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="deliverable-text">Perfil de Cliente Ideal de Alto Valor™ (ficha)</div>
+                </div>
+
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L4 6L12 10L20 6L12 2Z" stroke="#7EB3D6" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M4 12L12 16L20 12" stroke="#E31E24" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M4 18L12 22L20 18" stroke="#1E2D3D" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="deliverable-text">PVU™ (documento y versión para comunicación)</div>
+                </div>
+
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="#1E2D3D" stroke-width="2"/>
+                            <path d="M7 9L10 12L7 15" stroke="#7EB3D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="15" cy="12" r="2" fill="#E31E24"/>
+                            <line x1="12" y1="17" x2="17" y2="17" stroke="#7EB3D6" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="deliverable-text">Blueprint de Posicionamiento™ (PDF ejecutable)</div>
+                </div>
+
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L14 8H20L15 12L17 18L12 14L7 18L9 12L4 8H10L12 2Z" stroke="#E31E24" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M12 14L12 22" stroke="#7EB3D6" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="12" cy="22" r="1" fill="#1E2D3D"/>
+                        </svg>
+                    </div>
+                    <div class="deliverable-text">Plan de Acción Comercial Coherente™ (Word + Excel)</div>
+                </div>
+
+                <div class="deliverable-item">
+                    <div class="deliverable-icon">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="9" stroke="#7EB3D6" stroke-width="2"/>
+                            <path d="M7 12L10 15L17 8" stroke="#E31E24" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="deliverable-text">Checklist de implementación y calendario 90 días</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMELINE -->
+        <section class="section section-alt">
+            <h2 class="section-title">Timeline Recomendado</h2>
+            <p class="section-intro">
+                90 días de transformación estratégica
+            </p>
+
+            <div class="timeline-box">
+                <div class="timeline-grid">
+                    <div class="timeline-item">
+                        <strong>Semana 1–2</strong>
+                        <p>Diagnóstico + Canvas inicial</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <strong>Semana 3–5</strong>
+                        <p>Workshop PVU™ + Blueprint</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <strong>Semana 6–9</strong>
+                        <p>Plan 90 días + priorización</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <strong>Semana 10–13</strong>
+                        <p>Lanzamiento inicial + medición</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PACKAGES -->
+        <section class="section">
+            <h2 class="section-title">Paquetes de Inversión</h2>
+            <p class="section-intro">
+                Elige el nivel de acompañamiento que necesita tu empresa
+            </p>
+
+            <div class="packages-grid">
+                <div class="package-card">
+                    <div class="package-name">Paquete Básico</div>
+                    <div class="package-description">
+                        Diagnóstico + Canvas + PVU™<br><br>
+                        Para empresas que quieren definir su diferenciación estratégica fundamental.
+                    </div>
+                </div>
+
+                <div class="package-card featured">
+                    <div class="package-badge">MÁS COMPLETO</div>
+                    <div class="package-name">MAPEA™ Completo</div>
+                    <div class="package-description">
+                        Todo lo anterior + Blueprint + Plan 90 días<br><br>
+                        Para empresas listas para transformar estrategia en acción operativa.
+                    </div>
+                </div>
+
+                <div class="package-card">
+                    <div class="package-name">Implementación Guiada</div>
+                    <div class="package-description">
+                        3 meses adicionales<br><br>
+                        Acompañamiento continuo para ejecutar y sostener tu océano azul.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- METHODOLOGY -->
+        <section class="section section-alt">
+            <h2 class="section-title">Metodología de Trabajo</h2>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <h4>Modalidad Híbrida</h4>
+                    <p>Workshops presenciales o virtuales + sesiones 1:1 adaptadas a tu realidad empresarial.</p>
+                </div>
+
+                <div class="result-card">
+                    <h4>Co-creación Intensiva</h4>
+                    <p>Trabajo conjunto con el líder y equipo clave. No hacemos por ti, creamos contigo.</p>
+                </div>
+
+                <div class="result-card">
+                    <h4>Entregables Editables</h4>
+                    <p>Todos los documentos en Word/Excel/PPT para facilitar la implementación interna.</p>
+                </div>
+
+                <div class="result-card">
+                    <h4>Revisión y Ajuste</h4>
+                    <p>2 rondas de revisión por entregable para garantizar claridad y aplicabilidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADMISSION -->
+        <section class="section">
+            <div class="admission-box">
+                <h3>Criterios de Admisión</h3>
+                <p>
+                    Trabajamos con líderes dispuestos a la excavación profunda. En este programa no realizamos proyectos que buscan recetas rápidas o ejecuciones tácticas sin compromiso estratégico.
+                </p>
+                <p style="margin-top: 20px; font-weight: 600;">
+                    Este programa es para empresas que entienden que la diferenciación real requiere tiempo, reflexión y valentía para ser auténticos.
+                </p>
+            </div>
+        </section>
+
+        <!-- CTA SECTION -->
+        <section class="cta-section">
+            <h2>¿Lista tu empresa para crear su océano azul?</h2>
+            <p>
+                Solicita tu Diagnóstico de Rareza™ y agenda la sesión inicial.<br>
+                Descubramos si este programa es el siguiente paso correcto para ti.
+            </p>
+            <a href="https://wa.me/50376578075?text=Hola%20Glenda,%20quiero%20solicitar%20mi%20Diagn%C3%B3stico%20de%20Rareza%E2%84%A2%20y%20agendar%20la%20sesi%C3%B3n%20inicial%20para%20el%20programa%20Estrategia%20de%20Oc%C3%A9ano%20Azul%E2%84%A2.%0A%0ANombre%20de%20la%20empresa:%20%0AIndustria:%20%0AFacturaci%C3%B3n%20anual%20aproximada:%20%0AA%C3%B1os%20en%20el%20mercado:%20%0APrincipal%20desaf%C3%ADo%20actual:%20" target="_blank" rel="noopener noreferrer" class="btn btn-white" aria-label="Solicitar Diagnóstico de Rareza vía WhatsApp">
+                Solicitar Diagnóstico de Rareza™
+            </a>
+        </section>
+
+        <!-- QUOTE -->
+        <section class="quote-section">
+            <p>"No necesitas ser mejor que la competencia.<br>Necesitas dejar de tener competencia."</p>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer" role="contentinfo">
+            <div class="footer-brand">
+                LA ESTR<span class="a-red">A</span>TEGA™
+            </div>
+            <div class="footer-tagline">
+                Programa Estrategia de Océano Azul™
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-info">
+                Creadora de Océanos Azules para PYMEs Latinoamericanas<br>
+                San Salvador, El Salvador | 2025<br><br>
+                <strong style="color: var(--celeste);">"Primero excavamos. Luego diferenciamos."</strong>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kit de Bienvenida - Programa FORTALEZA VISIBLE™ | LA ESTRATEGA</title>
+    <meta name="description" content="Kit de Bienvenida al Programa FORTALEZA VISIBLE™. La claridad se convierte en presencia coherente.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Kit de Bienvenida - Programa FORTALEZA VISIBLE™">
+    <meta property="og:description" content="La claridad se convierte en presencia coherente. Bienvenido a tu proceso de transformación empresarial.">
+    <meta property="og:image" content="https://laestratega.lat/og-kit-fortaleza.jpg">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kit de Bienvenida - Programa FORTALEZA VISIBLE™">
+    <meta name="twitter:description" content="La claridad se convierte en presencia coherente.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1E2D3D;
+            --celeste: #7EB3D6;
+            --red: #E31E24;
+            --white: #ffffff;
+            --bg-light: #f8f9fa;
+            --text-dark: #333333;
+            --text-muted: #666666;
+            --border-light: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: var(--white);
+            box-shadow: 0 4px 30px rgba(30, 45, 61, 0.1);
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, var(--navy) 0%, #2a3d4f 100%);
+            padding: 40px 60px;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(126, 179, 214, 0.1) 0%, transparent 70%);
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .program-badge {
+            display: inline-block;
+            background: rgba(126, 179, 214, 0.2);
+            color: var(--celeste);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            border: 2px solid var(--celeste);
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .header .subtitle {
+            font-size: 1.3em;
+            color: var(--celeste);
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        /* SECTIONS */
+        .section {
+            padding: 60px 60px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--celeste) 0%, #5a9bbf 100%);
+            color: var(--white);
+            border-radius: 50%;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            color: var(--navy);
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .section-intro {
+            font-size: 1.15em;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        /* WELCOME BOX */
+        .welcome-box {
+            background: linear-gradient(135deg, var(--celeste) 0%, #5a9bbf 100%);
+            color: var(--white);
+            padding: 50px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(126, 179, 214, 0.3);
+        }
+
+        .welcome-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            margin-bottom: 25px;
+        }
+
+        .welcome-box p {
+            font-size: 1.1em;
+            line-height: 1.9;
+            margin-bottom: 15px;
+        }
+
+        .welcome-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 25px 0;
+        }
+
+        .welcome-box ul li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.05em;
+        }
+
+        .welcome-box ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.3em;
+        }
+
+        /* QUOTE BOX */
+        .quote-box {
+            background: linear-gradient(to right, rgba(227, 30, 36, 0.05), rgba(126, 179, 214, 0.05));
+            border-left: 5px solid var(--red);
+            padding: 30px 40px;
+            margin: 40px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .quote-box p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            font-style: italic;
+            color: var(--navy);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .quote-box .author {
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-size: 0.7em;
+            color: var(--celeste);
+            font-weight: 600;
+            margin-top: 15px;
+            display: block;
+        }
+
+        /* EXPECTATIONS GRID */
+        .expectations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .expectation-card {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid var(--celeste);
+            transition: all 0.3s ease;
+        }
+
+        .expectation-card:hover {
+            transform: translateX(5px);
+            border-left-color: var(--red);
+            box-shadow: 0 4px 15px rgba(30, 45, 61, 0.1);
+        }
+
+        .expectation-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3em;
+            color: var(--navy);
+            margin-bottom: 12px;
+        }
+
+        .expectation-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* PHASES */
+        .phase-container {
+            margin: 30px 0;
+        }
+
+        .phase-card {
+            background: var(--white);
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .phase-card:hover {
+            border-color: var(--celeste);
+            box-shadow: 0 4px 20px rgba(126, 179, 214, 0.15);
+        }
+
+        .phase-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .phase-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--navy) 0%, #2a3d4f 100%);
+            color: var(--celeste);
+            border-radius: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .phase-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            color: var(--navy);
+            margin-bottom: 5px;
+        }
+
+        .phase-duration {
+            color: var(--celeste);
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .phase-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .phase-content ul li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            color: var(--text-muted);
+        }
+
+        .phase-content ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--celeste);
+            font-weight: 700;
+            font-size: 1.5em;
+            line-height: 1;
+        }
+
+        .phase-deliverable {
+            background: linear-gradient(to right, rgba(227, 30, 36, 0.05), transparent);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--red);
+            margin-top: 15px;
+        }
+
+        .phase-deliverable strong {
+            color: var(--red);
+            font-weight: 700;
+        }
+
+        /* COACHING BOX */
+        .coaching-box {
+            background: linear-gradient(135deg, var(--navy) 0%, #2a3d4f 100%);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .coaching-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: var(--celeste);
+            margin-bottom: 20px;
+        }
+
+        .coaching-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .coaching-box ul li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .coaching-box ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--celeste);
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        /* TABLE */
+        .calendar-table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(30, 45, 61, 0.08);
+        }
+
+        .calendar-table thead {
+            background: linear-gradient(135deg, var(--navy) 0%, #2a3d4f 100%);
+            color: var(--white);
+        }
+
+        .calendar-table th {
+            padding: 20px;
+            text-align: left;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1em;
+        }
+
+        .calendar-table tbody tr {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .calendar-table tbody tr:hover {
+            background: var(--bg-light);
+        }
+
+        .calendar-table td {
+            padding: 20px;
+            color: var(--text-dark);
+        }
+
+        .calendar-table td:first-child {
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        /* TOOLS LIST */
+        .tools-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .tool-item {
+            background: var(--bg-light);
+            padding: 20px 25px;
+            border-radius: 8px;
+            border-left: 4px solid var(--celeste);
+            font-weight: 600;
+            color: var(--navy);
+            transition: all 0.3s ease;
+        }
+
+        .tool-item:hover {
+            transform: translateX(5px);
+            border-left-color: var(--red);
+        }
+
+        /* DOCUMENTS LIST */
+        .documents-list {
+            margin: 30px 0;
+        }
+
+        .document-item {
+            background: var(--white);
+            border: 2px solid var(--border-light);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: start;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .document-item:hover {
+            border-color: var(--celeste);
+            box-shadow: 0 4px 15px rgba(126, 179, 214, 0.15);
+        }
+
+        .document-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--celeste) 0%, #5a9bbf 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            flex-shrink: 0;
+        }
+
+        .document-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3em;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .document-content p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* RULES BOX */
+        .rules-box {
+            background: linear-gradient(to right, rgba(227, 30, 36, 0.05), rgba(126, 179, 214, 0.05));
+            padding: 40px;
+            border-radius: 12px;
+            border: 2px solid var(--celeste);
+        }
+
+        .rules-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: var(--navy);
+            margin-bottom: 25px;
+        }
+
+        .rules-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rules-box ul li {
+            padding: 12px 0;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.05em;
+            color: var(--text-dark);
+        }
+
+        .rules-box ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--celeste);
+            font-weight: 700;
+            font-size: 1.3em;
+        }
+
+        /* STEPS BOX */
+        .steps-box {
+            background: linear-gradient(135deg, var(--red) 0%, #c91a1f 100%);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(227, 30, 36, 0.3);
+        }
+
+        .steps-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+        }
+
+        .steps-box ol {
+            padding-left: 25px;
+            margin: 20px 0;
+        }
+
+        .steps-box ol li {
+            padding: 10px 0;
+            font-size: 1.05em;
+            line-height: 1.7;
+        }
+
+        /* CONTACT BOX */
+        .contact-box {
+            background: var(--navy);
+            color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: var(--celeste);
+            margin-bottom: 20px;
+        }
+
+        .contact-box p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(126, 179, 214, 0.1);
+            padding: 15px 30px;
+            border-radius: 8px;
+        }
+
+        .contact-item a {
+            color: var(--celeste);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--white);
+        }
+
+        /* CLOSING BOX */
+        .closing-box {
+            background: linear-gradient(135deg, var(--celeste) 0%, #5a9bbf 100%);
+            color: var(--white);
+            padding: 60px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 40px 0 0 0;
+        }
+
+        .closing-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+        }
+
+        .closing-box p {
+            font-size: 1.15em;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .closing-box .final-quote {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .closing-box .final-quote p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6em;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        /* BUTTON */
+        .btn {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--navy);
+        }
+
+        .btn-primary:hover {
+            background: var(--navy);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, var(--navy) 0%, #2a3d4f 100%);
+            color: var(--white);
+            padding: 50px 60px;
+            text-align: center;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .footer-brand .a-red {
+            color: var(--red);
+        }
+
+        .footer-tagline {
+            color: var(--celeste);
+            font-size: 1em;
+            margin-bottom: 20px;
+        }
+
+        .footer-divider {
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--celeste), transparent);
+            margin: 20px auto;
+        }
+
+        .footer-info {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9em;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header,
+            .section,
+            .footer {
+                padding: 40px 30px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .section-title {
+                font-size: 1.8em;
+            }
+
+            .welcome-box,
+            .steps-box,
+            .contact-box,
+            .closing-box,
+            .rules-box,
+            .coaching-box {
+                padding: 30px;
+            }
+
+            .expectations-grid,
+            .tools-list {
+                grid-template-columns: 1fr;
+            }
+
+            .phase-header {
+                flex-direction: column;
+                align-items: start;
+            }
+
+            .calendar-table {
+                font-size: 0.9em;
+            }
+
+            .calendar-table th,
+            .calendar-table td {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <header class="header" role="banner">
+            <div class="header-content">
+                <!-- Marca LA ESTRATEGA -->
+                <div style="margin-bottom: 30px;">
+                    <div style="font-family: 'Playfair Display', serif; font-size: 1.5em; color: var(--white); letter-spacing: 2px; margin-bottom: 8px;">
+                        LA ESTR<span style="color: var(--red);">A</span>TEGA™
+                    </div>
+                    <div style="color: var(--celeste); font-size: 0.9em; font-weight: 500;">
+                        Primero excavamos. Luego diferenciamos.
+                    </div>
+                </div>
+                <div style="width: 80px; height: 2px; background: linear-gradient(90deg, var(--celeste), transparent); margin: 0 auto 30px;"></div>
+                
+                <div class="program-badge">Kit de Bienvenida</div>
+                <h1>FORTALEZA VISIBLE™</h1>
+                <p class="subtitle">La claridad se convierte en presencia coherente.</p>
+            </div>
+        </header>
+
+        <!-- WELCOME MESSAGE -->
+        <section class="section">
+            <div class="welcome-box">
+                <h2>
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 10px;">
+                        <path d="M4 19.5C4 18.837 4.26339 18.2011 4.73223 17.7322C5.20107 17.2634 5.83696 17 6.5 17H20" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6.5 2H20V22H6.5C5.83696 22 5.20107 21.7366 4.73223 21.2678C4.26339 20.7989 4 20.163 4 19.5V4.5C4 3.83696 4.26339 3.20107 4.73223 2.73223C5.20107 2.26339 5.83696 2 6.5 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    ¡Bienvenido/a al Programa FORTALEZA VISIBLE™!
+                </h2>
+                <p>
+                    Has tomado una decisión valiente: llevar la claridad estratégica hacia el interior de tu empresa y convertirla en orden, presencia y coherencia visible.
+                </p>
+                <p>
+                    Este programa está diseñado para transformar tres dimensiones clave en empresas familiares:
+                </p>
+                <ul>
+                    <li><strong>El liderazgo</strong> — su claridad, conciencia y dirección</li>
+                    <li><strong>La estructura interna</strong> — roles, procesos y gobernanza</li>
+                    <li><strong>La cultura y comunicación</strong> — cómo se vive la empresa por dentro y cómo se proyecta por fuera</li>
+                </ul>
+                <p style="margin-top: 25px; font-size: 1.15em; font-weight: 600;">
+                    Aquí inicia un proceso profundo, profesional y humano.<br>
+                    Aquí inicia tu Fortaleza Visible.
+                </p>
+            </div>
+
+            <div class="quote-box">
+                <p>"La claridad no se impone. Se construye desde dentro."</p>
+                <span class="author">— LA ESTRATEGA™</span>
+            </div>
+        </section>
+
+        <!-- WHAT TO EXPECT -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 10px;">
+                    <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2Z" stroke="#E31E24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <circle cx="12" cy="9" r="2.5" stroke="#7EB3D6" stroke-width="2"/>
+                </svg>
+                Qué Puedes Esperar del Programa
+            </h2>
+            <p class="section-intro">
+                Durante los próximos 3 meses trabajaremos en cinco dimensiones esenciales:
+            </p>
+
+            <div class="expectations-grid">
+                <div class="expectation-card">
+                    <h4>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                            <path d="M6 3L2 9L12 21L22 9L18 3H6Z" fill="#7EB3D6"/>
+                        </svg>
+                        Alineación Estratégica Interna
+                    </h4>
+                    <p>Conectaremos tu estrategia de diferenciación con la estructura de tu empresa familiar.</p>
+                </div>
+
+                <div class="expectation-card">
+                    <h4>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                            <path d="M6 3L2 9L12 21L22 9L18 3H6Z" fill="#7EB3D6"/>
+                        </svg>
+                        Gobernanza Familiar–Empresarial
+                    </h4>
+                    <p>Definiremos roles, límites, reglas y procesos de toma de decisiones.</p>
+                </div>
+
+                <div class="expectation-card">
+                    <h4>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                            <path d="M6 3L2 9L12 21L22 9L18 3H6Z" fill="#7EB3D6"/>
+                        </svg>
+                        Cultura Organizacional Visible
+                    </h4>
+                    <p>Diseñaremos tu narrativa interna, tu comunicación, tu voz institucional y tu presencia.</p>
+                </div>
+
+                <div class="expectation-card">
+                    <h4>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                            <path d="M6 3L2 9L12 21L22 9L18 3H6Z" fill="#7EB3D6"/>
+                        </svg>
+                        Implementación Estratégica Consciente
+                    </h4>
+                    <p>Activaremos la coherencia entre liderazgo, cultura y marca.</p>
+                </div>
+
+                <div class="expectation-card">
+                    <h4>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                            <path d="M6 3L2 9L12 21L22 9L18 3H6Z" fill="#7EB3D6"/>
+                        </svg>
+                        Coaching Ejecutivo
+                    </h4>
+                    <p>Acompañamiento 1:1 para el líder (2 sesiones mensuales), enfocado en claridad, orden interno y toma de decisiones.</p>
+                </div>
+            </div>
+
+            <div class="quote-box" style="margin-top: 40px;">
+                <p>"El orden de la empresa comienza en la mente del líder."</p>
+            </div>
+        </section>
+
+        <!-- PROGRAM STRUCTURE -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 10px;">
+                    <circle cx="12" cy="12" r="9" stroke="#1E2D3D" stroke-width="2"/>
+                    <path d="M14 10L16 8L10 14L8 16L14 10Z" fill="#E31E24"/>
+                    <circle cx="12" cy="12" r="2" fill="#7EB3D6"/>
+                </svg>
+                Estructura del Programa
+            </h2>
+            <p class="section-intro">
+                El programa se divide en 4 fases principales + coaching ejecutivo continuo
+            </p>
+
+            <div class="phase-container">
+                <!-- PHASE 1 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">01</div>
+                        <div class="phase-info">
+                            <h3>Diagnóstico de Coherencia Estratégica™</h3>
+                            <div class="phase-duration">⏱ Duración: 2 semanas</div>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <ul>
+                            <li>Evaluación de liderazgo, cultura, roles y comunicación</li>
+                            <li>Identificación de puntos críticos de incoherencia</li>
+                            <li>Revisión de la estrategia de diferenciación ya definida</li>
+                        </ul>
+                        <div class="phase-deliverable">
+                            <strong>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+                                    <rect x="5" y="4" width="14" height="18" rx="2" stroke="#E31E24" stroke-width="2"/>
+                                    <path d="M9 2H15V4H9V2Z" fill="#7EB3D6"/>
+                                    <line x1="8" y1="9" x2="16" y2="9" stroke="#1E2D3D" stroke-width="1.5"/>
+                                    <line x1="8" y1="13" x2="16" y2="13" stroke="#1E2D3D" stroke-width="1.5"/>
+                                    <line x1="8" y1="17" x2="13" y2="17" stroke="#1E2D3D" stroke-width="1.5"/>
+                                </svg>
+                                Entregable:</strong> Informe de Coherencia Organizacional™
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 2 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">02</div>
+                        <div class="phase-info">
+                            <h3>Gobernanza y Liderazgo Familiar–Empresarial™</h3>
+                            <div class="phase-duration">⏱ Duración: 3 semanas</div>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <ul>
+                            <li>Reestructuración de roles familiares vs roles empresariales</li>
+                            <li>Toma de decisiones estratégicas sin carga emocional</li>
+                            <li>Establecimiento de límites, jerarquías y procesos</li>
+                        </ul>
+                        <div class="phase-deliverable">
+                            <strong>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+                                    <rect x="5" y="4" width="14" height="18" rx="2" stroke="#E31E24" stroke-width="2"/>
+                                    <path d="M9 2H15V4H9V2Z" fill="#7EB3D6"/>
+                                    <line x1="8" y1="9" x2="16" y2="9" stroke="#1E2D3D" stroke-width="1.5"/>
+                                    <line x1="8" y1="13" x2="16" y2="13" stroke="#1E2D3D" stroke-width="1.5"/>
+                                    <line x1="8" y1="17" x2="13" y2="17" stroke="#1E2D3D" stroke-width="1.5"/>
+                                </svg>
+                                Entregable:</strong> Manual de Gobernanza Familiar–Empresarial™
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 3 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">03</div>
+                        <div class="phase-info">
+                            <h3>Cultura y Comunicación Visible™</h3>
+                            <div class="phase-duration">⏱ Duración: 3 semanas</div>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <ul>
+                            <li>Construcción de narrativa institucional</li>
+                            <li>Playbook de Mensajería y Guía de Voz y Estilo</li>
+                            <li>Alineación comunicacional interna y externa</li>
+                        </ul>
+                        <div class="phase-deliverable">
+                            <strong>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+                                    <rect x="5" y="4" width="14" height="18" rx="2" stroke="#E31E24" stroke-width="2"/>
+                                    <path d="M9 2H15V4H9V2Z" fill="#7EB3D6"/>
+                                    <line x1="8" y1="9" x2="16" y2="9" stroke="#1E2D3D" stroke-width="1.5"/>
+                                    <line x1="8" y1="13" x2="16" y2="13" stroke="#1E2D3D" stroke-width="1.5"/>
+                                    <line x1="8" y1="17" x2="13" y2="17" stroke="#1E2D3D" stroke-width="1.5"/>
+                                </svg>
+                                Entregables:</strong> Playbook de Mensajería™ + Guía de Voz y Estilo™
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 4 -->
+                <div class="phase-card">
+                    <div class="phase-header">
+                        <div class="phase-number">04</div>
+                        <div class="phase-info">
+                            <h3>Implementación Estratégica Integrada™</h3>
+                            <div class="phase-duration">⏱ Duración: 4 semanas</div>
+                        </div>
+                    </div>
+                    <div class="phase-content">
+                        <ul>
+                            <li>Activación del plan de marketing y comunicación</li>
+                            <li>Alineación de procesos, marca, cultura y liderazgo</li>
+                            <li>Sistema de Gobernanza de Marca™</li>
+                        </ul>
+                        <div class="phase-deliverable">
+                            <strong>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+                                    <rect x="5" y="4" width="14" height="18" rx="2" stroke="#E31E24" stroke-width="2"/>
+                                    <path d="M9 2H15V4H9V2Z" fill="#7EB3D6"/>
+                                    <line x1="8" y1="9" x2="16" y2="9" stroke="#1E2D3D" stroke-width="1.5"/>
+                                    <line x1="8" y1="13" x2="16" y2="13" stroke="#1E2D3D" stroke-width="1.5"/>
+                                    <line x1="8" y1="17" x2="13" y2="17" stroke="#1E2D3D" stroke-width="1.5"/>
+                                </svg>
+                                Entregables:</strong> Plan de Marketing Integral™ + Sistema de Gobernanza de Marca™
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COACHING -->
+                <div class="coaching-box">
+                    <h3>
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 10px;">
+                            <path d="M12 3C8 3 5 6 5 9C5 11 6 12.5 7 13.5C7 14 7 15 7 16C7 18 9 20 12 20C15 20 17 18 17 16C17 15 17 14 17 13.5C18 12.5 19 11 19 9C19 6 16 3 12 3Z" stroke="#7EB3D6" stroke-width="1.5"/>
+                            <circle cx="9" cy="10" r="1.5" fill="#E31E24"/>
+                            <circle cx="15" cy="10" r="1.5" fill="#E31E24"/>
+                            <path d="M8 13C8 13 9.5 14.5 12 14.5C14.5 14.5 16 13 16 13" stroke="#1E2D3D" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                        Coaching Ejecutivo (Todo el Programa)
+                    </h3>
+                    <ul>
+                        <li>2 sesiones mensuales (90 min cada una)</li>
+                        <li>Enfoque: liderazgo consciente, claridad mental y toma de decisiones</li>
+                        <li>Herramienta: Bitácora del Líder Estratégico™</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CALENDAR -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                    <rect x="3" y="4" width="18" height="18" rx="2" stroke="#1E2D3D" stroke-width="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6" stroke="#7EB3D6" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="8" y1="2" x2="8" y2="6" stroke="#7EB3D6" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="3" y1="10" x2="21" y2="10" stroke="#E31E24" stroke-width="2"/>
+                    <circle cx="8" cy="15" r="1.5" fill="#7EB3D6"/>
+                    <circle cx="12" cy="15" r="1.5" fill="#7EB3D6"/>
+                    <circle cx="16" cy="15" r="1.5" fill="#7EB3D6"/>
+                </svg>
+                Calendario Inicial
+            </h2>
+            <p class="section-intro">
+                Aquí tienes el calendario estándar (puede ajustarse según tu disponibilidad)
+            </p>
+
+            <table class="calendar-table">
+                <thead>
+                    <tr>
+                        <th>Semana</th>
+                        <th>Actividad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Diagnóstico inicial + entrevistas</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Informe de Coherencia + acuerdos iniciales</td>
+                    </tr>
+                    <tr>
+                        <td>3–5</td>
+                        <td>Gobernanza familiar–empresarial</td>
+                    </tr>
+                    <tr>
+                        <td>6–8</td>
+                        <td>Cultura visible y comunicación</td>
+                    </tr>
+                    <tr>
+                        <td>9–12</td>
+                        <td>Implementación estratégica + plan 90 días</td>
+                    </tr>
+                    <tr>
+                        <td>Todo el programa</td>
+                        <td>Coaching ejecutivo (2 sesiones cada mes)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- TOOLS -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                    <rect x="3" y="8" width="18" height="12" rx="2" stroke="#1E2D3D" stroke-width="2"/>
+                    <path d="M7 8V6C7 5.46957 7.21071 4.96086 7.58579 4.58579C7.96086 4.21071 8.46957 4 9 4H15C15.5304 4 16.0391 4.21071 16.4142 4.58579C16.7893 4.96086 17 5.46957 17 6V8" stroke="#7EB3D6" stroke-width="2"/>
+                    <path d="M3 12H21" stroke="#E31E24" stroke-width="2"/>
+                    <circle cx="12" cy="15" r="1.5" fill="#7EB3D6"/>
+                </svg>
+                Herramientas que Utilizarás
+            </h2>
+            <p class="section-intro">
+                A lo largo del proceso trabajarás con estas herramientas estratégicas. Cada una será enviada en su versión editable (Word/Drive/Notion).
+            </p>
+
+            <div class="tools-list">
+                <div class="tool-item">✓ Bitácora del Líder Estratégico™</div>
+                <div class="tool-item">✓ Mapa de Roles y Relaciones™</div>
+                <div class="tool-item">✓ Mapa de Gobernanza™</div>
+                <div class="tool-item">✓ Playbook de Mensajería™</div>
+                <div class="tool-item">✓ Guía de Voz y Estilo™</div>
+                <div class="tool-item">✓ Plan de Marketing Integral™</div>
+                <div class="tool-item">✓ Sistema de Gobernanza de Marca™</div>
+            </div>
+        </section>
+
+        <!-- DOCUMENTS -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="#1E2D3D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M14 2V8H20" stroke="#7EB3D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="8" y1="13" x2="16" y2="13" stroke="#7EB3D6" stroke-width="2" stroke-linecap="round"/>
+                    <line x1="8" y1="17" x2="16" y2="17" stroke="#7EB3D6" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Documentos Incluidos
+            </h2>
+            <p class="section-intro">
+                Al inicio del programa recibirás estos documentos esenciales
+            </p>
+
+            <div class="documents-list">
+                <div class="document-item">
+                    <div class="document-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 3H8C9.06087 3 10.0783 3.42143 10.8284 4.17157C11.5786 4.92172 12 5.93913 12 7V21C12 20.2044 11.6839 19.4413 11.1213 18.8787C10.5587 18.3161 9.79565 18 9 18H2V3Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 3H16C14.9391 3 13.9217 3.42143 13.1716 4.17157C12.4214 4.92172 12 5.93913 12 7V21C12 20.2044 12.3161 19.4413 12.8787 18.8787C13.4413 18.3161 14.2044 18 15 18H22V3Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <div class="document-content">
+                        <h4>Manual del Participante</h4>
+                        <p>Objetivo, alcance, reglas del proceso, roles y expectativas.</p>
+                    </div>
+                </div>
+
+                <div class="document-item">
+                    <div class="document-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="4" width="18" height="18" rx="2" stroke="white" stroke-width="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="8" y1="2" x2="8" y2="6" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            <line x1="3" y1="10" x2="21" y2="10" stroke="white" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="document-content">
+                        <h4>Cronograma de Trabajo</h4>
+                        <p>Fechas, entregables y sesiones mensuales de coaching.</p>
+                    </div>
+                </div>
+
+                <div class="document-item">
+                    <div class="document-icon">📝</div>
+                    <div class="document-content">
+                        <h4>Bitácora del Líder Estratégico™</h4>
+                        <p>Registro semanal de decisiones, emociones, avances y aprendizajes.</p>
+                    </div>
+                </div>
+
+                <div class="document-item">
+                    <div class="document-icon">✅</div>
+                    <div class="document-content">
+                        <h4>Checklists de Cada Fase</h4>
+                        <p>Para que sepas exactamente qué haremos y qué necesitarás preparar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RULES -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                    <rect x="3" y="5" width="18" height="14" rx="2" stroke="#1E2D3D" stroke-width="2"/>
+                    <path d="M3 7L12 13L21 7" stroke="#7EB3D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M21 17L16 13" stroke="#E31E24" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M3 17L8 13" stroke="#E31E24" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Reglas del Proceso
+            </h2>
+            <p class="section-intro">
+                Para garantizar el éxito del programa, necesitamos tu compromiso en:
+            </p>
+
+            <div class="rules-box">
+                <ul>
+                    <li>Apertura y honestidad en sesiones 1:1</li>
+                    <li>Puntualidad en reuniones y ejercicios</li>
+                    <li>Envío oportuno de información solicitada</li>
+                    <li>Compromiso del líder en el proceso de coaching y reuniones de equipo</li>
+                    <li>Respeto de acuerdos familiares y empresariales durante la implementación</li>
+                </ul>
+            </div>
+
+            <div class="quote-box" style="margin-top: 40px;">
+                <p>"El cambio no ocurre por información. Ocurre por compromiso."</p>
+            </div>
+        </section>
+
+        <!-- FIRST STEPS -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                    <path d="M16 3V7C16 7.53043 15.7893 8.03914 15.4142 8.41421C15.0391 8.78929 14.5304 9 14 9H10C9.46957 9 8.96086 8.78929 8.58579 8.41421C8.21071 8.03914 8 7.53043 8 7V3" stroke="#7EB3D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="12" y1="9" x2="12" y2="21" stroke="#E31E24" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M9 21L12 18L15 21" fill="#1E2D3D"/>
+                    <circle cx="12" cy="5" r="2" fill="#E31E24"/>
+                </svg>
+                Primeros Pasos (Importante)
+            </h2>
+            
+            <div class="steps-box">
+                <h3>Antes de la Primera Sesión:</h3>
+                <ol>
+                    <li>Descarga tu Bitácora del Líder Estratégico™</li>
+                    <li>Completa el formulario "Radiografía Inicial del Líder"</li>
+                    <li>Agenda tu primera sesión de Coaching Ejecutivo</li>
+                    <li>Prepara acceso a documentos clave de la empresa (serán solicitados)</li>
+                </ol>
+                <p style="margin-top: 30px; font-size: 1.1em; font-style: italic;">
+                    Estos pasos son fundamentales para maximizar el valor de nuestro tiempo juntos.
+                </p>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section class="section">
+            <h2 class="section-title">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 8px;">
+                    <path d="M12 11C13.6569 11 15 9.65685 15 8C15 6.34315 13.6569 5 12 5C10.3431 5 9 6.34315 9 8C9 9.65685 10.3431 11 12 11Z" stroke="#7EB3D6" stroke-width="2"/>
+                    <path d="M5 21V19C5 17.9391 5.42143 16.9217 6.17157 16.1716C6.92172 15.4214 7.93913 15 9 15H15C16.0609 15 17.0783 15.4214 17.8284 16.1716C18.5786 16.9217 19 17.9391 19 19V21" stroke="#1E2D3D" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M16 8L20 12L16 16" stroke="#E31E24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M8 8L4 12L8 16" stroke="#E31E24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Contacto y Soporte
+            </h2>
+            
+            <div class="contact-box">
+                <h3>Estamos Aquí para Ti</h3>
+                <p>
+                    Cualquier duda o necesidad durante el programa, no dudes en contactarnos.<br>
+                    Respuesta en 24–48 horas hábiles.
+                </p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📩 Email:</span>
+                        <a href="mailto:laestratega.latam@gmail.com">laestratega.latam@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>💬 WhatsApp:</span>
+                        <a href="https://wa.me/50376578075?text=Hola%20Glenda,%20soy%20parte%20del%20programa%20FORTALEZA%20VISIBLE%E2%84%A2%20y%20tengo%20una%20consulta." target="_blank" rel="noopener noreferrer">+503 7657 8075</a>
+                    </div>
+                </div>
+
+                <p style="margin-top: 25px; font-size: 0.95em;">
+                    Durante el programa también tendrás acceso a soporte directo vía WhatsApp.
+                </p>
+            </div>
+        </section>
+
+        <!-- CLOSING -->
+        <section class="section">
+            <div class="closing-box">
+                <h3>
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: inline-block; vertical-align: middle; margin-right: 10px;">
+                        <path d="M12 2L15 8.5L22 9.5L17 14.5L18.5 21.5L12 18L5.5 21.5L7 14.5L2 9.5L9 8.5L12 2Z" fill="#7EB3D6" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+                        <circle cx="12" cy="12" r="3" fill="white"/>
+                    </svg>
+                    Este Programa es un Proceso Profundo
+                </h3>
+                <p>
+                    No es solo estrategia. No es solo orden.<br>
+                    Es el trabajo que une claridad, liderazgo y humanidad para que tu empresa familiar pueda avanzar sin fricciones.
+                </p>
+                <p style="margin-top: 25px; font-weight: 600;">
+                    Bienvenido/a a FORTALEZA VISIBLE™.<br>
+                    Vamos a construir lo que tu empresa necesita para avanzar.
+                </p>
+
+                <div class="final-quote">
+                    <p>"No se trata de perfección. Se trata de coherencia."</p>
+                    <p style="margin-top: 20px;">"Cuando el líder se ordena internamente, la empresa sigue su ritmo natural."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer" role="contentinfo">
+            <div class="footer-brand">
+                LA ESTR<span class="a-red">A</span>TEGA™
+            </div>
+            <div class="footer-tagline">
+                Programa FORTALEZA VISIBLE™ — Kit de Bienvenida
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-info">
+                Creadora de Océanos Azules para PYMEs Latinoamericanas<br>
+                San Salvador, El Salvador | 2025
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
