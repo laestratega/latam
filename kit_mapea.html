@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KIT MAPEA™ — Estrategia de Diferenciación Radical | La Estratega</title>
+    <meta name="description" content="Metodología propietaria de La Estratega™ para transformar la rareza del líder en una estrategia de diferenciación imposible de copiar.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8f9fa;
+            color: #333333;
+            line-height: 1.8;
+        }
+
+        /* HEADER INSTITUCIONAL */
+        .header {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            padding: 30px 40px;
+            box-shadow: 0 4px 20px rgba(30, 45, 61, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        .logo .highlight {
+            color: #E31E24;
+        }
+
+        .tagline {
+            color: #7eb3d6;
+            font-size: 0.9em;
+            font-weight: 300;
+            margin-top: 5px;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: #ffffff;
+            padding: 80px 50px;
+            border-radius: 16px;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(126, 179, 214, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5em;
+            color: #7eb3d6;
+            font-weight: 300;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .hero .tagline-hero {
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+        }
+
+        /* SECCIONES */
+        .section {
+            margin-bottom: 70px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #1e2d3d;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #E31E24;
+        }
+
+        .section-content {
+            font-size: 1.1em;
+            line-height: 1.9;
+            color: #333333;
+        }
+
+        .section-content p {
+            margin-bottom: 20px;
+        }
+
+        .section-content strong {
+            color: #E31E24;
+            font-weight: 600;
+        }
+
+        /* PHILOSOPHY BOX */
+        .philosophy-box {
+            background: linear-gradient(135deg, rgba(30, 45, 61, 0.05) 0%, rgba(126, 179, 214, 0.05) 100%);
+            padding: 50px;
+            border-radius: 12px;
+            margin: 40px 0;
+            border-left: 5px solid #E31E24;
+        }
+
+        .philosophy-box p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #1e2d3d;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        /* LISTA BULLETS */
+        .lista-no-parte {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(30, 45, 61, 0.08);
+            margin: 30px 0;
+        }
+
+        .lista-no-parte ul {
+            list-style: none;
+        }
+
+        .lista-no-parte li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            color: #333333;
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+
+        .lista-no-parte li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: #E31E24;
+            font-weight: 700;
+            font-size: 1.5em;
+        }
+
+        /* PROCESO - TABLA */
+        .proceso-table {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(30, 45, 61, 0.08);
+            margin: 40px 0;
+        }
+
+        .proceso-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .proceso-table th {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: #ffffff;
+            padding: 20px;
+            text-align: left;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .proceso-table td {
+            padding: 25px 20px;
+            border-bottom: 1px solid rgba(126, 179, 214, 0.2);
+            color: #333333;
+        }
+
+        .proceso-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .proceso-table tr:nth-child(even) {
+            background: rgba(126, 179, 214, 0.03);
+        }
+
+        .fase-letra {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #E31E24;
+            margin-right: 10px;
+        }
+
+        /* HERRAMIENTAS GRID */
+        .herramientas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .herramienta {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(30, 45, 61, 0.08);
+            border-top: 5px solid #7eb3d6;
+            transition: all 0.3s ease;
+        }
+
+        .herramienta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(30, 45, 61, 0.15);
+        }
+
+        .herramienta h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            color: #1e2d3d;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .herramienta p {
+            color: #666666;
+            line-height: 1.8;
+        }
+
+        .herramienta-numero {
+            display: inline-block;
+            background: #E31E24;
+            color: #ffffff;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: 700;
+            margin-right: 10px;
+            font-size: 1.1em;
+        }
+
+        /* ENTREGABLES */
+        .entregable {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 5px solid #7eb3d6;
+            box-shadow: 0 4px 20px rgba(30, 45, 61, 0.08);
+        }
+
+        .entregable.destacado {
+            border-left-color: #E31E24;
+            background: linear-gradient(135deg, rgba(30, 45, 61, 0.02) 0%, rgba(126, 179, 214, 0.02) 100%);
+        }
+
+        .entregable-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .entregable-numero {
+            background: #E31E24;
+            color: #ffffff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .entregable h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #1e2d3d;
+            font-weight: 600;
+        }
+
+        .entregable-descripcion {
+            color: #666666;
+            font-size: 1.05em;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .entregable-incluye {
+            background: rgba(126, 179, 214, 0.08);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .entregable-incluye h4 {
+            color: #1e2d3d;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .entregable-incluye ul {
+            list-style: none;
+        }
+
+        .entregable-incluye li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #333333;
+        }
+
+        .entregable-incluye li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #7eb3d6;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        /* RESULTADOS */
+        .resultados-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .resultado-item {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #7eb3d6;
+            box-shadow: 0 4px 15px rgba(30, 45, 61, 0.08);
+        }
+
+        .resultado-item p {
+            font-size: 1.1em;
+            color: #333333;
+            font-weight: 500;
+        }
+
+        /* QUOTE BOX */
+        .quote-box {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: #ffffff;
+            padding: 50px;
+            border-radius: 12px;
+            margin: 50px 0;
+            text-align: center;
+        }
+
+        .quote-box p {
+            font-family: 'Playfair Display', serif;
+            font-size: 2em;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .quote-box .autor {
+            margin-top: 20px;
+            font-size: 0.6em;
+            color: #7eb3d6;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* CTA FINAL */
+        .cta-final {
+            background: linear-gradient(135deg, rgba(227, 30, 36, 0.05) 0%, rgba(126, 179, 214, 0.05) 100%);
+            padding: 60px 50px;
+            border-radius: 16px;
+            text-align: center;
+            margin: 60px 0;
+            border: 2px solid rgba(227, 30, 36, 0.2);
+        }
+
+        .cta-final h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8em;
+            color: #1e2d3d;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .cta-final p {
+            font-size: 1.3em;
+            color: #666666;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 20px 55px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            background: #E31E24;
+            color: #ffffff;
+        }
+
+        .btn:hover {
+            background: #c41a20;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(227, 30, 36, 0.4);
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            font-size: 1.1em;
+            color: #666666;
+        }
+
+        .contact-info a {
+            color: #E31E24;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* TRABAJAMOS */
+        .trabajamos-lista {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(30, 45, 61, 0.08);
+        }
+
+        .trabajamos-lista ul {
+            list-style: none;
+        }
+
+        .trabajamos-lista li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            color: #333333;
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+
+        .trabajamos-lista li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #7eb3d6;
+            font-weight: 700;
+            font-size: 1.5em;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: #ffffff;
+            padding: 60px 40px 40px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .footer-logo .highlight {
+            color: #E31E24;
+        }
+
+        .footer-tagline {
+            color: #7eb3d6;
+            font-size: 1.2em;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .footer-divider {
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, #7eb3d6 50%, transparent 100%);
+            margin: 30px auto;
+        }
+
+        .footer-info {
+            font-size: 0.95em;
+            color: rgba(126, 179, 214, 0.8);
+            line-height: 1.8;
+        }
+
+        .footer-info strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .footer-copyright {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(126, 179, 214, 0.2);
+            font-size: 0.85em;
+            color: rgba(126, 179, 214, 0.6);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .hero {
+                padding: 50px 30px;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .resultados-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .herramientas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 1.4em;
+            }
+
+            .quote-box p {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <div class="logo">LA ESTR<span class="highlight">A</span>TEGA</div>
+                <div class="tagline">"Primero excavamos. Luego diferenciamos."</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO -->
+    <div class="container">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>KIT MAPEA™</h1>
+                <p class="subtitle">"Tu rareza se convierte en modelo de negocio."</p>
+                <p class="tagline-hero">Estrategia de Diferenciación Radical</p>
+            </div>
+        </section>
+
+        <!-- INTRODUCCIÓN -->
+        <section class="section">
+            <h2 class="section-title">1. Introducción</h2>
+            <div class="section-content">
+                <p>
+                    <strong>MAPEA™</strong> es la metodología propietaria de La Estratega™ diseñada para transformar 
+                    la rareza del líder en una estrategia de diferenciación imposible de copiar.
+                </p>
+            </div>
+
+            <div class="lista-no-parte">
+                <ul>
+                    <li>No parte de la competencia.</li>
+                    <li>No parte de las tendencias.</li>
+                    <li>No parte del marketing táctico.</li>
+                </ul>
+            </div>
+
+            <div class="section-content">
+                <p>
+                    MAPEA™ parte de tu rareza, de tu visión y del modelo de negocio que <strong>solo tú puedes sostener</strong>.
+                </p>
+                <p style="text-align: center; font-size: 1.2em; margin-top: 30px; color: #7eb3d6; font-style: italic;">
+                    De la autenticidad → a la estrategia → a la acción.
+                </p>
+            </div>
+        </section>
+
+        <!-- FILOSOFÍA CENTRAL -->
+        <section class="section">
+            <h2 class="section-title">2. Filosofía Central</h2>
+            
+            <div class="philosophy-box">
+                <p>La estrategia no se diseña. Se excava.</p>
+            </div>
+
+            <div class="section-content">
+                <p>MAPEA™ nace de una verdad radical:</p>
+            </div>
+
+            <div class="quote-box">
+                <p>"Las empresas no fracasan por falta de marketing, sino por falta de identidad."</p>
+            </div>
+
+            <div class="section-content">
+                <p>Cuando excavamos al líder, encontramos lo que nadie puede copiar.<br>
+                Cuando estructuramos esa rareza, creamos dirección.<br>
+                Cuando la convertimos en modelo, nace el océano azul.</p>
+            </div>
+        </section>
+
+        <!-- EL PROCESO -->
+        <section class="section">
+            <h2 class="section-title">3. El Proceso MAPEA™</h2>
+            <div class="section-content">
+                <p style="font-size: 1.2em; margin-bottom: 30px;">
+                    Cinco fases para construir un océano azul sostenible.
+                </p>
+                <p>Las cinco fases conectan <strong>rareza + mercado + diseño estratégico:</strong></p>
+            </div>
+
+            <div class="proceso-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fase</th>
+                            <th>Enfoque</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="fase-letra">M</span> MODELO™</td>
+                            <td>Cómo se expresa y monetiza la rareza.</td>
+                            <td>Modelo de negocio diferenciado.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="fase-letra">A</span> AUDIENCIA™</td>
+                            <td>A quién sirve tu rareza con más impacto.</td>
+                            <td>Cliente ideal de alto valor.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="fase-letra">P</span> PROPUESTA™</td>
+                            <td>Cómo traduces tu rareza en oferta única.</td>
+                            <td>PVU™ — Propuesta de Valor Única.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="fase-letra">E</span> ESTRATEGIA™</td>
+                            <td>Cómo conquistar tu propio mercado.</td>
+                            <td>Estrategia de Diferenciación Radical™.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="fase-letra">A</span> ACCIÓN™</td>
+                            <td>Cómo activar coherencia comercial.</td>
+                            <td>Plan de Acción Comercial Coherente™.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- HERRAMIENTAS CLAVE -->
+        <section class="section">
+            <h2 class="section-title">4. Herramientas Clave del Proceso</h2>
+            <div class="section-content">
+                <p>Estas son las herramientas que transforman tu autenticidad en una estrategia concreta:</p>
+            </div>
+
+            <div class="herramientas-grid">
+                <div class="herramienta">
+                    <h3><span class="herramienta-numero">1</span> Canvas de Océano Azul™</h3>
+                    <p>Define tu modelo de negocio diferenciado.</p>
+                </div>
+
+                <div class="herramienta">
+                    <h3><span class="herramienta-numero">2</span> Diagnóstico de Coherencia Comercial™</h3>
+                    <p>Alinea tu rareza con el cliente correcto.</p>
+                </div>
+
+                <div class="herramienta">
+                    <h3><span class="herramienta-numero">3</span> Workshop de Posicionamiento Herético™</h3>
+                    <p>Destila tu postura y define tu Propuesta de Valor Única.</p>
+                </div>
+
+                <div class="herramienta">
+                    <h3><span class="herramienta-numero">4</span> Blueprint de Posicionamiento™</h3>
+                    <p>Tu hoja de ruta estratégica completa.</p>
+                </div>
+
+                <div class="herramienta">
+                    <h3><span class="herramienta-numero">5</span> Plan de Acción Comercial Coherente™</h3>
+                    <p>Activa tu estrategia con acciones claras de 90 días.</p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <p>"No creamos estrategias de marketing. Creamos estrategias con alma."</p>
+            </div>
+        </section>
+
+        <!-- ENTREGABLES -->
+        <section class="section">
+            <h2 class="section-title">5. Entregables Oficiales del Proceso</h2>
+
+            <div class="entregable destacado">
+                <div class="entregable-header">
+                    <div class="entregable-numero">1</div>
+                    <h3>Modelo de Negocio Diferenciado™</h3>
+                </div>
+                <p class="entregable-descripcion">
+                    Derivado del Canvas de Océano Azul™.<br>
+                    Estructura cómo monetizas tu rareza y qué te hace no replicable.
+                </p>
+                <div class="entregable-incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Propuesta central de valor</li>
+                        <li>Canales y experiencias</li>
+                        <li>Fuentes de ingresos</li>
+                        <li>Ventajas no copiables</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="entregable destacado">
+                <div class="entregable-header">
+                    <div class="entregable-numero">2</div>
+                    <h3>Perfil del Cliente Ideal de Alto Valor™</h3>
+                </div>
+                <p class="entregable-descripcion">
+                    Derivado del Diagnóstico de Coherencia Comercial™.
+                </p>
+                <div class="entregable-incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Perfil emocional y psicológico</li>
+                        <li>Brecha de coherencia comercial</li>
+                        <li>Insights de resonancia</li>
+                        <li>Expectativas de valor</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="entregable destacado">
+                <div class="entregable-header">
+                    <div class="entregable-numero">3</div>
+                    <h3>Propuesta de Valor Única (PVU™)</h3>
+                </div>
+                <p class="entregable-descripcion">
+                    Derivada del Workshop de Posicionamiento Herético™.
+                </p>
+                <div class="entregable-incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Postura herética</li>
+                        <li>Mensaje central</li>
+                        <li>Propuesta de valor estructurada</li>
+                        <li>Territorio emocional y racional</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="entregable">
+                <div class="entregable-header">
+                    <div class="entregable-numero">4</div>
+                    <h3>Estrategia de Diferenciación Radical™</h3>
+                </div>
+                <p class="entregable-descripcion">
+                    Derivada del Blueprint de Posicionamiento™.
+                </p>
+                <div class="entregable-incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Declaración de posicionamiento</li>
+                        <li>Territorio conceptual</li>
+                        <li>Palancas de diferenciación</li>
+                        <li>Métricas de sostenibilidad</li>
+                        <li>Camino hacia el océano azul</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="entregable">
+                <div class="entregable-header">
+                    <div class="entregable-numero">5</div>
+                    <h3>Plan de Acción Comercial Coherente™</h3>
+                </div>
+                <p class="entregable-descripcion">
+                    Convierte tu estrategia en movimiento.
+                </p>
+                <div class="entregable-incluye">
+                    <h4>Incluye:</h4>
+                    <ul>
+                        <li>Objetivos por trimestre</li>
+                        <li>Acciones prioritarias</li>
+                        <li>Guía de mensajes comerciales</li>
+                        <li>Plan de contenido (90 días)</li>
+                        <li>Indicadores y métricas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESULTADOS ESPERADOS -->
+        <section class="section">
+            <h2 class="section-title">6. Resultados Esperados</h2>
+            <div class="section-content">
+                <p style="margin-bottom: 30px;">Al finalizar MAPEA™, tendrás:</p>
+            </div>
+
+            <div class="resultados-grid">
+                <div class="resultado-item">
+                    <p>Un modelo imposible de copiar.</p>
+                </div>
+                <div class="resultado-item">
+                    <p>Una propuesta clara, emocional y estratégica.</p>
+                </div>
+                <div class="resultado-item">
+                    <p>Un posicionamiento sólido, valiente y auténtico.</p>
+                </div>
+                <div class="resultado-item">
+                    <p>Un plan de acción realista y coherente.</p>
+                </div>
+                <div class="resultado-item">
+                    <p>Una dirección empresarial basada en tu rareza.</p>
+                </div>
+                <div class="resultado-item">
+                    <p>La base para crear tu propio océano azul.</p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <p>"Cuando el líder gana claridad, el negocio encuentra dirección."</p>
+            </div>
+        </section>
+
+        <!-- CÓMO TRABAJAMOS -->
+        <section class="section">
+            <h2 class="section-title">7. Cómo Trabajamos</h2>
+            
+            <div class="trabajamos-lista">
+                <ul>
+                    <li>Sesiones estratégicas 1:1 con el líder.</li>
+                    <li>Workshops intensivos con el equipo.</li>
+                    <li>Plantillas editables y personalizadas.</li>
+                    <li>Entregables ejecutivos premium.</li>
+                    <li>Revisión en ciclos semanales o quincenales.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CTA FINAL -->
+        <section class="cta-final">
+            <h2>¿Listo para construir tu océano azul?</h2>
+            <p>Todo inicia con una conversación estratégica.</p>
+            <a href="mailto:laestratega.latam@gmail.com?subject=Solicitud%20Diagnóstico%20de%20Rareza™%20-%20KIT%20MAPEA™&body=Hola,%0D%0A%0D%0AMe%20interesa%20conocer%20más%20sobre%20el%20proceso%20MAPEA™%20y%20agendar%20mi%20Diagnóstico%20de%20Rareza™.%0D%0A%0D%0ANombre:%0D%0AEmpresa:%0D%0ATipo%20de%20consulta:%0D%0A%0D%0AGracias." class="btn">Agenda tu Diagnóstico de Rareza™</a>
+            <div class="contact-info">
+                <p>Correo: <a href="mailto:laestratega.latam@gmail.com">laestratega.latam@gmail.com</a></p>
+            </div>
+        </section>
+
+        <!-- QUOTE FINAL -->
+        <div class="quote-box">
+            <p>"Tu rareza no necesita aprobación. Solo dirección."</p>
+            <p class="autor">— La Estratega™</p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">LA ESTR<span class="highlight">A</span>TEGA</div>
+            <p class="footer-tagline">Creadora de Océanos Azules para PYMEs Latinoamericanas</p>
+            
+            <div class="footer-divider"></div>
+            
+            <div class="footer-info">
+                <p><strong>KIT MAPEA™</strong> — Metodología Propietaria</p>
+                <p style="margin-top: 15px;">Estrategia de Diferenciación Radical</p>
+                <p style="margin-top: 25px; font-size: 1.1em;">
+                    <strong>"Primero excavamos. Luego diferenciamos."</strong>
+                </p>
+            </div>
+
+            <div class="footer-copyright">
+                <p>© 2025 La Estratega™ — Todos los derechos reservados</p>
+                <p style="margin-top: 8px;">San Salvador, El Salvador</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
