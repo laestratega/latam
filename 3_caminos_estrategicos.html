@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Caminos Estratégicos Después del Diagnóstico | La Estratega</title>
+    <meta name="description" content="La claridad no es un destino: es una decisión estratégica. Identifica tu camino después del Diagnóstico de Rareza™.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f8f9fa;
+            color: #333333;
+            line-height: 1.8;
+        }
+
+        /* HEADER INSTITUCIONAL */
+        .header {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            padding: 30px 40px;
+            box-shadow: 0 4px 20px rgba(30, 45, 61, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
+
+        .logo .highlight {
+            color: #E31E24;
+        }
+
+        .tagline {
+            color: #7eb3d6;
+            font-size: 0.9em;
+            font-weight: 300;
+            margin-top: 5px;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: #ffffff;
+            padding: 70px 50px;
+            border-radius: 16px;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .hero .subtitle {
+            font-size: 1.4em;
+            color: #7eb3d6;
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            font-size: 1.1em;
+            line-height: 1.9;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* INTRO */
+        .intro-box {
+            background: #ffffff;
+            padding: 45px;
+            border-radius: 12px;
+            margin-bottom: 50px;
+            box-shadow: 0 4px 20px rgba(30, 45, 61, 0.08);
+            border-left: 5px solid #E31E24;
+        }
+
+        .intro-box p {
+            font-size: 1.15em;
+            line-height: 1.9;
+            color: #333333;
+        }
+
+        .intro-box strong {
+            color: #E31E24;
+        }
+
+        /* CAMINOS */
+        .caminos-grid {
+            display: grid;
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .camino {
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 30px rgba(30, 45, 61, 0.1);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .camino:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 40px rgba(30, 45, 61, 0.15);
+            border-color: #7eb3d6;
+        }
+
+        .camino-header {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            padding: 40px;
+            position: relative;
+        }
+
+        .camino-numero {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #E31E24;
+            color: #ffffff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .camino-titulo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .camino-subtitle {
+            font-size: 1.2em;
+            color: #7eb3d6;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .camino-content {
+            padding: 40px;
+        }
+
+        .camino-recomendado {
+            background: rgba(227, 30, 36, 0.05);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #E31E24;
+        }
+
+        .camino-recomendado h4 {
+            color: #E31E24;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .camino-recomendado ul {
+            list-style: none;
+        }
+
+        .camino-recomendado li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #333333;
+            font-size: 1.05em;
+        }
+
+        .camino-recomendado li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #E31E24;
+            font-weight: 700;
+            font-size: 1.5em;
+            top: 0;
+        }
+
+        .camino-meta {
+            background: rgba(126, 179, 214, 0.08);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .camino-meta h4 {
+            color: #1e2d3d;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .camino-meta p {
+            color: #333333;
+            line-height: 1.8;
+        }
+
+        .camino-resultado {
+            background: linear-gradient(135deg, rgba(30, 45, 61, 0.03) 0%, rgba(126, 179, 214, 0.03) 100%);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #7eb3d6;
+        }
+
+        .camino-resultado h4 {
+            color: #7eb3d6;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .camino-resultado p {
+            color: #333333;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        /* RESUMEN VISUAL */
+        .resumen-box {
+            background: linear-gradient(135deg, rgba(227, 30, 36, 0.05) 0%, rgba(126, 179, 214, 0.05) 100%);
+            padding: 50px;
+            border-radius: 16px;
+            margin: 60px 0;
+            border: 2px solid rgba(227, 30, 36, 0.15);
+        }
+
+        .resumen-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            color: #1e2d3d;
+            text-align: center;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+
+        .resumen-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .resumen-item {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(30, 45, 61, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .resumen-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(30, 45, 61, 0.15);
+        }
+
+        .resumen-titulo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8em;
+            color: #E31E24;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .resumen-arrow {
+            font-size: 2em;
+            color: #7eb3d6;
+            margin: 15px 0;
+        }
+
+        .resumen-texto {
+            font-size: 1.05em;
+            color: #333333;
+            line-height: 1.7;
+        }
+
+        /* CTA FINAL */
+        .cta-box {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: #ffffff;
+            padding: 60px;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .cta-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .cta-box p {
+            font-size: 1.2em;
+            color: #7eb3d6;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 20px 55px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            background: #E31E24;
+            color: #ffffff;
+        }
+
+        .btn:hover {
+            background: #c41a20;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(227, 30, 36, 0.4);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: linear-gradient(135deg, #1e2d3d 0%, #2a3d4f 100%);
+            color: #ffffff;
+            padding: 60px 40px 40px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .footer-logo .highlight {
+            color: #E31E24;
+        }
+
+        .footer-tagline {
+            color: #7eb3d6;
+            font-size: 1.2em;
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .footer-divider {
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent 0%, #7eb3d6 50%, transparent 100%);
+            margin: 30px auto;
+        }
+
+        .footer-info {
+            font-size: 0.95em;
+            color: rgba(126, 179, 214, 0.8);
+            line-height: 1.8;
+        }
+
+        .footer-info strong {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .footer-copyright {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(126, 179, 214, 0.2);
+            font-size: 0.85em;
+            color: rgba(126, 179, 214, 0.6);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .hero {
+                padding: 50px 30px;
+            }
+
+            .hero h1 {
+                font-size: 2em;
+            }
+
+            .camino-titulo {
+                font-size: 2em;
+            }
+
+            .resumen-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <div class="logo">LA ESTR<span class="highlight">A</span>TEGA</div>
+                <div class="tagline">"Primero excavamos. Luego diferenciamos."</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO -->
+    <div class="container">
+        <!-- HERO -->
+        <section class="hero">
+            <h1>3 Caminos Estratégicos<br>Después del Diagnóstico Preliminar</h1>
+            <p class="subtitle">La claridad no es un destino: es una decisión estratégica.</p>
+            <p>
+                Cuando realizamos el Diagnóstico de Rareza™, no buscamos vender un programa.<br>
+                Buscamos identificar dónde está realmente la raíz del problema.
+            </p>
+        </section>
+
+        <!-- INTRO -->
+        <div class="intro-box">
+            <p>
+                A partir de esa base preliminar, existen solo <strong>tres caminos posibles</strong>, 
+                cada uno diseñado para resolver un tipo específico de bloqueo empresarial.
+            </p>
+        </div>
+
+        <!-- CAMINOS -->
+        <div class="caminos-grid">
+            <!-- CAMINO 1: EXCAVA -->
+            <div class="camino">
+                <div class="camino-header">
+                    <div class="camino-numero">1</div>
+                    <h2 class="camino-titulo">EXCAVA™</h2>
+                    <p class="camino-subtitle">Cuando el problema principal es el LÍDER</p>
+                </div>
+                <div class="camino-content">
+                    <p style="font-size: 1.15em; font-style: italic; color: #7eb3d6; margin-bottom: 30px;">
+                        El negocio no puede crecer más que la claridad de quien lo lidera.
+                    </p>
+
+                    <div class="camino-recomendado">
+                        <h4>Se recomienda cuando se detecta:</h4>
+                        <ul>
+                            <li>Falta de dirección interna</li>
+                            <li>Identidad difusa o no integrada</li>
+                            <li>Liderazgo reactivo</li>
+                            <li>Contradicciones personales vs. decisiones del negocio</li>
+                            <li>Bloqueos mentales o emocionales que frenan la estrategia</li>
+                            <li>Dudas existenciales sobre propósito o visión</li>
+                        </ul>
+                    </div>
+
+                    <div class="camino-meta">
+                        <h4>Meta del programa:</h4>
+                        <p>Reconstruir la claridad del líder para construir claridad estratégica real.</p>
+                    </div>
+
+                    <div class="camino-resultado">
+                        <h4>Resultado:</h4>
+                        <p>Un líder sólido, coherente, consciente y capaz de sostener una estrategia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CAMINO 2: MAPEA -->
+            <div class="camino">
+                <div class="camino-header">
+                    <div class="camino-numero">2</div>
+                    <h2 class="camino-titulo">MAPEA™</h2>
+                    <p class="camino-subtitle">Cuando el problema principal es la ESTRATEGIA</p>
+                </div>
+                <div class="camino-content">
+                    <p style="font-size: 1.15em; font-style: italic; color: #7eb3d6; margin-bottom: 30px;">
+                        No puedes diferenciarte si no tienes una estrategia que te sostenga.
+                    </p>
+
+                    <div class="camino-recomendado">
+                        <h4>Se recomienda cuando se detecta:</h4>
+                        <ul>
+                            <li>Falta de diferenciación</li>
+                            <li>Modelo de negocio débil o poco rentable</li>
+                            <li>Propuesta de valor genérica</li>
+                            <li>Desorden estratégico</li>
+                            <li>Mercado incorrecto o mal definido</li>
+                            <li>Posicionamiento confuso o inexistente</li>
+                        </ul>
+                    </div>
+
+                    <div class="camino-meta">
+                        <h4>Meta del programa:</h4>
+                        <p>Construir una Estrategia de Diferenciación Radical™ con ADN propio.</p>
+                    </div>
+
+                    <div class="camino-resultado">
+                        <h4>Resultado:</h4>
+                        <p>Un negocio con un modelo claro, un cliente ideal preciso y una propuesta única.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CAMINO 3: FORTALEZA VISIBLE -->
+            <div class="camino">
+                <div class="camino-header">
+                    <div class="camino-numero">3</div>
+                    <h2 class="camino-titulo">FORTALEZA VISIBLE™</h2>
+                    <p class="camino-subtitle">Cuando el problema principal es la EJECUCIÓN</p>
+                </div>
+                <div class="camino-content">
+                    <p style="font-size: 1.15em; font-style: italic; color: #7eb3d6; margin-bottom: 30px;">
+                        La estrategia muere donde no hay estructura.
+                    </p>
+
+                    <div class="camino-recomendado">
+                        <h4>Se recomienda cuando se detecta:</h4>
+                        <ul>
+                            <li>Desorden interno</li>
+                            <li>Problemas de estructura o roles</li>
+                            <li>Falta de gobernanza o liderazgo consciente</li>
+                            <li>Comunicación inconsistente</li>
+                            <li>Procesos débiles</li>
+                            <li>Falta de seguimiento o implementación real</li>
+                        </ul>
+                    </div>
+
+                    <div class="camino-meta">
+                        <h4>Meta del programa:</h4>
+                        <p>Convertir la estrategia en sistema, orden, cultura y coherencia visible.</p>
+                    </div>
+
+                    <div class="camino-resultado">
+                        <h4>Resultado:</h4>
+                        <p>Una empresa ordenada, ejecutando con claridad y sosteniendo su océano azul.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESUMEN VISUAL -->
+        <div class="resumen-box">
+            <h2>3 Caminos. Una Sola Certeza: Claridad Estratégica</h2>
+            <div class="resumen-grid">
+                <div class="resumen-item">
+                    <div class="resumen-titulo">EXCAVA™</div>
+                    <div class="resumen-arrow">↓</div>
+                    <p class="resumen-texto">Cuando el líder es el cuello de botella.</p>
+                </div>
+
+                <div class="resumen-item">
+                    <div class="resumen-titulo">MAPEA™</div>
+                    <div class="resumen-arrow">↓</div>
+                    <p class="resumen-texto">Cuando la estrategia no está clara o no existe.</p>
+                </div>
+
+                <div class="resumen-item">
+                    <div class="resumen-titulo">FORTALEZA VISIBLE™</div>
+                    <div class="resumen-arrow">↓</div>
+                    <p class="resumen-texto">Cuando la empresa no logra ejecutar.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA FINAL -->
+        <div class="cta-box">
+            <h2>¿Listo para identificar tu camino?</h2>
+            <p>Agenda tu Diagnóstico de Rareza™ y descubre cuál es tu próximo paso estratégico.</p>
+            <a href="https://wa.me/50370804943?text=Hola,%20me%20interesa%20agendar%20mi%20Diagnóstico%20de%20Rareza™%20para%20identificar%20mi%20camino%20estratégico." target="_blank" class="btn">Agendar Diagnóstico</a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">LA ESTR<span class="highlight">A</span>TEGA</div>
+            <p class="footer-tagline">Creadora de Océanos Azules para PYMEs Latinoamericanas</p>
+            
+            <div class="footer-divider"></div>
+            
+            <div class="footer-info">
+                <p><strong>3 Caminos Estratégicos</strong></p>
+                <p style="margin-top: 15px;">Herramienta de Diagnóstico y Decisión Estratégica</p>
+                <p style="margin-top: 25px; font-size: 1.1em;">
+                    <strong>"Primero excavamos. Luego diferenciamos."</strong>
+                </p>
+            </div>
+
+            <div class="footer-copyright">
+                <p>© 2025 La Estratega™ — Todos los derechos reservados</p>
+                <p style="margin-top: 8px;">San Salvador, El Salvador</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
